@@ -117,7 +117,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         if pageContentViewController == viewControllerList.last {
             
             //pageControl.alpha = 0
-            UIView.animate(withDuration: 0.2, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.2, delay: 0.3, options: UIView.AnimationOptions.curveEaseOut, animations: {
                 self.pageControl.alpha = 0
             }, completion: nil)
             
