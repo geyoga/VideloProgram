@@ -59,7 +59,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         // membuat index view controller saat ini
-        guard let vcIndex = viewControllerList.index(of: viewController) else { return nil }
+        guard let vcIndex = viewControllerList.firstIndex(of: viewController) else { return nil }
         
         let previousIndex = vcIndex - 1
         
@@ -86,7 +86,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         // membuat variable index untuk menyimpan view controller
-        guard let vcIndex = viewControllerList.index(of: viewController) else { return nil }
+        guard let vcIndex = viewControllerList.firstIndex(of: viewController) else { return nil }
         
         let afterIndex = vcIndex + 1
         
@@ -133,7 +133,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
             }, completion: nil)
         }
         
-        self.pageControl.currentPage = viewControllerList.index(of: pageContentViewController)!
+        self.pageControl.currentPage = viewControllerList.firstIndex(of: pageContentViewController)!
         
     }
 

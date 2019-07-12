@@ -37,6 +37,60 @@
             <point key="canvasLocation" x="487.5" y="-965.21739130434787"/>
         </scene>
         <!--View Controller-->
+        <scene sceneID="abT-yz-ITi">
+            <objects>
+                <viewController id="jAV-z9-ZFb" customClass="ARViewController" customModule="VideoVersionTwo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DGO-Fs-7lg">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYz-MN-FoG">
+                                <rect key="frame" x="-3" y="-5" width="899" height="419"/>
+                            </arscnView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Grid" translatesAutoresizingMaskIntoConstraints="NO" id="ALh-SQ-eYf">
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cpi-yc-PdP">
+                                <rect key="frame" x="816" y="196" width="16" height="22"/>
+                                <state key="normal" image="Start Button"/>
+                                <connections>
+                                    <action selector="StartActionButton:" destination="jAV-z9-ZFb" eventType="touchUpInside" id="ivX-t3-45v"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ylo-2g-hMc">
+                                <rect key="frame" x="85" y="28" width="16" height="22"/>
+                                <state key="normal" image="Learning Path"/>
+                                <connections>
+                                    <action selector="LearnPathButton:" destination="jAV-z9-ZFb" eventType="touchUpInside" id="kPk-gk-fwd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ALh-SQ-eYf" firstAttribute="bottom" secondItem="fYz-MN-FoG" secondAttribute="bottom" id="4sB-Py-QIv"/>
+                            <constraint firstItem="fYz-MN-FoG" firstAttribute="leading" secondItem="DGO-Fs-7lg" secondAttribute="leading" constant="-3" id="DUL-Wt-fih"/>
+                            <constraint firstItem="lba-wP-pok" firstAttribute="trailing" secondItem="Ylo-2g-hMc" secondAttribute="trailing" constant="751" id="DXf-gb-lQM"/>
+                            <constraint firstItem="Ylo-2g-hMc" firstAttribute="top" secondItem="lba-wP-pok" secondAttribute="top" constant="28" id="OgR-Wg-pLj"/>
+                            <constraint firstItem="Cpi-yc-PdP" firstAttribute="centerY" secondItem="DGO-Fs-7lg" secondAttribute="centerY" id="Sra-Rz-cq2"/>
+                            <constraint firstItem="fYz-MN-FoG" firstAttribute="top" secondItem="lba-wP-pok" secondAttribute="top" constant="-5" id="T2b-bu-RiF"/>
+                            <constraint firstItem="ALh-SQ-eYf" firstAttribute="top" secondItem="lba-wP-pok" secondAttribute="top" id="UJV-DL-3NY"/>
+                            <constraint firstAttribute="trailing" secondItem="fYz-MN-FoG" secondAttribute="trailing" id="ahb-2a-pvE"/>
+                            <constraint firstItem="ALh-SQ-eYf" firstAttribute="trailing" secondItem="fYz-MN-FoG" secondAttribute="trailing" id="cyP-3j-B12"/>
+                            <constraint firstAttribute="bottom" secondItem="fYz-MN-FoG" secondAttribute="bottom" id="dnA-Bq-Bkd"/>
+                            <constraint firstItem="Cpi-yc-PdP" firstAttribute="trailing" secondItem="DGO-Fs-7lg" secondAttribute="trailingMargin" id="pMo-Qe-mrm"/>
+                            <constraint firstItem="ALh-SQ-eYf" firstAttribute="leading" secondItem="DGO-Fs-7lg" secondAttribute="leading" id="uja-Xj-VCX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lba-wP-pok"/>
+                    </view>
+                    <connections>
+                        <outlet property="sceneView" destination="fYz-MN-FoG" id="fvO-ky-2OP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9ZZ-me-KdV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1170.5357142857142" y="-981.15942028985512"/>
+        </scene>
+        <!--View Controller-->
         <scene sceneID="HtM-B2-9vT">
             <objects>
                 <viewController storyboardIdentifier="WelcomeTwo" id="hxS-I8-ZYK" sceneMemberID="viewController">
@@ -73,6 +127,16 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Welcome Page 3" translatesAutoresizingMaskIntoConstraints="NO" id="dzR-mS-VdM">
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A7j-ZT-dPQ">
+                                <rect key="frame" x="259" y="334" width="381" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="jAV-z9-ZFb" kind="show" id="Mfx-8a-ADH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -98,6 +162,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Grid" width="812" height="375"/>
+        <image name="Learning Path" width="55" height="41"/>
+        <image name="Start Button" width="74" height="74"/>
         <image name="Welcome Page 1" width="812" height="375"/>
         <image name="Welcome Page 2" width="812" height="375"/>
         <image name="Welcome Page 3" width="812" height="375"/>

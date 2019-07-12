@@ -14,6 +14,7 @@
 		D37425A122D7920A00F36000 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D37425A022D7920A00F36000 /* Assets.xcassets */; };
 		D37425A422D7920A00F36000 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D37425A222D7920A00F36000 /* LaunchScreen.storyboard */; };
 		D37425AC22D7933000F36000 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37425AB22D7933000F36000 /* PageViewController.swift */; };
+		D383269B22D87F5900C53AA7 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D383269A22D87F5900C53AA7 /* ARViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		D37425A322D7920A00F36000 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D37425A522D7920A00F36000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D37425AB22D7933000F36000 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		D383269A22D87F5900C53AA7 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				D374259622D7920A00F36000 /* AppDelegate.swift */,
 				D374259822D7920A00F36000 /* ViewController.swift */,
+				D383269A22D87F5900C53AA7 /* ARViewController.swift */,
 				D37425AB22D7933000F36000 /* PageViewController.swift */,
 				D374259A22D7920A00F36000 /* Main.storyboard */,
 				D37425A022D7920A00F36000 /* Assets.xcassets */,
@@ -145,6 +148,7 @@
 				D374259922D7920A00F36000 /* ViewController.swift in Sources */,
 				D374259722D7920A00F36000 /* AppDelegate.swift in Sources */,
 				D37425AC22D7933000F36000 /* PageViewController.swift in Sources */,
+				D383269B22D87F5900C53AA7 /* ARViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
