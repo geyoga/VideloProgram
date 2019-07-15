@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E25416622DC39C10017C8BB /* Pan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25416522DC39C10017C8BB /* Pan.swift */; };
+		8E25416822DC440C0017C8BB /* Tilt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25416722DC440C0017C8BB /* Tilt.swift */; };
 		D374259722D7920A00F36000 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D374259622D7920A00F36000 /* AppDelegate.swift */; };
 		D374259922D7920A00F36000 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D374259822D7920A00F36000 /* ViewController.swift */; };
 		D374259C22D7920A00F36000 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D374259A22D7920A00F36000 /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E25416522DC39C10017C8BB /* Pan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pan.swift; sourceTree = "<group>"; };
+		8E25416722DC440C0017C8BB /* Tilt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tilt.swift; sourceTree = "<group>"; };
 		D374259322D7920A00F36000 /* VideoVersionTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoVersionTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D374259622D7920A00F36000 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D374259822D7920A00F36000 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 				D37425A222D7920A00F36000 /* LaunchScreen.storyboard */,
 				D37425A522D7920A00F36000 /* Info.plist */,
 				D374259D22D7920A00F36000 /* VideoVersionTwo.xcdatamodeld */,
+				8E25416522DC39C10017C8BB /* Pan.swift */,
+				8E25416722DC440C0017C8BB /* Tilt.swift */,
 			);
 			path = VideoVersionTwo;
 			sourceTree = "<group>";
@@ -148,9 +154,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E25416822DC440C0017C8BB /* Tilt.swift in Sources */,
 				D374259F22D7920A00F36000 /* VideoVersionTwo.xcdatamodeld in Sources */,
 				D374259922D7920A00F36000 /* ViewController.swift in Sources */,
 				D374259722D7920A00F36000 /* AppDelegate.swift in Sources */,
+				8E25416622DC39C10017C8BB /* Pan.swift in Sources */,
 				D37425AC22D7933000F36000 /* PageViewController.swift in Sources */,
 				D383269B22D87F5900C53AA7 /* ARViewController.swift in Sources */,
 			);
@@ -299,7 +307,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F63VRNN393;
+				DEVELOPMENT_TEAM = 26R5URXZ3V;
 				INFOPLIST_FILE = VideoVersionTwo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -317,7 +325,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F63VRNN393;
+				DEVELOPMENT_TEAM = 26R5URXZ3V;
 				INFOPLIST_FILE = VideoVersionTwo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
