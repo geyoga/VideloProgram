@@ -15,6 +15,7 @@
 		D37425A422D7920A00F36000 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D37425A222D7920A00F36000 /* LaunchScreen.storyboard */; };
 		D37425AC22D7933000F36000 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37425AB22D7933000F36000 /* PageViewController.swift */; };
 		D383269B22D87F5900C53AA7 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D383269A22D87F5900C53AA7 /* ARViewController.swift */; };
+		D3D9411F22DC138800B2DCC0 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = D3D9411E22DC138800B2DCC0 /* art.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		D37425A522D7920A00F36000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D37425AB22D7933000F36000 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		D383269A22D87F5900C53AA7 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		D3D9411E22DC138800B2DCC0 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		D374259522D7920A00F36000 /* VideoVersionTwo */ = {
 			isa = PBXGroup;
 			children = (
+				D3D9411E22DC138800B2DCC0 /* art.scnassets */,
 				D374259622D7920A00F36000 /* AppDelegate.swift */,
 				D374259822D7920A00F36000 /* ViewController.swift */,
 				D383269A22D87F5900C53AA7 /* ARViewController.swift */,
@@ -132,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D37425A422D7920A00F36000 /* LaunchScreen.storyboard in Resources */,
+				D3D9411F22DC138800B2DCC0 /* art.scnassets in Resources */,
 				D37425A122D7920A00F36000 /* Assets.xcassets in Resources */,
 				D374259C22D7920A00F36000 /* Main.storyboard in Resources */,
 			);
