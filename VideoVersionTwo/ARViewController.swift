@@ -38,6 +38,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         
         let configuration = ARWorldTrackingConfiguration()
         sceneView.session.run(configuration)
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -49,7 +51,15 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     // coba nampilin kubus AR
     @IBAction func LearnPathButton(_ sender: UIButton) {
         
-        createCube()
+        let alert = UIAlertController(title: "Want to go Learning Path ?", message: "Your activity will be not saved", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{_ in
+            self.performSegue(withIdentifier: "goToLearningPath", sender: nil)
+        }))
+        self.present(alert, animated: true)
+        
+        //createCube()
         
     }
     @IBAction func StartActionButton(_ sender: UIButton) {
@@ -131,6 +141,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene.rootNode.addChildNode(shape)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        createCube()
+    }
     
     /*
     // MARK: - Navigation
@@ -186,6 +199,8 @@ extension ARViewController: TiltDelegate {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         
         self.present(alert, animated: true)
+        
+        shape.removeFromParentNode()
     }
     
     

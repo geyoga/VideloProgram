@@ -18,6 +18,9 @@
 		D37425AC22D7933000F36000 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37425AB22D7933000F36000 /* PageViewController.swift */; };
 		D383269B22D87F5900C53AA7 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D383269A22D87F5900C53AA7 /* ARViewController.swift */; };
 		D3D9411F22DC138800B2DCC0 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = D3D9411E22DC138800B2DCC0 /* art.scnassets */; };
+		D3ED962422DC7D5C0086F3DC /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED962322DC7D5C0086F3DC /* DetailsViewController.swift */; };
+		D3ED962622DC7DE30086F3DC /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED962522DC7DE30086F3DC /* CollectionViewCell.swift */; };
+		D3ED962822DC7E3A0086F3DC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED962722DC7E3A0086F3DC /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		D37425AB22D7933000F36000 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		D383269A22D87F5900C53AA7 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		D3D9411E22DC138800B2DCC0 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		D3ED962322DC7D5C0086F3DC /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		D3ED962522DC7DE30086F3DC /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		D3ED962722DC7E3A0086F3DC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +75,11 @@
 				D3D9411E22DC138800B2DCC0 /* art.scnassets */,
 				D374259622D7920A00F36000 /* AppDelegate.swift */,
 				D374259822D7920A00F36000 /* ViewController.swift */,
-				D383269A22D87F5900C53AA7 /* ARViewController.swift */,
 				D37425AB22D7933000F36000 /* PageViewController.swift */,
+				D383269A22D87F5900C53AA7 /* ARViewController.swift */,
+				D3ED962722DC7E3A0086F3DC /* HomeViewController.swift */,
+				D3ED962522DC7DE30086F3DC /* CollectionViewCell.swift */,
+				D3ED962322DC7D5C0086F3DC /* DetailsViewController.swift */,
 				D374259A22D7920A00F36000 /* Main.storyboard */,
 				D37425A022D7920A00F36000 /* Assets.xcassets */,
 				D37425A222D7920A00F36000 /* LaunchScreen.storyboard */,
@@ -156,7 +165,10 @@
 			files = (
 				8E25416822DC440C0017C8BB /* Tilt.swift in Sources */,
 				D374259F22D7920A00F36000 /* VideoVersionTwo.xcdatamodeld in Sources */,
+				D3ED962622DC7DE30086F3DC /* CollectionViewCell.swift in Sources */,
+				D3ED962422DC7D5C0086F3DC /* DetailsViewController.swift in Sources */,
 				D374259922D7920A00F36000 /* ViewController.swift in Sources */,
+				D3ED962822DC7E3A0086F3DC /* HomeViewController.swift in Sources */,
 				D374259722D7920A00F36000 /* AppDelegate.swift in Sources */,
 				8E25416622DC39C10017C8BB /* Pan.swift in Sources */,
 				D37425AC22D7933000F36000 /* PageViewController.swift in Sources */,
@@ -307,7 +319,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 26R5URXZ3V;
+				DEVELOPMENT_TEAM = F63VRNN393;
 				INFOPLIST_FILE = VideoVersionTwo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -325,7 +337,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 26R5URXZ3V;
+				DEVELOPMENT_TEAM = F63VRNN393;
 				INFOPLIST_FILE = VideoVersionTwo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
