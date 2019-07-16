@@ -31,6 +31,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,UICollectio
         
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false;
+        self.tabBarController?.tabBar.tintColor = .orange
+        self.tabBarController?.tabBar.barTintColor = .clear
+        
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrNum.count
         

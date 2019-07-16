@@ -20,6 +20,8 @@ class DetailsViewController: UIViewController {
         
         progressView.layer.cornerRadius = 8.0
         progressView.clipsToBounds = true
+        
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     

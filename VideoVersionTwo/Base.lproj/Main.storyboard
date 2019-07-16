@@ -583,7 +583,6 @@
                                             <outlet property="lessonBody" destination="Xya-fk-FFK" id="jG9-BO-joM"/>
                                             <outlet property="lessonNum" destination="qgk-R2-0ME" id="S1m-uy-Yge"/>
                                             <outlet property="lessonTitle" destination="zpc-m9-TZm" id="U8K-A2-dUK"/>
-                                            <segue destination="6KQ-zl-h1r" kind="show" id="gAP-ei-xFO"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
