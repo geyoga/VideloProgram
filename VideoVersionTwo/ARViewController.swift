@@ -26,6 +26,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     var pan = Pan()
     var tilt = Tilt()
     
+    // membuat data label instruktur tutorial
+    var labelAR = UILabel()
+    let labelsContent = ["Welcome to Videlo, tap the screen to spawn Object","Press Start and Panning your Phone"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +42,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         
         let configuration = ARWorldTrackingConfiguration()
         sceneView.session.run(configuration)
+        buildLabel(data: 0)
         
         
     }
@@ -123,6 +128,26 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         
     }
     
+    // setting label untuk instruksi AR
+    func buildLabel (data : Int) {
+        labelAR.frame = CGRect(x: self.view.frame.width/4, y: 20, width: 400, height: 30)
+        labelAR.text = labelsContent[data]
+        labelAR.textAlignment = .center
+        labelAR.textColor = UIColor.orange
+        labelAR.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        labelAR.layer.masksToBounds = true
+        labelAR.layer.cornerRadius = 14
+        labelAR.font = UIFont.systemFont(ofSize: 13)
+        self.view.addSubview(labelAR)
+    }
+    
+    func deleteLabel () {
+        UIView.animate(withDuration: 4, delay: 2, options: .curveEaseOut, animations: {
+            self.labelAR.removeFromSuperview()
+        }, completion: nil)
+        
+    }
+    
     func createBall (position : SCNVector3) {
         
         let ballShape = SCNSphere(radius: 0.05)
@@ -141,8 +166,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene.rootNode.addChildNode(shape)
     }
     
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         createCube()
+        deleteLabel()
     }
     
     /*
