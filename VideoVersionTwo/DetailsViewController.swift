@@ -17,6 +17,7 @@ class DetailsViewController: UIViewController {
     var mainLessonNum : String!
     var mainLessonImg : UIImage!
     
+    var lessonDetail: Lessons!
     
     
     @IBOutlet weak var LessonProgress: UIProgressView!
@@ -33,8 +34,8 @@ class DetailsViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.hidesBarsOnSwipe = true
         
-        lessonNumP.text = mainLessonNum
-        lessonImgP.image = mainLessonImg
+        lessonNumP.text = String(lessonDetail.id) //mainLessonNum
+        lessonImgP.image = UIImage(named: lessonDetail.image!) //mainLessonImg
         
         
         progressView.backgroundColor = UIColor(white: 1, alpha: 0.3)

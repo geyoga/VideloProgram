@@ -24,7 +24,7 @@ class DataController {
         return technique
     }
     
-    func addLesson(name: String, type: String, shortDesc: String, longDesc: String, objectName: String, learn_use: NSSet) {
+    func addLesson(name: String, type: String, shortDesc: String, longDesc: String, objectName: String, learn_use: NSSet, image: String) {
         lessonCounter += 1
         let lesson1 = Lessons(context: CoreDataHelper.managedContext)
         lesson1.id = lessonCounter
@@ -34,6 +34,7 @@ class DataController {
         lesson1.longDesc = longDesc
         lesson1.objectName = objectName
         lesson1.addToLearn_use(learn_use)
+        lesson1.image = image
         CoreDataHelper.save()
     }
 }
