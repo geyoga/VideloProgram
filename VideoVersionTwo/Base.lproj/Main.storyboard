@@ -523,6 +523,15 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="260-mS-CXO">
                                                 <rect key="frame" x="37" y="568" width="807" height="178"/>
                                                 <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What You'll Learn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Knj-vp-7I3">
+                                                        <rect key="frame" x="27" y="23" width="139" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="139" id="IvM-x8-Kvo"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Angle Symbol" translatesAutoresizingMaskIntoConstraints="NO" id="HSs-kI-Pwy">
                                                         <rect key="frame" x="27" y="58" width="100" height="100"/>
                                                         <constraints>
@@ -570,15 +579,6 @@
                                                             <constraint firstAttribute="width" constant="125" id="dgB-UU-dCe"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What You'll Learn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Knj-vp-7I3">
-                                                        <rect key="frame" x="27" y="23" width="139" height="21"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="139" id="IvM-x8-Kvo"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -702,8 +702,11 @@
                     <connections>
                         <outlet property="LessonProgress" destination="h4e-ie-MCB" id="aaz-z9-2eu"/>
                         <outlet property="button" destination="6Dl-gy-RuK" id="6gn-5e-ZHb"/>
+                        <outlet property="lessonBodyP" destination="Wr4-2Q-egj" id="B5X-Ce-CiW"/>
+                        <outlet property="lessonCourseTitleP" destination="Knj-vp-7I3" id="XHU-d3-UNV"/>
                         <outlet property="lessonImgP" destination="SWd-92-nQT" id="P2O-iu-RrM"/>
                         <outlet property="lessonNumP" destination="Ybh-uW-fnf" id="h4h-v1-8HI"/>
+                        <outlet property="lessonTitleP" destination="2vW-0r-o70" id="wu8-nE-kuL"/>
                         <outlet property="progressView" destination="QRq-ay-lgW" id="A6b-wG-91B"/>
                     </connections>
                 </viewController>
