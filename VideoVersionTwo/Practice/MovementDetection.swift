@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 extension ARViewController: PanDelegate {
     func panLeftHit(_ status: Bool) {
         panStatus = 2

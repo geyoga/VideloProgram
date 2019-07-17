@@ -45,18 +45,34 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         
         let dataController: DataController = DataController()
         
-        //TECHNIQUE
+        //MOVEMENT
         let pan = dataController.addTechnique(name: "Pan")
         let tilt = dataController.addTechnique(name: "Tilt")
         let dolly = dataController.addTechnique(name: "Dolly")
         let tracking = dataController.addTechnique(name: "Tracking")
         
-        let learn_use = NSSet.init(array: [pan, tilt, dolly, tracking])
-        dataController.addLesson(name: "Introduction to Movement", type: "Lesson", shortDesc: "Movement", longDesc: "You will learn basic Movement", objectName: "Car", learn_use: learn_use)
+        var learn_use = NSSet.init(array: [pan, tilt, dolly, tracking])
+        dataController.addLesson(name: "Introduction to Movement", type: "Lesson", shortDesc: "Movement", longDesc: "You will learn basic Movement", objectName: "Car", learn_use: learn_use, image: "Fund_Movement")
         
         //ANGLE
+        let high = dataController.addTechnique(name: "High Angle")
+        let low = dataController.addTechnique(name: "Low Angle")
         
+        learn_use = NSSet.init(array: [high, low])
+        dataController.addLesson(name: "Introduction to Angle", type: "Lesson", shortDesc: "Angle", longDesc: "You will learn basic Angle", objectName: "BuildingWithBarrel", learn_use: learn_use, image: "Fund_Angle")
         
+        //SHOT
+        let closeUp = dataController.addTechnique(name: "Close Up Shot")
+        let medium = dataController.addTechnique(name: "Medium Shot")
+        
+        learn_use = NSSet.init(array: [closeUp, medium])
+        dataController.addLesson(name: "Introduction to Shot", type: "Lesson", shortDesc: "Shot", longDesc: "You will learn basic Shot", objectName: "HumanStill", learn_use: learn_use, image: "Fund_Shot")
+        
+        //exercise 1
+        learn_use = NSSet.init(array: [pan, tracking, dolly, closeUp])
+        dataController.addLesson(name: "Circle the Object", type: "Course", shortDesc: "You will learn a lot", longDesc: "You will learn a lot", objectName: "Flower", learn_use: learn_use, image: "Exe_StillObject")
+        
+        //FETCH
         let data = CoreDataHelper.fetch(entity: "Lessons") as [Lessons]
         for item in data {
             print("\(item.id) - \(item.name) - \(item.type) - \(item.shortDesc) - \(item.longDesc) - \(item.objectName)")
