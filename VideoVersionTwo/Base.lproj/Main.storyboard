@@ -301,7 +301,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="z1z-UI-r5s"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="About Us" image="tabBarItem:Wx3-wh-5GN:image" selectedImage="tabBarItem:Wx3-wh-5GN:image" id="Wx3-wh-5GN"/>
+                    <tabBarItem key="tabBarItem" title="About Us" image="tabBarItem:Wx3-wh-5GN:image" selectedImage="About Us Icon" id="Wx3-wh-5GN"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6W-HD-fNj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -643,6 +643,14 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MIM-yc-yor">
+                                                <rect key="frame" x="753" y="166" width="86" height="35"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" backgroundImage="Button Start"/>
+                                                <connections>
+                                                    <action selector="startLesson:" destination="bXa-IH-ory" eventType="touchUpInside" id="vyR-de-JuI"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -726,8 +734,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="About Us Icon" width="30" height="30"/>
         <image name="Angle Symbol" width="73" height="64"/>
         <image name="Button Ready" width="345" height="52"/>
+        <image name="Button Start" width="86" height="35"/>
         <image name="Grid" width="812" height="375"/>
         <image name="Learn Icon" width="30" height="30"/>
         <image name="Learning Path" width="55" height="41"/>
