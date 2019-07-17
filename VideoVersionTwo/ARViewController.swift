@@ -28,13 +28,15 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     // membuat data label instruktur tutorial
     var labelAR = UILabel()
-    let labelsContent = ["Welcome to Videlo, tap the screen to spawn Object","Press Start and Panning your Phone"]
+    let labelsContent = ["Welcome to Videlo, tap the screen to spawn Object","Press Start and Panning your Phone","Tilt your Phone by follow the Object",""]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         sceneView.debugOptions = [.showFeaturePoints]
         sceneView.delegate = self
+        
+        buildLabel(data: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,8 +44,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         
         let configuration = ARWorldTrackingConfiguration()
         sceneView.session.run(configuration)
-        buildLabel(data: 0)
-        
+       
         
     }
     
@@ -78,6 +79,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             pan.startGyros()
             
             panStatus = 1
+            deleteLabel()
         }
         else {
             buttonStart.setBackgroundImage(UIImage(named: "StartButton"), for: .normal)
@@ -130,21 +132,31 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     // setting label untuk instruksi AR
     func buildLabel (data : Int) {
-        labelAR.frame = CGRect(x: self.view.frame.width/4, y: 20, width: 400, height: 30)
+        
+        labelAR.frame = CGRect(x: self.view.frame.width/4, y: 20, width: 400, height: 50)
         labelAR.text = labelsContent[data]
         labelAR.textAlignment = .center
-        labelAR.textColor = UIColor.orange
+        labelAR.alpha = 0
+        labelAR.textColor = UIColor.white
         labelAR.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         labelAR.layer.masksToBounds = true
-        labelAR.layer.cornerRadius = 14
+        labelAR.layer.cornerRadius = 10
         labelAR.font = UIFont.systemFont(ofSize: 13)
         self.view.addSubview(labelAR)
+        
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
+            self.labelAR.alpha = 1
+        }, completion: nil)
+        
     }
     
     func deleteLabel () {
-        UIView.animate(withDuration: 4, delay: 2, options: .curveEaseOut, animations: {
-            self.labelAR.removeFromSuperview()
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+            self.labelAR.alpha = 0
         }, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.labelAR.removeFromSuperview()
+        }
         
     }
     
@@ -158,7 +170,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     func createCube () {
         
-        var cube = SCNScene(named: "art.scnassets/tong.scn")! //SCNBox(width: 0.3, height: 0.3, length: 0.3, chamferRadius: 0.1)
+        let cube = SCNScene(named: "art.scnassets/tong.scn")! //SCNBox(width: 0.3, height: 0.3, length: 0.3, chamferRadius: 0.1)
         shape = cube.rootNode//SCNNode(geometry: cube)
         shape.geometry?.firstMaterial?.diffuse.contents = UIColor.orange
         shape.position = sceneView.scene.rootNode.position
@@ -168,8 +180,11 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        createCube()
         deleteLabel()
+        createCube()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.buildLabel(data: 1)
+        }
     }
     
     /*
@@ -202,9 +217,11 @@ extension ARViewController: PanDelegate {
             self.pan.stopGyros()
             self.tiltStatus = 1
             self.tilt.startGyros()
+            self.deleteLabel()
         }))
         
         self.present(alert, animated: true)
+        buildLabel(data: 2)
     }
     
     
@@ -228,6 +245,7 @@ extension ARViewController: TiltDelegate {
         self.present(alert, animated: true)
         
         shape.removeFromParentNode()
+       
     }
     
     
