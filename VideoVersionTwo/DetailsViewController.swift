@@ -13,6 +13,9 @@ class DetailsViewController: UIViewController {
     
     @IBOutlet weak var lessonNumP: UILabel!
     @IBOutlet weak var lessonImgP: UIImageView!
+    @IBOutlet weak var lessonTitleP: UILabel!
+    @IBOutlet weak var lessonBodyP: UILabel!
+    @IBOutlet weak var lessonCourseTitleP: UILabel!
     
     var lessonDetail: Lessons!
     
@@ -33,6 +36,9 @@ class DetailsViewController: UIViewController {
         
         lessonNumP.text = String(lessonDetail.id) //mainLessonNum
         lessonImgP.image = UIImage(named: lessonDetail.image!) //mainLessonImg
+        lessonTitleP.text = String(lessonDetail.name!)
+        lessonBodyP.text = String(lessonDetail.longDesc!)
+    
         
         for case let technique as Techniques in lessonDetail.learn_use! {
             print("\(technique.id) - \(technique.name)")
@@ -47,6 +53,10 @@ class DetailsViewController: UIViewController {
         
         lessonImgP.layer.cornerRadius = 5.0
         
+        
+        if (lessonDetail.type != "Lesson"){
+            lessonCourseTitleP.text = String("What You'll Use")
+        }
     }
     
     @IBAction func buttonClicked(_ sender: Any) {
