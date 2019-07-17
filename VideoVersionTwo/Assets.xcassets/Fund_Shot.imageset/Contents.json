@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Lesson 3 Background.png",
+      "filename" : "Fund_Shot.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Lesson 3 Background@2x.png",
+      "filename" : "Fund_Shot@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Lesson 3 Background@3x.png",
+      "filename" : "Fund_Shot@3x.png",
       "scale" : "3x"
     }
   ],
