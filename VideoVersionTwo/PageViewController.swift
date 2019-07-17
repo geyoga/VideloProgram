@@ -33,6 +33,38 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+         //CLEAR ALL
+        let datas = CoreDataHelper.fetch(entity: "Lessons") as [Lessons]
+        for item in datas {
+            for case let technique as Techniques in item.learn_use! {
+                CoreDataHelper.delete(data: technique)
+            }
+            CoreDataHelper.delete(data: item)
+        }
+        
+        let dataController: DataController = DataController()
+        
+        //TECHNIQUE
+        let pan = dataController.addTechnique(name: "Pan")
+        let tilt = dataController.addTechnique(name: "Tilt")
+        let dolly = dataController.addTechnique(name: "Dolly")
+        let tracking = dataController.addTechnique(name: "Tracking")
+        
+        let learn_use = NSSet.init(array: [pan, tilt, dolly, tracking])
+        dataController.addLesson(name: "Introduction to Movement", type: "Lesson", shortDesc: "Movement", longDesc: "You will learn basic Movement", objectName: "Car", learn_use: learn_use)
+        
+        //ANGLE
+        
+        
+        let data = CoreDataHelper.fetch(entity: "Lessons") as [Lessons]
+        for item in data {
+            print("\(item.id) - \(item.name) - \(item.type) - \(item.shortDesc) - \(item.longDesc) - \(item.objectName)")
+            for case let technique as Techniques in item.learn_use! {
+                print("\(technique.id) - \(technique.name)")
+            }
+        }
+        
         self.dataSource = self
         // Do any additional setup after loading the view.
         

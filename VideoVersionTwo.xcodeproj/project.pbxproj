@@ -10,6 +10,10 @@
 		8E25416622DC39C10017C8BB /* Pan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25416522DC39C10017C8BB /* Pan.swift */; };
 		8E25416822DC440C0017C8BB /* Tilt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25416722DC440C0017C8BB /* Tilt.swift */; };
 		8E25416A22DE26840017C8BB /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25416922DE26840017C8BB /* CoreDataHelper.swift */; };
+		8E25416D22DEC9770017C8BB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25416C22DEC9770017C8BB /* DataController.swift */; };
+		8E25417222DECEEF0017C8BB /* Status.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E25417122DECEEF0017C8BB /* Status.storyboard */; };
+		8E25417522DECF360017C8BB /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25417422DECF360017C8BB /* StatusViewController.swift */; };
+		8E25417822DED1E30017C8BB /* MovementDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25417722DED1E30017C8BB /* MovementDetection.swift */; };
 		D374259722D7920A00F36000 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D374259622D7920A00F36000 /* AppDelegate.swift */; };
 		D374259922D7920A00F36000 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D374259822D7920A00F36000 /* ViewController.swift */; };
 		D374259C22D7920A00F36000 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D374259A22D7920A00F36000 /* Main.storyboard */; };
@@ -28,6 +32,10 @@
 		8E25416522DC39C10017C8BB /* Pan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pan.swift; sourceTree = "<group>"; };
 		8E25416722DC440C0017C8BB /* Tilt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tilt.swift; sourceTree = "<group>"; };
 		8E25416922DE26840017C8BB /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		8E25416C22DEC9770017C8BB /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		8E25417122DECEEF0017C8BB /* Status.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Status.storyboard; sourceTree = "<group>"; };
+		8E25417422DECF360017C8BB /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
+		8E25417722DED1E30017C8BB /* MovementDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementDetection.swift; sourceTree = "<group>"; };
 		D374259322D7920A00F36000 /* VideoVersionTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoVersionTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D374259622D7920A00F36000 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D374259822D7920A00F36000 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,8 +68,27 @@
 			children = (
 				8E25416522DC39C10017C8BB /* Pan.swift */,
 				8E25416722DC440C0017C8BB /* Tilt.swift */,
+				8E25416C22DEC9770017C8BB /* DataController.swift */,
 			);
 			path = Logic;
+			sourceTree = "<group>";
+		};
+		8E25417322DECEFC0017C8BB /* Status */ = {
+			isa = PBXGroup;
+			children = (
+				8E25417122DECEEF0017C8BB /* Status.storyboard */,
+				8E25417422DECF360017C8BB /* StatusViewController.swift */,
+			);
+			path = Status;
+			sourceTree = "<group>";
+		};
+		8E25417622DED19C0017C8BB /* Practice */ = {
+			isa = PBXGroup;
+			children = (
+				D383269A22D87F5900C53AA7 /* ARViewController.swift */,
+				8E25417722DED1E30017C8BB /* MovementDetection.swift */,
+			);
+			path = Practice;
 			sourceTree = "<group>";
 		};
 		D374258A22D7920A00F36000 = {
@@ -89,7 +116,8 @@
 				D374259622D7920A00F36000 /* AppDelegate.swift */,
 				D374259822D7920A00F36000 /* ViewController.swift */,
 				D37425AB22D7933000F36000 /* PageViewController.swift */,
-				D383269A22D87F5900C53AA7 /* ARViewController.swift */,
+				8E25417622DED19C0017C8BB /* Practice */,
+				8E25417322DECEFC0017C8BB /* Status */,
 				D3ED962722DC7E3A0086F3DC /* HomeViewController.swift */,
 				D3ED962522DC7DE30086F3DC /* CollectionViewCell.swift */,
 				D3ED962322DC7D5C0086F3DC /* DetailsViewController.swift */,
@@ -162,6 +190,7 @@
 			files = (
 				D37425A422D7920A00F36000 /* LaunchScreen.storyboard in Resources */,
 				D3D9411F22DC138800B2DCC0 /* art.scnassets in Resources */,
+				8E25417222DECEEF0017C8BB /* Status.storyboard in Resources */,
 				D37425A122D7920A00F36000 /* Assets.xcassets in Resources */,
 				D374259C22D7920A00F36000 /* Main.storyboard in Resources */,
 			);
@@ -175,15 +204,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E25416822DC440C0017C8BB /* Tilt.swift in Sources */,
+				8E25416D22DEC9770017C8BB /* DataController.swift in Sources */,
 				D374259F22D7920A00F36000 /* VideoVersionTwo.xcdatamodeld in Sources */,
 				D3ED962622DC7DE30086F3DC /* CollectionViewCell.swift in Sources */,
 				D3ED962422DC7D5C0086F3DC /* DetailsViewController.swift in Sources */,
 				D374259922D7920A00F36000 /* ViewController.swift in Sources */,
+				8E25417522DECF360017C8BB /* StatusViewController.swift in Sources */,
 				D3ED962822DC7E3A0086F3DC /* HomeViewController.swift in Sources */,
 				D374259722D7920A00F36000 /* AppDelegate.swift in Sources */,
 				8E25416622DC39C10017C8BB /* Pan.swift in Sources */,
 				8E25416A22DE26840017C8BB /* CoreDataHelper.swift in Sources */,
 				D37425AC22D7933000F36000 /* PageViewController.swift in Sources */,
+				8E25417822DED1E30017C8BB /* MovementDetection.swift in Sources */,
 				D383269B22D87F5900C53AA7 /* ARViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
