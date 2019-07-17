@@ -12,12 +12,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,UICollectio
     
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    var arrNum = ["LESSON 1", "LESSON 2", "LESSON 3", "EXTRA LESSON"]
-    var arrImg = [UIImage(named: "Lesson 1 BG"),UIImage(named: "Lesson 2 BG"),UIImage(named: "Lesson 3 BG"),UIImage(named: "Lesson 4 BG")]
-    var arrTittle = ["Introduction", "Still Object", "Moving Object", "Freestyle Mode"]
-    var arrBody = ["You will learn how to use this application clearly. Also introduce you about basic shot, angle and movement. ", "learn about how to get best shot and angle with still object", "Bla bla", "Bla bla bla"]
-    
+
     var lesson: [Lessons] = []
     
     override func viewDidLoad() {
@@ -34,9 +29,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,UICollectio
         let data = CoreDataHelper.fetch(entity: "Lessons") as [Lessons]
         for item in data {
             lesson.append(item)
-            for case let technique as Techniques in item.learn_use! {
-                //print("\(technique.id) - \(technique.name)")
-            }
+//            for case let technique as Techniques in item.learn_use! {
+//                //print("\(technique.id) - \(technique.name)")
+//            }
         }
         
     }
@@ -73,10 +68,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,UICollectio
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let lessonDetail:DetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
-        
-        lessonDetail.mainLessonImg = arrImg [indexPath.row]
-        lessonDetail.mainLessonNum = arrNum[indexPath.row]
-        
+
         lessonDetail.lessonDetail  = lesson[indexPath.row]
         
         self.navigationController?.pushViewController(lessonDetail, animated: true)
