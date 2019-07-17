@@ -285,7 +285,6 @@
         <!--About Us-->
         <scene sceneID="n3u-8l-Xdi">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j6W-HD-fNj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="vMG-89-TAK" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VnV-xa-4SP">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
@@ -304,6 +303,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="About Us" image="tabBarItem:Wx3-wh-5GN:image" selectedImage="tabBarItem:Wx3-wh-5GN:image" id="Wx3-wh-5GN"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j6W-HD-fNj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1969" y="725"/>
         </scene>
@@ -342,7 +342,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lUc-0U-8gO">
                                         <rect key="frame" x="0.0" y="0.0" width="872" height="1100"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lesson 1 BG" translatesAutoresizingMaskIntoConstraints="NO" id="SWd-92-nQT">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SWd-92-nQT">
                                                 <rect key="frame" x="0.0" y="-75" width="898" height="460"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="460" id="PhI-1m-317"/>
@@ -719,7 +719,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Od6-yw-6pR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1189" y="1377"/>
+            <point key="canvasLocation" x="1156" y="1336"/>
         </scene>
     </scenes>
     <resources>
@@ -729,7 +729,6 @@
         <image name="Learn Icon" width="30" height="30"/>
         <image name="Learning Path" width="55" height="41"/>
         <image name="Learning Path Title" width="177" height="27"/>
-        <image name="Lesson 1 BG" width="310" height="164"/>
         <image name="Movement Symbol" width="73" height="64"/>
         <image name="Shot Symbol" width="73" height="64"/>
         <image name="StartButton" width="74" height="74"/>
