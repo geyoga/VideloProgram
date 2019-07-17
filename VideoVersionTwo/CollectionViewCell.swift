@@ -14,6 +14,4 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lessonNum: UILabel!
     @IBOutlet weak var lessonTitle: UILabel!
     @IBOutlet weak var lessonBody: UILabel!
-    
-    
 }
