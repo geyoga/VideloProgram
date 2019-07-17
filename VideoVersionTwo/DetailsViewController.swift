@@ -59,6 +59,10 @@ class DetailsViewController: UIViewController {
         }
     }
     
+    @IBAction func startLesson(_ sender: UIButton) {
+    }
+    
+    
     @IBAction func buttonClicked(_ sender: Any) {
         count+=2
         if (count<=10){
