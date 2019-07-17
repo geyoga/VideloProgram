@@ -64,6 +64,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,UICollectio
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let lessonDetail:DetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+        
+        lessonDetail.mainLessonImg = arrImg [indexPath.row]
+        lessonDetail.mainLessonNum = arrNum[indexPath.row]
+        
         self.navigationController?.pushViewController(lessonDetail, animated: true)
     }
     
