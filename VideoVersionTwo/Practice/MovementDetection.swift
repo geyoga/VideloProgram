@@ -38,6 +38,33 @@ extension ARViewController: PanDelegate {
     
 }
 
+extension ARViewController: DollyDelegate {
+    func dollyHit(_ status: Bool) {
+        dollyCheck =  false
+        let alert = UIAlertController(title: "Success", message: "You did DOLY", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+}
+
+extension ARViewController: TrackingDelegate {
+    func trackingHit(_ status: Bool) {
+        
+    }
+    
+    func distanceTooClose(_ status: Bool) {
+        print("TOO CLOSEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+    }
+    
+    func distanceTooFar(_ status: Bool) {
+        print("TOO FARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
+    }
+    
+    
+}
+
 extension ARViewController: TiltDelegate {
     func tiltUpHit(_ status: Bool) {
         tiltStatus = 2
@@ -58,6 +85,4 @@ extension ARViewController: TiltDelegate {
         shape.removeFromParentNode()
         
     }
-    
-    
 }

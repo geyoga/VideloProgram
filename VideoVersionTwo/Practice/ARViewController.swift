@@ -23,8 +23,12 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     var panStatus: Int = 0
     var tiltStatus: Int = 0
     
+    var dollyCheck: Bool = true
+    
     var pan = Pan()
     var tilt = Tilt()
+    var dolly: Dolly!
+    var tracking: Tracking!
     
     // membuat data label instruktur tutorial
     var labelAR = UILabel()
@@ -35,7 +39,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         
         sceneView.debugOptions = [.showFeaturePoints]
         sceneView.delegate = self
-        
+    
         buildLabel(data: 0)
     }
     
@@ -69,6 +73,14 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         
     }
     @IBAction func StartActionButton(_ sender: UIButton) {
+        
+        dolly = Dolly(startPoint: sceneView!.pointOfView!.position)
+        dolly.delegate = self as! DollyDelegate
+        
+        
+        tracking = Tracking(startPoint: sceneView.pointOfView!.position, objectPoint: shape.position)
+        tracking.delegate = self as!  TrackingDelegate
+        
         pan.delegate = self as! PanDelegate
         
         tilt.delegate = self as! TiltDelegate
@@ -96,6 +108,14 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        /*if dolly != nil && dollyCheck == true {
+            dolly.positionUpdate(updatePoint: sceneView!.pointOfView!.position)
+        }*/
+        
+        if tracking != nil {
+            tracking.positionUpdate(updatePoint: sceneView!.pointOfView!.position)
+        }
+        /*
         //for pan, move object periodically
         let speed: Float = 0.005
         let rotationValue: Float = 0.1
@@ -115,7 +135,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         else if tiltStatus == 2 {
             self.shape.position.y -= speed
             self.shape.eulerAngles.x -= rotationValue
-        }
+        }*/
     }
     
     func sessionWasInterrupted(_ session: ARSession) {
@@ -182,6 +202,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         deleteLabel()
         createCube()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.buildLabel(data: 1)
         }
