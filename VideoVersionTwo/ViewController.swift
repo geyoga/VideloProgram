@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 //test
 class ViewController: UIViewController {

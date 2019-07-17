@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreData
+
 // menambahkan DataSource PageViewController untuk menambahkan dua fungsi dibawah (before / after)
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate{
     

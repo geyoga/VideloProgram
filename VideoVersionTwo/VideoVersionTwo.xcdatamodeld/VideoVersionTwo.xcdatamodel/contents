@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Lessons" representedClassName="Lessons" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longDesc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shortDesc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="learn_use" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Techniques" inverseName="learnedby_usedby" inverseEntity="Techniques" syncable="YES"/>
+    </entity>
+    <entity name="Techniques" representedClassName="Techniques" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="learnedby_usedby" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lessons" inverseName="learn_use" inverseEntity="Lessons" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Lessons" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="Techniques" positionX="-54" positionY="36" width="128" height="90"/>
+    </elements>
 </model>
