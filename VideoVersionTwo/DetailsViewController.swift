@@ -8,25 +8,33 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController {
-    @IBOutlet weak var button: UIButton!
+class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
     
+    
+    
+    @IBOutlet weak var buttonBegin: UIButton!
     @IBOutlet weak var lessonNumP: UILabel!
     @IBOutlet weak var lessonImgP: UIImageView!
     @IBOutlet weak var lessonTitleP: UILabel!
     @IBOutlet weak var lessonBodyP: UILabel!
     @IBOutlet weak var lessonCourseTitleP: UILabel!
+    @IBOutlet weak var learnCollectionView: UICollectionView!
     
     var lessonDetail: Lessons!
 
     @IBOutlet weak var LessonProgress: UIProgressView!
     
     @IBOutlet weak var progressView: UIView!
+    var technique: [Techniques] = []
+
     
     private  var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        buttonBegin.setBackgroundImage(UIImage(named: "Button Start"), for: .normal)
+        buttonBegin.setBackgroundImage(UIImage(named: "Start Lesson Press"), for: .selected)
         
         // Do any additional setup after loading the view.
         
@@ -40,8 +48,9 @@ class DetailsViewController: UIViewController {
         lessonBodyP.text = String(lessonDetail.longDesc!)
     
         
-        for case let technique as Techniques in lessonDetail.learn_use! {
-            print("\(technique.id) - \(technique.name)")
+        for case let techn as Techniques in lessonDetail.learn_use! {
+            //print("\(technique.id) - \(technique.name)")
+            technique = Array(lessonDetail.learn_use!) as! [Techniques]
         }
         
         progressView.backgroundColor = UIColor(white: 1, alpha: 0.3)
@@ -58,19 +67,34 @@ class DetailsViewController: UIViewController {
             lessonCourseTitleP.text = String("What You'll Use")
         }
     }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return technique.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let learnCell:DetailCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "learnCell", for: indexPath) as! DetailCollectionViewCell
+      
+        learnCell.learnName.text = technique[indexPath.row].name
+        print(technique[indexPath.row].name)
+        
+        return learnCell
+    }
     
     @IBAction func startLesson(_ sender: UIButton) {
         print("asd")
-    }
-    
-    
-    @IBAction func buttonClicked(_ sender: Any) {
-        count+=2
-        if (count<=10){
-            self.LessonProgress.progress = Float(count) / 10.0
-        }
         
-    }
+            if buttonBegin.isSelected {
+                // set deselected
+                buttonBegin.isSelected = false
+            } else {
+                // set selected
+                buttonBegin.isSelected = true
+            }
+        }
+    
+    
+    
+ 
     
     
     /*

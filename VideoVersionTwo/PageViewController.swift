@@ -101,6 +101,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         pageControl.currentPage = 0
         pageControl.tintColor = UIColor.white
         pageControl.pageIndicatorTintColor = UIColor.gray
+        pageControl.isUserInteractionEnabled = false
         pageControl.currentPageIndicatorTintColor = UIColor.orange
         self.view.addSubview(pageControl)
     }
