@@ -9,6 +9,7 @@
 import UIKit
 import ARKit
 import SceneKit
+import Lottie
 
 class ARViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var buttonStart: UIButton!
@@ -59,19 +60,19 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         
         DispatchQueue.main.async {
             let configuration = ARWorldTrackingConfiguration()
-            configuration.planeDetection = [.horizontal]
+            //configuration.planeDetection = [.horizontal]
             self.sceneView.session.run(configuration)
         }
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+    /*func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         DispatchQueue.main.async {
             if let planeAnchor = anchor as? ARPlaneAnchor {
                 let plane = Plane(planeAnchor)
                 node.addChildNode(plane)
             }
         }
-    }
+    }*/
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -97,27 +98,45 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             buttonStart.setBackgroundImage(UIImage(named: "StopButton"), for: .normal)
             deleteLabel()
             
+            var animationName: String = ""
             switch currentLesson {
             case .Pan:
+                animationName = "PAN"
                 pan = Pan.init()
                 pan.delegate = self as! PanDelegate
                 
                 pan.startGyros()
                 panStatus = 1
             case .Tilt:
+                animationName = "Tilt"
                 tilt = Tilt.init()
                 tilt.delegate = self as! TiltDelegate
                 
                 tiltStatus = 1
                 tilt.startGyros()
             case .Dolly:
+                animationName = "DOLLY IN"
                 dolly = Dolly(startPoint: self.sceneView!.pointOfView!.position)
                 dolly.delegate = self as! DollyDelegate
                 dollyCheck = true
             case .Tracking:
+                animationName = "PAN"
                 tracking = Tracking(startPoint: sceneView.pointOfView!.position, objectPoint: shape.position)
                 tracking.delegate = self as!  TrackingDelegate
                 trackingCheck = true
+            }
+            
+            let animationView = AnimationView(name: animationName)
+            if animationView != nil {
+                let imageProvider = BundleImageProvider(bundle: .main, searchPath: "images")
+                animationView.imageProvider = imageProvider
+                animationView.frame = CGRect(x: 100, y: 100, width: 400, height: 400)
+                animationView.center = CGPoint.init(x: 200.0, y: 100.0)
+                animationView.contentMode = .scaleAspectFill
+                animationView.loopMode = .playOnce
+                view.addSubview(animationView)
+                
+                animationView.play()
             }
         }
         else {

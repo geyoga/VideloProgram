@@ -23,7 +23,9 @@ extension ARViewController: PanDelegate {
         pan.stopGyros()
         panStatus = 0
         currentLesson = ARViewController.LessonEnum(rawValue: 2)!
-        buttonStart.sendActions(for: .touchUpInside)
+        DispatchQueue.main.async {
+            self.buttonStart.sendActions(for: .touchUpInside)
+        }
         panStatus = 4
         
         DispatchQueue.main.async {
@@ -41,6 +43,9 @@ extension ARViewController: PanDelegate {
 
 extension ARViewController: DollyDelegate {
     func dollyHit(_ status: Bool) {
+        DispatchQueue.main.async {
+            self.buttonStart.sendActions(for: .touchUpInside)
+        }
         currentLesson = ARViewController.LessonEnum(rawValue: 4)!
         dollyCheck =  false
         DispatchQueue.main.async {
@@ -55,7 +60,14 @@ extension ARViewController: TrackingDelegate {
     func trackingHit(_ status: Bool) {
         trackingCheck = false
         currentLesson = ARViewController.LessonEnum(rawValue: 1)!
-        buttonStart.sendActions(for: .touchUpInside)
+        DispatchQueue.main.async {
+            self.buttonStart.sendActions(for: .touchUpInside)
+        }
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Success", message: "You did TRACKING", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
     
     func distanceTooClose(_ status: Bool) {
@@ -82,7 +94,9 @@ extension ARViewController: TiltDelegate {
         tiltStatus = 0
         tilt.stopGyros()
         currentLesson = ARViewController.LessonEnum(rawValue: 3)!
-        buttonStart.sendActions(for: .touchUpInside)
+        DispatchQueue.main.async {
+            self.buttonStart.sendActions(for: .touchUpInside)
+        }
         
         tiltStatus = 4
         DispatchQueue.main.async {
