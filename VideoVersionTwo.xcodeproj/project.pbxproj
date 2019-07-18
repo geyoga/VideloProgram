@@ -15,8 +15,20 @@
 		8E25417522DECF360017C8BB /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25417422DECF360017C8BB /* StatusViewController.swift */; };
 		8E25417822DED1E30017C8BB /* MovementDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25417722DED1E30017C8BB /* MovementDetection.swift */; };
 		8E7BAB5422DF7ACD00E51EC7 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5322DF7ACD00E51EC7 /* Plane.swift */; };
+		8E7BAB6122E0012E00E51EC7 /* PAN.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5522E0012E00E51EC7 /* PAN.json */; };
+		8E7BAB6222E0012E00E51EC7 /* DOLLY IN.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5622E0012E00E51EC7 /* DOLLY IN.json */; };
+		8E7BAB6322E0012E00E51EC7 /* img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5822E0012E00E51EC7 /* img_1.png */; };
+		8E7BAB6422E0012E00E51EC7 /* img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5922E0012E00E51EC7 /* img_0.png */; };
+		8E7BAB6522E0012E00E51EC7 /* img_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5A22E0012E00E51EC7 /* img_2.png */; };
+		8E7BAB6622E0012E00E51EC7 /* img_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5B22E0012E00E51EC7 /* img_3.png */; };
+		8E7BAB6722E0012E00E51EC7 /* img_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5C22E0012E00E51EC7 /* img_6.png */; };
+		8E7BAB6822E0012E00E51EC7 /* img_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5D22E0012E00E51EC7 /* img_4.png */; };
+		8E7BAB6922E0012E00E51EC7 /* img_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5E22E0012E00E51EC7 /* img_5.png */; };
+		8E7BAB6A22E0012E00E51EC7 /* Tilt.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5F22E0012E00E51EC7 /* Tilt.json */; };
+		8E7BAB6B22E0012E00E51EC7 /* ZoomInMovement.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB6022E0012E00E51EC7 /* ZoomInMovement.json */; };
 		8EAE1BD122DF1F3900AC3B51 /* Dolly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAE1BD022DF1F3900AC3B51 /* Dolly.swift */; };
 		8EAE1BD522DF49D500AC3B51 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAE1BD422DF49D400AC3B51 /* Tracking.swift */; };
+		A40556A56492FB822EFE9FF9 /* Pods_VideoVersionTwo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FADCC03ADA2750222ABC6EA8 /* Pods_VideoVersionTwo.framework */; };
 		D374259722D7920A00F36000 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D374259622D7920A00F36000 /* AppDelegate.swift */; };
 		D374259922D7920A00F36000 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D374259822D7920A00F36000 /* ViewController.swift */; };
 		D374259C22D7920A00F36000 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D374259A22D7920A00F36000 /* Main.storyboard */; };
@@ -32,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E6F02CAC260ADB94778C18B /* Pods-VideoVersionTwo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoVersionTwo.release.xcconfig"; path = "Target Support Files/Pods-VideoVersionTwo/Pods-VideoVersionTwo.release.xcconfig"; sourceTree = "<group>"; };
 		8E25416522DC39C10017C8BB /* Pan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pan.swift; sourceTree = "<group>"; };
 		8E25416722DC440C0017C8BB /* Tilt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tilt.swift; sourceTree = "<group>"; };
 		8E25416922DE26840017C8BB /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
@@ -40,6 +53,17 @@
 		8E25417422DECF360017C8BB /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		8E25417722DED1E30017C8BB /* MovementDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementDetection.swift; sourceTree = "<group>"; };
 		8E7BAB5322DF7ACD00E51EC7 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		8E7BAB5522E0012E00E51EC7 /* PAN.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PAN.json; sourceTree = "<group>"; };
+		8E7BAB5622E0012E00E51EC7 /* DOLLY IN.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DOLLY IN.json"; sourceTree = "<group>"; };
+		8E7BAB5822E0012E00E51EC7 /* img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_1.png; sourceTree = "<group>"; };
+		8E7BAB5922E0012E00E51EC7 /* img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_0.png; sourceTree = "<group>"; };
+		8E7BAB5A22E0012E00E51EC7 /* img_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_2.png; sourceTree = "<group>"; };
+		8E7BAB5B22E0012E00E51EC7 /* img_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_3.png; sourceTree = "<group>"; };
+		8E7BAB5C22E0012E00E51EC7 /* img_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_6.png; sourceTree = "<group>"; };
+		8E7BAB5D22E0012E00E51EC7 /* img_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_4.png; sourceTree = "<group>"; };
+		8E7BAB5E22E0012E00E51EC7 /* img_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_5.png; sourceTree = "<group>"; };
+		8E7BAB5F22E0012E00E51EC7 /* Tilt.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tilt.json; sourceTree = "<group>"; };
+		8E7BAB6022E0012E00E51EC7 /* ZoomInMovement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ZoomInMovement.json; sourceTree = "<group>"; };
 		8EAE1BD022DF1F3900AC3B51 /* Dolly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dolly.swift; sourceTree = "<group>"; };
 		8EAE1BD422DF49D400AC3B51 /* Tracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracking.swift; sourceTree = "<group>"; };
 		D374259322D7920A00F36000 /* VideoVersionTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoVersionTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +80,8 @@
 		D3ED962322DC7D5C0086F3DC /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		D3ED962522DC7DE30086F3DC /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		D3ED962722DC7E3A0086F3DC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E5B6BD678D6202F87923C383 /* Pods-VideoVersionTwo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoVersionTwo.debug.xcconfig"; path = "Target Support Files/Pods-VideoVersionTwo/Pods-VideoVersionTwo.debug.xcconfig"; sourceTree = "<group>"; };
+		FADCC03ADA2750222ABC6EA8 /* Pods_VideoVersionTwo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoVersionTwo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,12 +89,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A40556A56492FB822EFE9FF9 /* Pods_VideoVersionTwo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A5FFD2F7C20B93814AA82AF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FADCC03ADA2750222ABC6EA8 /* Pods_VideoVersionTwo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5C955261E43947B5C2300D39 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E5B6BD678D6202F87923C383 /* Pods-VideoVersionTwo.debug.xcconfig */,
+				4E6F02CAC260ADB94778C18B /* Pods-VideoVersionTwo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8E25416B22DEB6F60017C8BB /* Logic */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,11 +143,27 @@
 			path = Practice;
 			sourceTree = "<group>";
 		};
+		8E7BAB5722E0012E00E51EC7 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				8E7BAB5822E0012E00E51EC7 /* img_1.png */,
+				8E7BAB5922E0012E00E51EC7 /* img_0.png */,
+				8E7BAB5A22E0012E00E51EC7 /* img_2.png */,
+				8E7BAB5B22E0012E00E51EC7 /* img_3.png */,
+				8E7BAB5C22E0012E00E51EC7 /* img_6.png */,
+				8E7BAB5D22E0012E00E51EC7 /* img_4.png */,
+				8E7BAB5E22E0012E00E51EC7 /* img_5.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		D374258A22D7920A00F36000 = {
 			isa = PBXGroup;
 			children = (
 				D374259522D7920A00F36000 /* VideoVersionTwo */,
 				D374259422D7920A00F36000 /* Products */,
+				5C955261E43947B5C2300D39 /* Pods */,
+				3A5FFD2F7C20B93814AA82AF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,6 +178,11 @@
 		D374259522D7920A00F36000 /* VideoVersionTwo */ = {
 			isa = PBXGroup;
 			children = (
+				8E7BAB5622E0012E00E51EC7 /* DOLLY IN.json */,
+				8E7BAB5722E0012E00E51EC7 /* images */,
+				8E7BAB5522E0012E00E51EC7 /* PAN.json */,
+				8E7BAB5F22E0012E00E51EC7 /* Tilt.json */,
+				8E7BAB6022E0012E00E51EC7 /* ZoomInMovement.json */,
 				8E25416B22DEB6F60017C8BB /* Logic */,
 				8E25416922DE26840017C8BB /* CoreDataHelper.swift */,
 				D3D9411E22DC138800B2DCC0 /* art.scnassets */,
@@ -146,9 +211,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D37425A822D7920A00F36000 /* Build configuration list for PBXNativeTarget "VideoVersionTwo" */;
 			buildPhases = (
+				415D79A0BDC4B6680A0FD8DF /* [CP] Check Pods Manifest.lock */,
 				D374258F22D7920A00F36000 /* Sources */,
 				D374259022D7920A00F36000 /* Frameworks */,
 				D374259122D7920A00F36000 /* Resources */,
+				814821AAC29092E3F82A32FD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -198,14 +265,72 @@
 			buildActionMask = 2147483647;
 			files = (
 				D37425A422D7920A00F36000 /* LaunchScreen.storyboard in Resources */,
+				8E7BAB6322E0012E00E51EC7 /* img_1.png in Resources */,
+				8E7BAB6B22E0012E00E51EC7 /* ZoomInMovement.json in Resources */,
+				8E7BAB6722E0012E00E51EC7 /* img_6.png in Resources */,
 				D3D9411F22DC138800B2DCC0 /* art.scnassets in Resources */,
 				8E25417222DECEEF0017C8BB /* Status.storyboard in Resources */,
+				8E7BAB6222E0012E00E51EC7 /* DOLLY IN.json in Resources */,
+				8E7BAB6122E0012E00E51EC7 /* PAN.json in Resources */,
+				8E7BAB6822E0012E00E51EC7 /* img_4.png in Resources */,
+				8E7BAB6522E0012E00E51EC7 /* img_2.png in Resources */,
+				8E7BAB6A22E0012E00E51EC7 /* Tilt.json in Resources */,
+				8E7BAB6922E0012E00E51EC7 /* img_5.png in Resources */,
 				D37425A122D7920A00F36000 /* Assets.xcassets in Resources */,
 				D374259C22D7920A00F36000 /* Main.storyboard in Resources */,
+				8E7BAB6422E0012E00E51EC7 /* img_0.png in Resources */,
+				8E7BAB6622E0012E00E51EC7 /* img_3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		415D79A0BDC4B6680A0FD8DF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VideoVersionTwo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		814821AAC29092E3F82A32FD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VideoVersionTwo/Pods-VideoVersionTwo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VideoVersionTwo/Pods-VideoVersionTwo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D374258F22D7920A00F36000 /* Sources */ = {
@@ -372,6 +497,7 @@
 		};
 		D37425A922D7920A00F36000 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5B6BD678D6202F87923C383 /* Pods-VideoVersionTwo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -390,6 +516,7 @@
 		};
 		D37425AA22D7920A00F36000 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E6F02CAC260ADB94778C18B /* Pods-VideoVersionTwo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

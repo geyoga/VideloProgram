@@ -1,0 +1,6 @@
+framework module Pods_VideoVersionTwo {
+  umbrella header "Pods-VideoVersionTwo-umbrella.h"
+
+  export *
+  module * { export * }
+}
