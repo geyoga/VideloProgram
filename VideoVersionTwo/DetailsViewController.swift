@@ -79,8 +79,8 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
     
     @IBAction func startLesson(_ sender: UIButton) {
         print("asd")
-        buttonBegin.setBackgroundImage(UIImage(named: "Start Lesson Press"), for: .normal)
-    }
+        
+        }
     
     
  
