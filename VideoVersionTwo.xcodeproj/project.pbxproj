@@ -27,6 +27,8 @@
 		8E7BAB6922E0012E00E51EC7 /* img_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5E22E0012E00E51EC7 /* img_5.png */; };
 		8E7BAB6A22E0012E00E51EC7 /* Tilt.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5F22E0012E00E51EC7 /* Tilt.json */; };
 		8E7BAB6B22E0012E00E51EC7 /* ZoomInMovement.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB6022E0012E00E51EC7 /* ZoomInMovement.json */; };
+		8E7BAB7122E05E6E00E51EC7 /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BAB7022E05E6E00E51EC7 /* Shot.swift */; };
+		8E7BAB7322E07B9A00E51EC7 /* Angle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BAB7222E07B9A00E51EC7 /* Angle.swift */; };
 		8EAE1BD122DF1F3900AC3B51 /* Dolly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAE1BD022DF1F3900AC3B51 /* Dolly.swift */; };
 		8EAE1BD522DF49D500AC3B51 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAE1BD422DF49D400AC3B51 /* Tracking.swift */; };
 		A40556A56492FB822EFE9FF9 /* Pods_VideoVersionTwo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FADCC03ADA2750222ABC6EA8 /* Pods_VideoVersionTwo.framework */; };
@@ -66,6 +68,8 @@
 		8E7BAB5E22E0012E00E51EC7 /* img_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_5.png; sourceTree = "<group>"; };
 		8E7BAB5F22E0012E00E51EC7 /* Tilt.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tilt.json; sourceTree = "<group>"; };
 		8E7BAB6022E0012E00E51EC7 /* ZoomInMovement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ZoomInMovement.json; sourceTree = "<group>"; };
+		8E7BAB7022E05E6E00E51EC7 /* Shot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shot.swift; sourceTree = "<group>"; };
+		8E7BAB7222E07B9A00E51EC7 /* Angle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Angle.swift; sourceTree = "<group>"; };
 		8EAE1BD022DF1F3900AC3B51 /* Dolly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dolly.swift; sourceTree = "<group>"; };
 		8EAE1BD422DF49D400AC3B51 /* Tracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracking.swift; sourceTree = "<group>"; };
 		D374259322D7920A00F36000 /* VideoVersionTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoVersionTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,10 +122,9 @@
 		8E25416B22DEB6F60017C8BB /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				8E25416522DC39C10017C8BB /* Pan.swift */,
-				8E25416722DC440C0017C8BB /* Tilt.swift */,
-				8EAE1BD022DF1F3900AC3B51 /* Dolly.swift */,
-				8EAE1BD422DF49D400AC3B51 /* Tracking.swift */,
+				8E7BAB6F22E05E4100E51EC7 /* Shot */,
+				8E7BAB6E22E05E3B00E51EC7 /* Angle */,
+				8E7BAB6D22E05E2500E51EC7 /* Movement */,
 				8E25416C22DEC9770017C8BB /* DataController.swift */,
 			);
 			path = Logic;
@@ -157,6 +160,33 @@
 				8E7BAB5E22E0012E00E51EC7 /* img_5.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		8E7BAB6D22E05E2500E51EC7 /* Movement */ = {
+			isa = PBXGroup;
+			children = (
+				8E25416522DC39C10017C8BB /* Pan.swift */,
+				8E25416722DC440C0017C8BB /* Tilt.swift */,
+				8EAE1BD022DF1F3900AC3B51 /* Dolly.swift */,
+				8EAE1BD422DF49D400AC3B51 /* Tracking.swift */,
+			);
+			path = Movement;
+			sourceTree = "<group>";
+		};
+		8E7BAB6E22E05E3B00E51EC7 /* Angle */ = {
+			isa = PBXGroup;
+			children = (
+				8E7BAB7222E07B9A00E51EC7 /* Angle.swift */,
+			);
+			path = Angle;
+			sourceTree = "<group>";
+		};
+		8E7BAB6F22E05E4100E51EC7 /* Shot */ = {
+			isa = PBXGroup;
+			children = (
+				8E7BAB7022E05E6E00E51EC7 /* Shot.swift */,
+			);
+			path = Shot;
 			sourceTree = "<group>";
 		};
 		D374258A22D7920A00F36000 = {
@@ -355,6 +385,8 @@
 				8E25416622DC39C10017C8BB /* Pan.swift in Sources */,
 				8E25416A22DE26840017C8BB /* CoreDataHelper.swift in Sources */,
 				D37425AC22D7933000F36000 /* PageViewController.swift in Sources */,
+				8E7BAB7122E05E6E00E51EC7 /* Shot.swift in Sources */,
+				8E7BAB7322E07B9A00E51EC7 /* Angle.swift in Sources */,
 				8E25417822DED1E30017C8BB /* MovementDetection.swift in Sources */,
 				D383269B22D87F5900C53AA7 /* ARViewController.swift in Sources */,
 				08E4F18122E037010052C0FE /* DetailCollectionViewCell.swift in Sources */,

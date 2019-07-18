@@ -22,7 +22,7 @@ class Tilt {
     
     var tiltCounter: Int = 0
     //roll
-    let tiltUpper: Double = -40
+    let tiltUpper: Double = -50
     let tiltLower: Double = -120
     var checkTiltUpHit = false
     var checkTiltDownHit = false
