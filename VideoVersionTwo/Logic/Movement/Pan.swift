@@ -38,6 +38,7 @@ class Pan {
                 if let trueData = data {
                     let yaw = trueData.attitude.yaw.radiansToDegree()
                     print(yaw)
+                    
                     //PAN
                     if self.checkPanUpHit == false && yaw >= self.panUpper {
                         self.checkPanUpHit = true

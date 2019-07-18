@@ -37,8 +37,6 @@ extension ARViewController: PanDelegate {
         }
         buildLabel(data: 2)
     }
-    
-    
 }
 
 extension ARViewController: DollyDelegate {
@@ -101,6 +99,44 @@ extension ARViewController: TiltDelegate {
         tiltStatus = 4
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Success", message: "You did TILT", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
+}
+
+extension ARViewController: ShotDelegate {
+    func closeUpShot(_ status: Bool) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Success", message: "You did CLOSE UP SHOT", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+        shotCheck = false
+    }
+    
+    func mediumShot(_ status: Bool) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Success", message: "You did MEDIUM SHOT", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+        shotCheck = false
+    }
+}
+
+extension ARViewController: AngleDelegate {
+    func lowAngleHit(_ status: Bool) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Success", message: "You did LOW ANGLE", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
+    
+    func highAngleHit(_ status: Bool) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Success", message: "You did HIGH ANGLE", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
         }
