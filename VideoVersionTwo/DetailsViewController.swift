@@ -11,6 +11,7 @@ import UIKit
 class DetailsViewController: UIViewController {
     @IBOutlet weak var button: UIButton!
     
+    @IBOutlet weak var buttonBegin: UIButton!
     @IBOutlet weak var lessonNumP: UILabel!
     @IBOutlet weak var lessonImgP: UIImageView!
     @IBOutlet weak var lessonTitleP: UILabel!
@@ -61,6 +62,7 @@ class DetailsViewController: UIViewController {
     
     @IBAction func startLesson(_ sender: UIButton) {
         print("asd")
+        buttonBegin.setBackgroundImage(UIImage(named: "Start Lesson Press"), for: .normal)
     }
     
     

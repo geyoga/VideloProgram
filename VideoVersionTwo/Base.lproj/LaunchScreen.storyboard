@@ -18,28 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo Symbol" translatesAutoresizingMaskIntoConstraints="NO" id="J66-RN-e5a">
-                                <rect key="frame" x="383" y="116" width="130" height="101"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100.99999999999994" id="LSA-h2-sdL"/>
-                                </constraints>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo Name" translatesAutoresizingMaskIntoConstraints="NO" id="8gq-0l-VSu">
-                                <rect key="frame" x="402.5" y="235" width="91" height="41"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="91" id="ADj-dD-Lg1"/>
-                                    <constraint firstAttribute="height" constant="41" id="UPG-05-exa"/>
-                                    <constraint firstAttribute="width" secondItem="8gq-0l-VSu" secondAttribute="height" multiplier="91:41" id="m7B-bW-Vjk"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="On Boarding" translatesAutoresizingMaskIntoConstraints="NO" id="DfF-So-9fb">
+                                <rect key="frame" x="277" y="116" width="342" height="182"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="J66-RN-e5a" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1Od-yI-C0C"/>
-                            <constraint firstItem="J66-RN-e5a" firstAttribute="centerX" secondItem="8gq-0l-VSu" secondAttribute="centerX" id="WJG-ES-NIM"/>
-                            <constraint firstItem="8gq-0l-VSu" firstAttribute="top" secondItem="J66-RN-e5a" secondAttribute="bottom" constant="18.000000000000057" id="dEO-f7-oaT"/>
-                            <constraint firstItem="J66-RN-e5a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="339" id="xOE-8U-h9u"/>
-                            <constraint firstItem="J66-RN-e5a" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="116" id="xZZ-IY-GlU"/>
+                            <constraint firstItem="DfF-So-9fb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="0l1-ld-gUO"/>
+                            <constraint firstItem="DfF-So-9fb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="116" id="6ii-Oy-PaT"/>
+                            <constraint firstItem="DfF-So-9fb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="233" id="R0k-G8-GHx"/>
+                            <constraint firstItem="DfF-So-9fb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="dHs-Bn-kRG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -50,7 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Logo Name" width="91" height="29"/>
-        <image name="Logo Symbol" width="298" height="237"/>
+        <image name="On Boarding" width="375" height="111"/>
     </resources>
 </document>
