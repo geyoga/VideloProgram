@@ -17,11 +17,12 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var lessonCourseTitleP: UILabel!
     
     var lessonDetail: Lessons!
-    
-    
+
     @IBOutlet weak var LessonProgress: UIProgressView!
     
     @IBOutlet weak var progressView: UIView!
+    
+    private  var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +59,7 @@ class DetailsViewController: UIViewController {
     }
     
     @IBAction func startLesson(_ sender: UIButton) {
+        print("asd")
     }
     
     
