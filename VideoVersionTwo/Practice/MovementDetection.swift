@@ -20,18 +20,19 @@ extension ARViewController: PanDelegate {
     }
     
     func panSuccess(_ status: Bool) {
+        pan.stopGyros()
+        panStatus = 0
+        currentLesson = ARViewController.LessonEnum(rawValue: 2)!
+        buttonStart.sendActions(for: .touchUpInside)
         panStatus = 4
         
-        let alert = UIAlertController(title: "Success", message: "You did PAN", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-            self.pan.stopGyros()
-            self.tiltStatus = 1
-            self.tilt.startGyros()
-            self.deleteLabel()
-        }))
-        
-        self.present(alert, animated: true)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Success", message: "You did PAN", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                self.deleteLabel()
+            }))
+            self.present(alert, animated: true)
+        }
         buildLabel(data: 2)
     }
     
@@ -40,18 +41,21 @@ extension ARViewController: PanDelegate {
 
 extension ARViewController: DollyDelegate {
     func dollyHit(_ status: Bool) {
+        currentLesson = ARViewController.LessonEnum(rawValue: 4)!
         dollyCheck =  false
-        let alert = UIAlertController(title: "Success", message: "You did DOLY", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        
-        self.present(alert, animated: true)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Success", message: "You did DOLY", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
 }
 
 extension ARViewController: TrackingDelegate {
     func trackingHit(_ status: Bool) {
-        
+        trackingCheck = false
+        currentLesson = ARViewController.LessonEnum(rawValue: 1)!
+        buttonStart.sendActions(for: .touchUpInside)
     }
     
     func distanceTooClose(_ status: Bool) {
@@ -75,14 +79,16 @@ extension ARViewController: TiltDelegate {
     }
     
     func tiltuccess(_ status: Bool) {
+        tiltStatus = 0
+        tilt.stopGyros()
+        currentLesson = ARViewController.LessonEnum(rawValue: 3)!
+        buttonStart.sendActions(for: .touchUpInside)
+        
         tiltStatus = 4
-        let alert = UIAlertController(title: "Success", message: "You did TILT", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        
-        self.present(alert, animated: true)
-        
-        shape.removeFromParentNode()
-        
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Success", message: "You did TILT", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
 }

@@ -18,7 +18,7 @@ protocol TiltDelegate {
 class Tilt {
     var delegate: TiltDelegate?
     
-    var motion = CMMotionManager()
+    var motion: CMMotionManager!
     
     var tiltCounter: Int = 0
     //roll
@@ -26,6 +26,10 @@ class Tilt {
     let tiltLower: Double = -120
     var checkTiltUpHit = false
     var checkTiltDownHit = false
+    
+    init() {
+        motion  = CMMotionManager()
+    }
     
     func startGyros() {
         if motion.isDeviceMotionAvailable {
@@ -62,7 +66,6 @@ class Tilt {
     }
     
     func stopGyros() {
-        self.motion.stopGyroUpdates()
+        self.motion.stopDeviceMotionUpdates()
     }
-    
 }

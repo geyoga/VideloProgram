@@ -18,7 +18,7 @@ protocol PanDelegate {
 class Pan {
     var delegate: PanDelegate?
     
-    var motion = CMMotionManager()
+    var motion: CMMotionManager!
     
     var panCounter: Int = 0
     //yaw
@@ -26,6 +26,10 @@ class Pan {
     let panLower: Double = -35
     var checkPanUpHit = false
     var checkPanDownHit = false
+    
+    init() {
+        motion  = CMMotionManager()
+    }
     
     func startGyros() {
         if motion.isDeviceMotionAvailable {
@@ -39,14 +43,12 @@ class Pan {
                         self.checkPanUpHit = true
                         self.delegate?.panLeftHit(true)
                         print("YEY")
-                        self.delegate?.panLeftHit(true)
                     }
                     
                     if self.checkPanUpHit && self.checkPanDownHit == false && yaw <= self.panLower {
                         self.checkPanDownHit = true
                         self.delegate?.panRightHit(true)
                         print("YEY2")
-                        self.delegate?.panRightHit(true)
                     }
                     
                     if self.checkPanUpHit && self.checkPanDownHit {
@@ -56,7 +58,6 @@ class Pan {
                         self.panCounter += 1
                         self.delegate?.panSuccess(true)
                         print("Pan Counter: \(self.panCounter)")
-                        self.delegate?.panSuccess(true)
                     }
                 }
             }
@@ -64,7 +65,7 @@ class Pan {
     }
     
     func stopGyros() {
-        self.motion.stopGyroUpdates()
+        self.motion.stopDeviceMotionUpdates()
     }
     
 }

@@ -14,6 +14,7 @@
 		8E25417222DECEEF0017C8BB /* Status.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E25417122DECEEF0017C8BB /* Status.storyboard */; };
 		8E25417522DECF360017C8BB /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25417422DECF360017C8BB /* StatusViewController.swift */; };
 		8E25417822DED1E30017C8BB /* MovementDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25417722DED1E30017C8BB /* MovementDetection.swift */; };
+		8E7BAB5422DF7ACD00E51EC7 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5322DF7ACD00E51EC7 /* Plane.swift */; };
 		8EAE1BD122DF1F3900AC3B51 /* Dolly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAE1BD022DF1F3900AC3B51 /* Dolly.swift */; };
 		8EAE1BD522DF49D500AC3B51 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAE1BD422DF49D400AC3B51 /* Tracking.swift */; };
 		D374259722D7920A00F36000 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D374259622D7920A00F36000 /* AppDelegate.swift */; };
@@ -38,6 +39,7 @@
 		8E25417122DECEEF0017C8BB /* Status.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Status.storyboard; sourceTree = "<group>"; };
 		8E25417422DECF360017C8BB /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		8E25417722DED1E30017C8BB /* MovementDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementDetection.swift; sourceTree = "<group>"; };
+		8E7BAB5322DF7ACD00E51EC7 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		8EAE1BD022DF1F3900AC3B51 /* Dolly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dolly.swift; sourceTree = "<group>"; };
 		8EAE1BD422DF49D400AC3B51 /* Tracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracking.swift; sourceTree = "<group>"; };
 		D374259322D7920A00F36000 /* VideoVersionTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoVersionTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +134,7 @@
 				D37425A222D7920A00F36000 /* LaunchScreen.storyboard */,
 				D37425A522D7920A00F36000 /* Info.plist */,
 				D374259D22D7920A00F36000 /* VideoVersionTwo.xcdatamodeld */,
+				8E7BAB5322DF7ACD00E51EC7 /* Plane.swift */,
 			);
 			path = VideoVersionTwo;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				8EAE1BD522DF49D500AC3B51 /* Tracking.swift in Sources */,
 				8E25416D22DEC9770017C8BB /* DataController.swift in Sources */,
 				D374259F22D7920A00F36000 /* VideoVersionTwo.xcdatamodeld in Sources */,
+				8E7BAB5422DF7ACD00E51EC7 /* Plane.swift in Sources */,
 				8EAE1BD122DF1F3900AC3B51 /* Dolly.swift in Sources */,
 				D3ED962622DC7DE30086F3DC /* CollectionViewCell.swift in Sources */,
 				D3ED962422DC7D5C0086F3DC /* DetailsViewController.swift in Sources */,
@@ -371,7 +375,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F63VRNN393;
+				DEVELOPMENT_TEAM = 26R5URXZ3V;
 				INFOPLIST_FILE = VideoVersionTwo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -389,7 +393,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F63VRNN393;
+				DEVELOPMENT_TEAM = 26R5URXZ3V;
 				INFOPLIST_FILE = VideoVersionTwo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

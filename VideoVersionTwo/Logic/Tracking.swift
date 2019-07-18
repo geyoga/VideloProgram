@@ -45,5 +45,9 @@ class Tracking {
         else if (distanceFromObject >  distanceRange + 0.2) {
             delegate.distanceTooFar(true)
         }
+        
+        if distanceFromObject > 1 {
+            delegate.trackingHit(true)
+        }
     }
 }

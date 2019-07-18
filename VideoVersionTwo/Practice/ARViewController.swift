@@ -23,10 +23,21 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     var panStatus: Int = 0
     var tiltStatus: Int = 0
     
-    var dollyCheck: Bool = true
+    enum LessonEnum: Int {
+        case Pan = 1
+        case Tilt
+        case Dolly
+        case Tracking
+    }
+    var currentLesson:  LessonEnum = .Pan
     
-    var pan = Pan()
-    var tilt = Tilt()
+    var firstObjectPosition: SCNVector3!
+    
+    var dollyCheck: Bool = true
+    var trackingCheck: Bool = true
+    
+    var pan: Pan!
+    var tilt: Tilt!
     var dolly: Dolly!
     var tracking: Tracking!
     
@@ -46,21 +57,28 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let configuration = ARWorldTrackingConfiguration()
-        sceneView.session.run(configuration)
-       
-        
+        DispatchQueue.main.async {
+            let configuration = ARWorldTrackingConfiguration()
+            configuration.planeDetection = [.horizontal]
+            self.sceneView.session.run(configuration)
+        }
     }
     
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        DispatchQueue.main.async {
+            if let planeAnchor = anchor as? ARPlaneAnchor {
+                let plane = Plane(planeAnchor)
+                node.addChildNode(plane)
+            }
+        }
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         sceneView.session.pause()
     }
     
-    // coba nampilin kubus AR
     @IBAction func LearnPathButton(_ sender: UIButton) {
-        
         let alert = UIAlertController(title: "Want to go Learning Path ?", message: "Your activity will be not saved", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
@@ -68,87 +86,101 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             self.performSegue(withIdentifier: "goToLearningPath", sender: nil)
         }))
         self.present(alert, animated: true)
-        
-        //createCube()
-        
     }
     @IBAction func StartActionButton(_ sender: UIButton) {
         
-        dolly = Dolly(startPoint: sceneView!.pointOfView!.position)
-        dolly.delegate = self as! DollyDelegate
+        print("STOP BUTTON")
         
-        
-        tracking = Tracking(startPoint: sceneView.pointOfView!.position, objectPoint: shape.position)
-        tracking.delegate = self as!  TrackingDelegate
-        
-        pan.delegate = self as! PanDelegate
-        
-        tilt.delegate = self as! TiltDelegate
         // mengubah image pada tombol start menjadi stop
         if buttonStart.currentBackgroundImage == UIImage(named: "StartButton") {
             
             buttonStart.setBackgroundImage(UIImage(named: "StopButton"), for: .normal)
-            pan.startGyros()
-            
-            panStatus = 1
             deleteLabel()
+            
+            switch currentLesson {
+            case .Pan:
+                pan = Pan.init()
+                pan.delegate = self as! PanDelegate
+                
+                pan.startGyros()
+                panStatus = 1
+            case .Tilt:
+                tilt = Tilt.init()
+                tilt.delegate = self as! TiltDelegate
+                
+                tiltStatus = 1
+                tilt.startGyros()
+            case .Dolly:
+                dolly = Dolly(startPoint: self.sceneView!.pointOfView!.position)
+                dolly.delegate = self as! DollyDelegate
+                dollyCheck = true
+            case .Tracking:
+                tracking = Tracking(startPoint: sceneView.pointOfView!.position, objectPoint: shape.position)
+                tracking.delegate = self as!  TrackingDelegate
+                trackingCheck = true
+            }
         }
         else {
             buttonStart.setBackgroundImage(UIImage(named: "StartButton"), for: .normal)
-            pan.stopGyros()
-            tilt.stopGyros()
-            print("STOP")
+            shape.position = firstObjectPosition
+            self.shape.eulerAngles.x = 0
+            self.shape.eulerAngles.y = 0
             
-            panStatus = 0
-            tiltStatus = 0
-            shape.position = sceneView.scene.rootNode.position
-            shape.position.z -=  1
+            if currentLesson == .Pan {
+                
+            }
+            else if currentLesson == .Tilt {
+                pan.stopGyros()
+                panStatus = 0
+            }
+            else if currentLesson == .Dolly {
+                tiltStatus = 0
+                tilt.stopGyros()
+            }
         }
         
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        /*if dolly != nil && dollyCheck == true {
-            dolly.positionUpdate(updatePoint: sceneView!.pointOfView!.position)
-        }*/
-        
-        if tracking != nil {
-            tracking.positionUpdate(updatePoint: sceneView!.pointOfView!.position)
-        }
-        /*
-        //for pan, move object periodically
         let speed: Float = 0.005
         let rotationValue: Float = 0.1
-        if panStatus == 1 {
-            self.shape.position.x -= speed
-            self.shape.eulerAngles.y += rotationValue
-        }
-        else if panStatus == 2 {
-            self.shape.position.x += speed
-            self.shape.eulerAngles.y -= rotationValue
-        }
         
-        if tiltStatus == 1 {
-            self.shape.position.y += speed
-            self.shape.eulerAngles.x += rotationValue
+        switch currentLesson {
+        case .Pan:
+            //for pan, move object periodically
+            if panStatus == 1 {
+                self.shape.position.x -= speed
+                self.shape.eulerAngles.y += rotationValue
+            }
+            else if panStatus == 2 {
+                self.shape.position.x += speed
+                self.shape.eulerAngles.y -= rotationValue
+            }
+        case .Tilt:
+            if tiltStatus == 1 {
+                self.shape.position.y += speed
+                self.shape.eulerAngles.x += rotationValue
+            }
+            else if tiltStatus == 2 {
+                self.shape.position.y -= speed
+                self.shape.eulerAngles.x -= rotationValue
+            }
+        case .Dolly:
+            if dolly != nil && dollyCheck == true {
+                dolly.positionUpdate(updatePoint: sceneView!.pointOfView!.position)
+            }
+        case .Tracking:
+            if tracking != nil && trackingCheck == true {
+                tracking.positionUpdate(updatePoint: sceneView!.pointOfView!.position)
+            }
         }
-        else if tiltStatus == 2 {
-            self.shape.position.y -= speed
-            self.shape.eulerAngles.x -= rotationValue
-        }*/
     }
     
-    func sessionWasInterrupted(_ session: ARSession) {
-        
-    }
+    func sessionWasInterrupted(_ session: ARSession) {}
     
-    func sessionInterruptionEnded(_ session: ARSession) {
-        
-    }
+    func sessionInterruptionEnded(_ session: ARSession) {}
     
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        
-    }
+    func session(_ session: ARSession, didFailWithError error: Error) {}
     
     // setting label untuk instruksi AR
     func buildLabel (data : Int) {
@@ -188,6 +220,14 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene.rootNode.addChildNode(ballNode)
     }
     
+    func addHuman(position: SCNVector3) {
+        let cube = SCNScene(named: "art.scnassets/Walking copy.scn")!
+        shape = cube.rootNode
+        shape.position = position
+        shape.scale = SCNVector3(0.001, 0.001, 0.001)
+        sceneView.scene.rootNode.addChildNode(shape)
+    }
+    
     func createCube () {
         
         let cube = SCNScene(named: "art.scnassets/tong.scn")! //SCNBox(width: 0.3, height: 0.3, length: 0.3, chamferRadius: 0.1)
@@ -201,21 +241,21 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         deleteLabel()
-        createCube()
+        //createCube()
+        
+        guard let touch = touches.first else {return}
+        let result = sceneView.hitTest(touch.location(in: sceneView), types: [ARHitTestResult.ResultType.featurePoint ])
+        
+        guard let hitResult = result.last else {return}
+        //return scene matrix
+        let hitTransform = SCNMatrix4.init(hitResult.worldTransform)
+        //matrix m41, 42, 43 is about position (x,y,z)
+        let hitVector = SCNVector3Make(hitTransform.m41, hitTransform.m42, hitTransform.m43)
+        addHuman(position: hitVector)
+        firstObjectPosition = hitVector
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.buildLabel(data: 1)
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
