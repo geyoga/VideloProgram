@@ -9,7 +9,6 @@
 import UIKit
 
 class DetailsViewController: UIViewController {
-    @IBOutlet weak var button: UIButton!
     
     @IBOutlet weak var lessonNumP: UILabel!
     @IBOutlet weak var lessonImgP: UIImageView!
@@ -24,7 +23,6 @@ class DetailsViewController: UIViewController {
     
     @IBOutlet weak var progressView: UIView!
     
-    var count = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,13 +61,7 @@ class DetailsViewController: UIViewController {
     }
     
     
-    @IBAction func buttonClicked(_ sender: Any) {
-        count+=2
-        if (count<=10){
-            self.LessonProgress.progress = Float(count) / 10.0
-        }
-        
-    }
+ 
     
     
     /*
