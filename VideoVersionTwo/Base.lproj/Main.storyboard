@@ -590,6 +590,7 @@
                     <size key="freeformSize" width="896" height="1100"/>
                     <connections>
                         <outlet property="LessonProgress" destination="h4e-ie-MCB" id="aaz-z9-2eu"/>
+                        <outlet property="buttonBegin" destination="MIM-yc-yor" id="fZ1-nF-xfm"/>
                         <outlet property="learnCollectionView" destination="NQ8-Qm-MQv" id="71o-RL-w6M"/>
                         <outlet property="lessonBodyP" destination="Wr4-2Q-egj" id="B5X-Ce-CiW"/>
                         <outlet property="lessonCourseTitleP" destination="Knj-vp-7I3" id="XHU-d3-UNV"/>

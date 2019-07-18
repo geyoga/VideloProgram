@@ -33,6 +33,9 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        buttonBegin.setBackgroundImage(UIImage(named: "Button Start"), for: .normal)
+        buttonBegin.setBackgroundImage(UIImage(named: "Start Lesson Press"), for: .selected)
+        
         // Do any additional setup after loading the view.
         
         
@@ -80,7 +83,15 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
     @IBAction func startLesson(_ sender: UIButton) {
         print("asd")
         
+            if buttonBegin.isSelected {
+                // set deselected
+                buttonBegin.isSelected = false
+            } else {
+                // set selected
+                buttonBegin.isSelected = true
+            }
         }
+    
     
     
  
