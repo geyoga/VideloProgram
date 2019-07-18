@@ -9,14 +9,14 @@
 import Foundation
 import CoreMotion
 
-protocol PanDelegate {
+protocol PanDelegate: class {
     func panLeftHit(_ status: Bool)
     func panRightHit(_ status: Bool)
     func panSuccess(_ status: Bool)
 }
 
 class Pan {
-    var delegate: PanDelegate?
+    weak var delegate: PanDelegate?
     
     var motion: CMMotionManager!
     

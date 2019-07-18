@@ -17,6 +17,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     //var
     var shape: SCNNode!
+    var plane: SCNNode!
     //1 start
     //2 left hit
     //3 right hit
@@ -68,8 +69,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     /*func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         DispatchQueue.main.async {
             if let planeAnchor = anchor as? ARPlaneAnchor {
-                let plane = Plane(planeAnchor)
-                node.addChildNode(plane)
+                self.plane = Plane(planeAnchor)
+                node.addChildNode(self.plane)
             }
         }
     }*/
@@ -83,7 +84,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         let alert = UIAlertController(title: "Want to go Learning Path ?", message: "Your activity will be not saved", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{_ in
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{_ in                                                  
             self.performSegue(withIdentifier: "goToLearningPath", sender: nil)
         }))
         self.present(alert, animated: true)

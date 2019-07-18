@@ -11,6 +11,7 @@ import UIKit
 
 
 extension ARViewController: PanDelegate {
+    
     func panLeftHit(_ status: Bool) {
         panStatus = 2
     }
@@ -27,7 +28,6 @@ extension ARViewController: PanDelegate {
             self.buttonStart.sendActions(for: .touchUpInside)
         }
         panStatus = 4
-        
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Success", message: "You did PAN", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
@@ -42,6 +42,7 @@ extension ARViewController: PanDelegate {
 }
 
 extension ARViewController: DollyDelegate {
+    
     func dollyHit(_ status: Bool) {
         DispatchQueue.main.async {
             self.buttonStart.sendActions(for: .touchUpInside)
@@ -57,6 +58,7 @@ extension ARViewController: DollyDelegate {
 }
 
 extension ARViewController: TrackingDelegate {
+    
     func trackingHit(_ status: Bool) {
         trackingCheck = false
         currentLesson = ARViewController.LessonEnum(rawValue: 1)!
@@ -77,11 +79,10 @@ extension ARViewController: TrackingDelegate {
     func distanceTooFar(_ status: Bool) {
         print("TOO FARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
     }
-    
-    
 }
 
 extension ARViewController: TiltDelegate {
+    
     func tiltUpHit(_ status: Bool) {
         tiltStatus = 2
     }
@@ -97,7 +98,6 @@ extension ARViewController: TiltDelegate {
         DispatchQueue.main.async {
             self.buttonStart.sendActions(for: .touchUpInside)
         }
-        
         tiltStatus = 4
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Success", message: "You did TILT", preferredStyle: .alert)

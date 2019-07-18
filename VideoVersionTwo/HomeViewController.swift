@@ -8,12 +8,11 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
-    
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
 
-    var lesson: [Lessons] = []
+    private var lesson: [Lessons] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,19 +32,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,UICollectio
 //                //print("\(technique.id) - \(technique.name)")
 //            }
         }
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false;
+        self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.tintColor = .orange
         self.tabBarController?.tabBar.barTintColor = .clear
-        
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return lesson.count
-        
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:CollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
@@ -75,6 +71,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,UICollectio
     }
     
 }
+
 extension ViewController: UICollectionViewDelegateFlowLayout{
     //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     //        let collectionWidth = collectionView.bounds.width
