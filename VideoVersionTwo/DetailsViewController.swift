@@ -63,8 +63,14 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
         lessonImgP.layer.cornerRadius = 5.0
         
         
-        if (lessonDetail.type != "Lesson"){
+        if (lessonDetail.type == "Lesson"){
+            lessonCourseTitleP.text = String("What You'll Learn")
+        }
+        else if (lessonDetail.type == "Course"){
             lessonCourseTitleP.text = String("What You'll Use")
+        }
+        else if (lessonDetail.type == "Tutorial"){
+            lessonCourseTitleP.text = ""
         }
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -75,6 +81,7 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
         let learnCell:DetailCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "learnCell", for: indexPath) as! DetailCollectionViewCell
       
         learnCell.learnName.text = technique[indexPath.row].name
+        learnCell.learnImg.image = UIImage(named: technique[indexPath.row].icon!)
         print(technique[indexPath.row].name)
         
         return learnCell

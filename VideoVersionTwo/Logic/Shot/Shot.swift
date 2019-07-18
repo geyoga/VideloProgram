@@ -9,13 +9,13 @@
 import Foundation
 import ARKit
 
-protocol ShotDelegate {
+protocol ShotDelegate: class {
     func closeUpShot(_ status: Bool)
     func mediumShot(_ status: Bool)
 }
 
 class Shot {
-    var delegate: ShotDelegate!
+    weak var delegate: ShotDelegate!
     let objectPoint: SCNVector3
     
     init(objectPoint: SCNVector3) {

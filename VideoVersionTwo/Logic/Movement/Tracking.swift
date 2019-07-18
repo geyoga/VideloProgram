@@ -9,14 +9,14 @@
 import Foundation
 import ARKit
 
-protocol TrackingDelegate {
+protocol TrackingDelegate: class {
     func trackingHit(_ status: Bool)
     func distanceTooClose(_ status: Bool)
     func distanceTooFar(_ status: Bool)
 }
 
 class Tracking {
-    var delegate: TrackingDelegate!
+    weak var delegate: TrackingDelegate!
     
     let startPoint: SCNVector3
     let objectPoint: SCNVector3

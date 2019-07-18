@@ -9,13 +9,13 @@
 import Foundation
 import CoreMotion
 
-protocol AngleDelegate {
+protocol AngleDelegate: class {
     func lowAngleHit(_ status: Bool)
     func highAngleHit(_ status: Bool)
 }
 
 class Angle {
-    var delegate: AngleDelegate?
+    weak var delegate: AngleDelegate?
     
     var motion: CMMotionManager!
     
@@ -24,7 +24,9 @@ class Angle {
     let tiltLower: Double = -110
     
     init() {
-        motion  = CMMotionManager()
+        DispatchQueue.main.async {
+            self.motion  = CMMotionManager()
+        }
     }
     
     func startGyros() {
