@@ -8,19 +8,24 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController {
+class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    
     
     @IBOutlet weak var lessonNumP: UILabel!
     @IBOutlet weak var lessonImgP: UIImageView!
     @IBOutlet weak var lessonTitleP: UILabel!
     @IBOutlet weak var lessonBodyP: UILabel!
     @IBOutlet weak var lessonCourseTitleP: UILabel!
+    @IBOutlet weak var learnCollectionView: UICollectionView!
     
     var lessonDetail: Lessons!
 
     @IBOutlet weak var LessonProgress: UIProgressView!
     
     @IBOutlet weak var progressView: UIView!
+    var technique: [Techniques] = []
+
     
     private  var count = 0
     
@@ -39,8 +44,9 @@ class DetailsViewController: UIViewController {
         lessonBodyP.text = String(lessonDetail.longDesc!)
     
         
-        for case let technique as Techniques in lessonDetail.learn_use! {
-            print("\(technique.id) - \(technique.name)")
+        for case let techn as Techniques in lessonDetail.learn_use! {
+            //print("\(technique.id) - \(technique.name)")
+            technique = Array(lessonDetail.learn_use!) as! [Techniques]
         }
         
         progressView.backgroundColor = UIColor(white: 1, alpha: 0.3)
@@ -56,6 +62,18 @@ class DetailsViewController: UIViewController {
         if (lessonDetail.type != "Lesson"){
             lessonCourseTitleP.text = String("What You'll Use")
         }
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return technique.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let learnCell:DetailCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "learnCell", for: indexPath) as! DetailCollectionViewCell
+      
+        learnCell.learnName.text = technique[indexPath.row].name
+        print(technique[indexPath.row].name)
+        
+        return learnCell
     }
     
     @IBAction func startLesson(_ sender: UIButton) {
