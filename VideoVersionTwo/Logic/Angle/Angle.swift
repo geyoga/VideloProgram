@@ -43,7 +43,6 @@ class Angle {
                     
                     if roll >= self.tiltUpper {
                         self.delegate?.highAngleHit(true)
-                        
                     }
                 }
             }

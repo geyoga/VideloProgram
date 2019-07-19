@@ -61,9 +61,20 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     var labelAR = UILabel()
     let labelsContent = ["Welcome to Videlo, find the screen to spawn Object","Press Start and Panning your Phone","Tilt your Phone by follow the Object",""]
     
+    static var label: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(listLessons)
+        
+        //add label
+        ARViewController.label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+        ARViewController.label.center = CGPoint(x: 200, y: 200)
+        ARViewController.label.textAlignment = .center
+        ARViewController.label.text = "I'm a test label"
+        self.view.addSubview(ARViewController.label)
+        //end
+        
     
         sceneView.debugOptions = [.showFeaturePoints]
         sceneView.delegate = self
@@ -95,6 +106,18 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             default:
                 break
             }
+        }
+        
+        //lottie to notice user to get plane flat surface
+        let animationView = AnimationView( name: "PlaneAnimation")
+        if animationView != nil {
+            animationView.frame = CGRect(x: 100, y: 100, width: 400, height: 400)
+            animationView.center = CGPoint.init(x: 450.0, y: 200)
+            animationView.contentMode = .scaleAspectFill
+            animationView.loopMode = .playOnce
+            view.addSubview(animationView)
+            
+            animationView.play()
         }
     }
     
@@ -251,7 +274,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                 break
             case .Tracking:
                 animationName = "PAN"
-                tracking = Tracking(startPoint: sceneView.pointOfView!.position, objectPoint: shape.position)
+                tracking = Tracking(startPoint: sceneView.pointOfView!.position, objectPoint: shape.position, totalDistance: 1.5)
                 tracking.delegate = self as! TrackingDelegate
                 trackingCheck = true
                 break

@@ -36,7 +36,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
          //CLEAR ALL
         let datas = CoreDataHelper.fetch(entity: "Lessons") as [Lessons]
         for item in datas {
-            for case let technique as Techniques in item.learn_use! {
+            for technique in item.learn_use!.array {
                 CoreDataHelper.delete(data: technique)
             }
             CoreDataHelper.delete(data: item)
@@ -56,7 +56,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         let dolly = dataController.addTechnique(name: "Dolly", icon: "Dolly In Symbol")
         let tracking = dataController.addTechnique(name: "Tracking", icon: "Tracking Symbol")
         
-        var learn_use = NSSet.init(array: [pan, tilt, dolly, tracking])
+        var learn_use = NSOrderedSet.init(array: [pan, tilt, dolly, tracking])
         dataController.addLesson(name: "Introduction to Movement", type: "Lesson", shortDesc: "Movement", longDesc: """
         Camera movement has powerful impact in videography, such as to direct the viewer's attention, provide narrative information, or create expressive effects. You will practice your skills in Movement Techniques, such as Dolly in technique, Tilt technique, Pan Technique, and Tracking Technique. You must do all the Instruction in order to complete Movement Technique.
         """, objectName: "Walking copy 2.scn", learn_use: learn_use, image: "Fund_Movement")
@@ -65,7 +65,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         let high = dataController.addTechnique(name: "High Angle", icon: "High Angle Symbol")
         let low = dataController.addTechnique(name: "Low Angle", icon: "Low Angle Symbol")
         
-        learn_use = NSSet.init(array: [high, low])
+        learn_use = NSOrderedSet.init(array: [high, low])
         dataController.addLesson(name: "Introduction to Angle", type: "Lesson", shortDesc: "Angle", longDesc: """
             The angle in videography have a big effect on what the picture tells the audience and really important for shaping the meaning of the video. You will practice 2 Angle Techniques, High Angle Techniques and Low Angle Technique. You must follow the instruction to complete the Angle Lesson.
             """, objectName: "buildingWithBarrel.dae", learn_use: learn_use, image: "Fund_Angle")
@@ -74,14 +74,14 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         let closeUp = dataController.addTechnique(name: "Close Up Shot", icon: "Close Up Symbol")
         let medium = dataController.addTechnique(name: "Medium Shot", icon: "Medium Shot Symbol")
         
-        learn_use = NSSet.init(array: [closeUp, medium])
+        learn_use = NSOrderedSet.init(array: [closeUp, medium])
         dataController.addLesson(name: "Introduction to Shot", type: "Lesson", shortDesc: "Shot", longDesc: """
         The shots can affect your scene, so you can make your shots work together to form a beautiful, clear, and cohesive narrative. You will learn 2 Shot Techniques, Close Up Shot and Medium shot. You must do all the instruction in order to complete Shot Lesson.
         
         """, objectName: "humanStill.scn", learn_use: learn_use, image: "Fund_Shot")
         
         //exercise 1
-        learn_use = NSSet.init(array: [pan, tracking, dolly, closeUp])
+        learn_use = NSOrderedSet.init(array: [tracking, high, dolly])//[pan, tracking, dolly, closeUp])
         dataController.addLesson(name: "Circle the Object", type: "Course", shortDesc: "You will learn a lot", longDesc: "You will learn a lot", objectName: "plant.scn", learn_use: learn_use, image: "Exe_StillObject")
         
         //FETCH
