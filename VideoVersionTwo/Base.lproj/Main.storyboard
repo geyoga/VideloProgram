@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="meA-jZ-rbw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XU2-uq-hAj">
     <device id="retina6_1" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -90,7 +90,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ZZ-me-KdV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1155.8035714285713" y="-965.21739130434787"/>
+            <point key="canvasLocation" x="1561" y="-2459"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="HtM-B2-9vT">
@@ -137,7 +137,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="jAV-z9-ZFb" kind="show" id="Mfx-8a-ADH"/>
+                                    <segue destination="doi-E0-EMk" kind="show" id="LCD-t9-srI"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -433,6 +433,7 @@
                                                 <state key="normal" backgroundImage="Button Start"/>
                                                 <connections>
                                                     <action selector="startLesson:" destination="bXa-IH-ory" eventType="touchUpInside" id="vyR-de-JuI"/>
+                                                    <segue destination="jAV-z9-ZFb" kind="presentation" identifier="GoToARScreen" id="FDV-KP-bg3"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sEL-jC-kB0">
@@ -590,6 +591,7 @@
                     <size key="freeformSize" width="896" height="1100"/>
                     <connections>
                         <outlet property="LessonProgress" destination="h4e-ie-MCB" id="aaz-z9-2eu"/>
+                        <outlet property="buttonBegin" destination="MIM-yc-yor" id="fZ1-nF-xfm"/>
                         <outlet property="learnCollectionView" destination="NQ8-Qm-MQv" id="71o-RL-w6M"/>
                         <outlet property="lessonBodyP" destination="Wr4-2Q-egj" id="B5X-Ce-CiW"/>
                         <outlet property="lessonCourseTitleP" destination="Knj-vp-7I3" id="XHU-d3-UNV"/>
@@ -1735,4 +1737,7 @@ AQCHAAEAmQABAJwAAQChAAAAAAAABAEAAAAAAAAAbQAAAAAAAAAAAAAAAAABAKM
 </mutableData>
         </image>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="LCD-t9-srI"/>
+    </inferredMetricsTieBreakers>
 </document>

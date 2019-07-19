@@ -18,7 +18,7 @@ protocol PanDelegate: class {
 class Pan {
     weak var delegate: PanDelegate?
     
-    var motion: CMMotionManager!
+    var motion = CMMotionManager()
     
     var panCounter: Int = 0
     //yaw
@@ -28,7 +28,7 @@ class Pan {
     var checkPanDownHit = false
     
     init() {
-        motion  = CMMotionManager()
+        self.motion  = CMMotionManager()
     }
     
     func startGyros() {
@@ -38,6 +38,7 @@ class Pan {
                 if let trueData = data {
                     let yaw = trueData.attitude.yaw.radiansToDegree()
                     print(yaw)
+                    
                     //PAN
                     if self.checkPanUpHit == false && yaw >= self.panUpper {
                         self.checkPanUpHit = true

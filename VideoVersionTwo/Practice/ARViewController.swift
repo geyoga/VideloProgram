@@ -30,18 +30,28 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         case Tilt
         case Dolly
         case Tracking
+        case Shot
+        case Angle
     }
-    var currentLesson:  LessonEnum = .Pan
+
+    var listLessons: [LessonEnum] = []
+    var lessonCounter = 0
     
     var firstObjectPosition: SCNVector3!
     
     var dollyCheck: Bool = true
     var trackingCheck: Bool = true
+    var shotCheck: Bool = true
+    var angleCheck: Bool = true
     
     var pan: Pan!
     var tilt: Tilt!
     var dolly: Dolly!
     var tracking: Tracking!
+    var  angle: Angle!
+    var shot: Shot!
+    
+    var planeShowed = false
     
     // membuat data label instruktur tutorial
     var labelAR = UILabel()
@@ -49,10 +59,11 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(listLessons)
+    
         sceneView.debugOptions = [.showFeaturePoints]
         sceneView.delegate = self
-    
+        
         buildLabel(data: 0)
     }
     
@@ -61,20 +72,54 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         
         DispatchQueue.main.async {
             let configuration = ARWorldTrackingConfiguration()
-            //configuration.planeDetection = [.horizontal]
+            configuration.planeDetection = [.horizontal]
             self.sceneView.session.run(configuration)
         }
     }
     
-    /*func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        DispatchQueue.main.async {
-            if let planeAnchor = anchor as? ARPlaneAnchor {
-                self.plane = Plane(planeAnchor)
-                node.addChildNode(self.plane)
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        if planeShowed == false {
+            DispatchQueue.main.async {
+                if let planeAnchor = anchor as? ARPlaneAnchor {
+                    self.plane = Plane(planeAnchor)
+                    node.addChildNode(self.plane)
+                    self.planeShowed = true
+                    self.addHuman(position: SCNVector3.init(0, 0, 0))
+                }
             }
+        }
+    }
+    
+    /*func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        guard let planeAnchor = anchor as? ARPlaneAnchor else {return}
+        node.enumerateChildNodes { (node, _) in
+            node.removeFromParentNode()
+        }
+        
+        self.plane = Plane(planeAnchor)
+        node.addChildNode(self.plane)
+        self.planeShowed = true
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
+        guard let _ = anchor as? ARPlaneAnchor else {return}
+        node.enumerateChildNodes { (node, _) in
+            node.removeFromParentNode()
         }
     }*/
 
+    func moveToNextLesson() {
+        DispatchQueue.main.async {
+            self.buttonStart.sendActions(for: .touchUpInside)
+        }
+        if (lessonCounter+1 == listLessons.count) {
+            dismiss(animated: true, completion: nil)
+        }
+        else {
+            lessonCounter += 1
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
@@ -89,10 +134,15 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         }))
         self.present(alert, animated: true)
     }
+    
     @IBAction func StartActionButton(_ sender: UIButton) {
         
         print("STOP BUTTON")
         
+        if shape == nil {
+            print("Shape not detected")
+            return
+        }
         // mengubah image pada tombol start menjadi stop
         if buttonStart.currentBackgroundImage == UIImage(named: "StartButton") {
             
@@ -100,7 +150,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             deleteLabel()
             
             var animationName: String = ""
-            switch currentLesson {
+            switch listLessons[lessonCounter] {
             case .Pan:
                 animationName = "PAN"
                 pan = Pan.init()
@@ -108,6 +158,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                 
                 pan.startGyros()
                 panStatus = 1
+                break
             case .Tilt:
                 animationName = "Tilt"
                 tilt = Tilt.init()
@@ -115,16 +166,32 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                 
                 tiltStatus = 1
                 tilt.startGyros()
+                break
             case .Dolly:
                 animationName = "DOLLY IN"
                 dolly = Dolly(startPoint: self.sceneView!.pointOfView!.position)
                 dolly.delegate = self as! DollyDelegate
                 dollyCheck = true
+                break
             case .Tracking:
                 animationName = "PAN"
                 tracking = Tracking(startPoint: sceneView.pointOfView!.position, objectPoint: shape.position)
-                tracking.delegate = self as!  TrackingDelegate
+                tracking.delegate = self as! TrackingDelegate
                 trackingCheck = true
+                break
+            case .Shot:
+                animationName = "DOLLY IN"
+                //cannot use position because it will use parent (which is plane detector 0,0,0). If we use world position, it will be  relative to the real scene
+                shot = Shot(objectPoint: shape.worldPosition)
+                shot.delegate = self as! ShotDelegate
+                shotCheck = true
+                break
+            case .Angle:
+                animationName = "Tilt"
+                angle = Angle.init()
+                angle.delegate = self as! AngleDelegate
+                angle.startGyros()
+                break
             }
             
             let animationView = AnimationView(name: animationName)
@@ -132,7 +199,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                 let imageProvider = BundleImageProvider(bundle: .main, searchPath: "images")
                 animationView.imageProvider = imageProvider
                 animationView.frame = CGRect(x: 100, y: 100, width: 400, height: 400)
-                animationView.center = CGPoint.init(x: 200.0, y: 100.0)
+                animationView.center = CGPoint.init(x: 450.0, y: 100.0)
                 animationView.contentMode = .scaleAspectFill
                 animationView.loopMode = .playOnce
                 view.addSubview(animationView)
@@ -142,21 +209,46 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         }
         else {
             buttonStart.setBackgroundImage(UIImage(named: "StartButton"), for: .normal)
-            shape.position = firstObjectPosition
+            //relative to plane
+            shape.position = SCNVector3(0, 0, 0)
             self.shape.eulerAngles.x = 0
             self.shape.eulerAngles.y = 0
             
-            if currentLesson == .Pan {
+            switch listLessons[lessonCounter] {
+            case .Pan:
+                //if stop before move next lesson
+                if pan != nil {
+                    pan.stopGyros()
+                    panStatus = 0
+                }
+                break
+            case .Tilt:
+                //stop after move to next lesson
+                if pan != nil {
+                    pan.stopGyros()
+                    panStatus = 0
+                }
                 
+                if tilt != nil {
+                    tiltStatus = 0
+                    tilt.stopGyros()
+                }
+                break
+            case .Dolly:
+                dollyCheck = false
+                break
+            case .Tracking:
+                trackingCheck = false
+                break
+            case .Angle:
+                if angle != nil {
+                    angle.stopGyros()
+                }
+            case .Shot:
+                shotCheck = false
+                break
             }
-            else if currentLesson == .Tilt {
-                pan.stopGyros()
-                panStatus = 0
-            }
-            else if currentLesson == .Dolly {
-                tiltStatus = 0
-                tilt.stopGyros()
-            }
+            print("CURRENT: \(listLessons[lessonCounter])")
         }
         
     }
@@ -165,7 +257,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         let speed: Float = 0.005
         let rotationValue: Float = 0.1
         
-        switch currentLesson {
+        switch listLessons[lessonCounter] {
         case .Pan:
             //for pan, move object periodically
             if panStatus == 1 {
@@ -176,6 +268,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                 self.shape.position.x += speed
                 self.shape.eulerAngles.y -= rotationValue
             }
+            break
         case .Tilt:
             if tiltStatus == 1 {
                 self.shape.position.y += speed
@@ -185,14 +278,24 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                 self.shape.position.y -= speed
                 self.shape.eulerAngles.x -= rotationValue
             }
+            break
         case .Dolly:
             if dolly != nil && dollyCheck == true {
                 dolly.positionUpdate(updatePoint: sceneView!.pointOfView!.position)
             }
+            break
         case .Tracking:
             if tracking != nil && trackingCheck == true {
                 tracking.positionUpdate(updatePoint: sceneView!.pointOfView!.position)
             }
+            break
+        case .Shot:
+            if shot != nil && shotCheck == true {
+                shot.positionUpdate(updatePoint: sceneView!.pointOfView!.position)
+            }
+            break
+        case .Angle:
+            break
         }
     }
     
@@ -241,11 +344,14 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func addHuman(position: SCNVector3) {
-        let cube = SCNScene(named: "art.scnassets/Walking copy.scn")!
+        let cube = SCNScene(named: "art.scnassets/Walking copy 2.scn")!
         shape = cube.rootNode
-        shape.position = position
-        shape.scale = SCNVector3(0.001, 0.001, 0.001)
-        sceneView.scene.rootNode.addChildNode(shape)
+        print(plane.position)
+        print(position)
+        //shape.position = plane.worldPosition //position
+        shape.scale = SCNVector3(0.003, 0.003, 0.003)
+        plane.addChildNode(shape)
+        //sceneView.scene.rootNode.addChildNode(shape)
     }
     
     func createCube () {

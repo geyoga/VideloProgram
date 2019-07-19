@@ -9,12 +9,12 @@
 import Foundation
 import ARKit
 
-protocol DollyDelegate {
+protocol DollyDelegate: class {
     func dollyHit(_ status: Bool)
 }
 
 class Dolly {
-    var delegate: DollyDelegate!
+    weak var delegate: DollyDelegate!
     
     let startPoint: SCNVector3
     init(startPoint: SCNVector3) {

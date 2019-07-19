@@ -9,26 +9,26 @@
 import Foundation
 import CoreMotion
 
-protocol TiltDelegate {
+protocol TiltDelegate: class {
     func tiltUpHit(_ status: Bool)
     func tiltDownHit(_ status: Bool)
     func tiltuccess(_ status: Bool)
 }
 
 class Tilt {
-    var delegate: TiltDelegate?
+    weak var delegate: TiltDelegate?
     
     var motion: CMMotionManager!
     
     var tiltCounter: Int = 0
     //roll
-    let tiltUpper: Double = -40
+    let tiltUpper: Double = -50
     let tiltLower: Double = -120
     var checkTiltUpHit = false
     var checkTiltDownHit = false
     
     init() {
-        motion  = CMMotionManager()
+        self.motion  = CMMotionManager()
     }
     
     func startGyros() {

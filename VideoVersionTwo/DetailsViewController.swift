@@ -12,6 +12,7 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
     
     
     
+    @IBOutlet weak var buttonBegin: UIButton!
     @IBOutlet weak var lessonNumP: UILabel!
     @IBOutlet weak var lessonImgP: UIImageView!
     @IBOutlet weak var lessonTitleP: UILabel!
@@ -31,6 +32,9 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        buttonBegin.setBackgroundImage(UIImage(named: "Button Start"), for: .normal)
+        buttonBegin.setBackgroundImage(UIImage(named: "Start Lesson Press"), for: .selected)
         
         // Do any additional setup after loading the view.
         
@@ -59,8 +63,14 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
         lessonImgP.layer.cornerRadius = 5.0
         
         
-        if (lessonDetail.type != "Lesson"){
+        if (lessonDetail.type == "Lesson"){
+            lessonCourseTitleP.text = String("What You'll Learn")
+        }
+        else if (lessonDetail.type == "Course"){
             lessonCourseTitleP.text = String("What You'll Use")
+        }
+        else if (lessonDetail.type == "Tutorial"){
+            lessonCourseTitleP.text = ""
         }
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -71,15 +81,53 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
         let learnCell:DetailCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "learnCell", for: indexPath) as! DetailCollectionViewCell
       
         learnCell.learnName.text = technique[indexPath.row].name
+        learnCell.learnImg.image = UIImage(named: technique[indexPath.row].icon!)
         print(technique[indexPath.row].name)
         
         return learnCell
     }
     
     @IBAction func startLesson(_ sender: UIButton) {
-        print("asd")
+        
+        if buttonBegin.isSelected {
+            // set deselected
+            buttonBegin.isSelected = false
+        } else {
+            // set selected
+            buttonBegin.isSelected = true
+        }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier ==  "GoToARScreen") {
+            let vc = segue.destination as! ARViewController
+            
+            for tech in technique {
+                switch tech.name {
+                case "Pan":
+                    vc.listLessons.append(.Pan)
+                    break
+                case "Tilt":
+                    vc.listLessons.append(.Tilt)
+                    break
+                case "Dolly":
+                    vc.listLessons.append(.Dolly)
+                    break
+                case "Tracking":
+                    vc.listLessons.append(.Tracking)
+                    break
+                case "Close Up Shot", "Medium Shot":
+                    vc.listLessons.append(.Shot)
+                    break
+                case "Low Angle", "High Angle":
+                    vc.listLessons.append(.Angle)
+                    break
+                default:
+                    break
+                }
+            }
+        }
+    }
     
  
     
