@@ -20,6 +20,7 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
     @IBOutlet weak var lessonCourseTitleP: UILabel!
     @IBOutlet weak var learnCollectionView: UICollectionView!
     
+    @IBOutlet weak var buttonBegin2: UIButton!
     var lessonDetail: Lessons!
 
     @IBOutlet weak var LessonProgress: UIProgressView!
@@ -65,6 +66,8 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
         lessonImgP.layer.cornerRadius = 5.0
         
         
+        
+        
         if (lessonDetail.type == "Lesson"){
             lessonCourseTitleP.text = String("What You'll Learn")
         }
@@ -97,6 +100,16 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
         } else {
             // set selected
             buttonBegin.isSelected = true
+        }
+    }
+    @IBAction func startLesson2(_ sender: Any) {
+        doHaptic()
+        if buttonBegin2.isSelected {
+            // set deselected
+            buttonBegin2.isSelected = false
+        } else {
+            // set selected
+            buttonBegin2.isSelected = true
         }
     }
     
