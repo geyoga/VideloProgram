@@ -9,13 +9,13 @@
 import Foundation
 import ARKit
 
-protocol ShotDelegate {
+protocol ShotDelegate: class {
     func closeUpShot(_ status: Bool)
     func mediumShot(_ status: Bool)
 }
 
 class Shot {
-    var delegate: ShotDelegate!
+    weak var delegate: ShotDelegate!
     let objectPoint: SCNVector3
     
     init(objectPoint: SCNVector3) {
@@ -26,10 +26,10 @@ class Shot {
         let distance = abs(GLKVector3Distance(SCNVector3ToGLKVector3(objectPoint), SCNVector3ToGLKVector3(updatePoint)))
         print("DISTANCE \(distance)")
         
-        if (distance < 0.4) {
+        if (distance < 1.2) {
             delegate.closeUpShot(true)
         }
-        else if (distance >  1 && distance < 2) {
+        else if (distance >  2.5 && distance < 3) {
             delegate.mediumShot(true)
         }
     }

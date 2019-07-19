@@ -23,10 +23,7 @@ extension ARViewController: PanDelegate {
     func panSuccess(_ status: Bool) {
         pan.stopGyros()
         panStatus = 0
-        currentLesson = ARViewController.LessonEnum(rawValue: 2)!
-        DispatchQueue.main.async {
-            self.buttonStart.sendActions(for: .touchUpInside)
-        }
+        moveToNextLesson()
         panStatus = 4
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Success", message: "You did PAN", preferredStyle: .alert)
@@ -42,10 +39,7 @@ extension ARViewController: PanDelegate {
 extension ARViewController: DollyDelegate {
     
     func dollyHit(_ status: Bool) {
-        DispatchQueue.main.async {
-            self.buttonStart.sendActions(for: .touchUpInside)
-        }
-        currentLesson = ARViewController.LessonEnum(rawValue: 4)!
+        moveToNextLesson()
         dollyCheck =  false
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Success", message: "You did DOLY", preferredStyle: .alert)
@@ -59,10 +53,7 @@ extension ARViewController: TrackingDelegate {
     
     func trackingHit(_ status: Bool) {
         trackingCheck = false
-        currentLesson = ARViewController.LessonEnum(rawValue: 1)!
-        DispatchQueue.main.async {
-            self.buttonStart.sendActions(for: .touchUpInside)
-        }
+        moveToNextLesson()
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Success", message: "You did TRACKING", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -92,10 +83,8 @@ extension ARViewController: TiltDelegate {
     func tiltuccess(_ status: Bool) {
         tiltStatus = 0
         tilt.stopGyros()
-        currentLesson = ARViewController.LessonEnum(rawValue: 3)!
-        DispatchQueue.main.async {
-            self.buttonStart.sendActions(for: .touchUpInside)
-        }
+        moveToNextLesson()
+        
         tiltStatus = 4
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Success", message: "You did TILT", preferredStyle: .alert)
@@ -113,6 +102,7 @@ extension ARViewController: ShotDelegate {
             self.present(alert, animated: true)
         }
         shotCheck = false
+        moveToNextLesson()
     }
     
     func mediumShot(_ status: Bool) {
@@ -122,6 +112,7 @@ extension ARViewController: ShotDelegate {
             self.present(alert, animated: true)
         }
         shotCheck = false
+        moveToNextLesson()
     }
 }
 
@@ -132,6 +123,7 @@ extension ARViewController: AngleDelegate {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
         }
+        moveToNextLesson()
     }
     
     func highAngleHit(_ status: Bool) {
@@ -140,5 +132,6 @@ extension ARViewController: AngleDelegate {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
         }
+        moveToNextLesson()
     }
 }

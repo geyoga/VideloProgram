@@ -18,7 +18,7 @@ protocol PanDelegate: class {
 class Pan {
     weak var delegate: PanDelegate?
     
-    var motion: CMMotionManager!
+    var motion = CMMotionManager()
     
     var panCounter: Int = 0
     //yaw
@@ -28,7 +28,7 @@ class Pan {
     var checkPanDownHit = false
     
     init() {
-        motion  = CMMotionManager()
+        self.motion  = CMMotionManager()
     }
     
     func startGyros() {

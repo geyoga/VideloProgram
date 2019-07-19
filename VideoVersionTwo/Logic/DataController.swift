@@ -13,13 +13,14 @@ class DataController {
     var techniqueCounter: Int32 = 0
     var lessonCounter: Int32 = 0
     
-    func addTechnique(name: String) -> Techniques {
+    func addTechnique(name: String, icon: String) -> Techniques {
         //TECHNIQUE
         techniqueCounter += 1
         
         let technique = Techniques(context: CoreDataHelper.managedContext)
         technique.id = techniqueCounter
         technique.name = name
+        technique.icon = icon
         CoreDataHelper.save()
         return technique
     }

@@ -33,7 +33,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
          //CLEAR ALL
         let datas = CoreDataHelper.fetch(entity: "Lessons") as [Lessons]
         for item in datas {
@@ -45,25 +44,27 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         
         let dataController: DataController = DataController()
         
+        dataController.addLesson(name: "Tutorial", type: "Tutorial", shortDesc: "Tutorial", longDesc: "You will learn how to use the app", objectName: "Box", learn_use: [], image: "Tutorial Background")
+        
         //MOVEMENT
-        let pan = dataController.addTechnique(name: "Pan")
-        let tilt = dataController.addTechnique(name: "Tilt")
-        let dolly = dataController.addTechnique(name: "Dolly")
-        let tracking = dataController.addTechnique(name: "Tracking")
+        let pan = dataController.addTechnique(name: "Pan", icon: "Pan Symbol")
+        let tilt = dataController.addTechnique(name: "Tilt", icon: "Tilt Symbol")
+        let dolly = dataController.addTechnique(name: "Dolly", icon: "Dolly In Symbol")
+        let tracking = dataController.addTechnique(name: "Tracking", icon: "Tracking Symbol")
         
         var learn_use = NSSet.init(array: [pan, tilt, dolly, tracking])
         dataController.addLesson(name: "Introduction to Movement", type: "Lesson", shortDesc: "Movement", longDesc: "You will learn basic Movement", objectName: "Car", learn_use: learn_use, image: "Fund_Movement")
         
         //ANGLE
-        let high = dataController.addTechnique(name: "High Angle")
-        let low = dataController.addTechnique(name: "Low Angle")
+        let high = dataController.addTechnique(name: "High Angle", icon: "High Angle Symbol")
+        let low = dataController.addTechnique(name: "Low Angle", icon: "Low Angle Symbol")
         
         learn_use = NSSet.init(array: [high, low])
         dataController.addLesson(name: "Introduction to Angle", type: "Lesson", shortDesc: "Angle", longDesc: "You will learn basic Angle", objectName: "BuildingWithBarrel", learn_use: learn_use, image: "Fund_Angle")
         
         //SHOT
-        let closeUp = dataController.addTechnique(name: "Close Up Shot")
-        let medium = dataController.addTechnique(name: "Medium Shot")
+        let closeUp = dataController.addTechnique(name: "Close Up Shot", icon: "Close Up Symbol")
+        let medium = dataController.addTechnique(name: "Medium Shot", icon: "Medium Shot Symbol")
         
         learn_use = NSSet.init(array: [closeUp, medium])
         dataController.addLesson(name: "Introduction to Shot", type: "Lesson", shortDesc: "Shot", longDesc: "You will learn basic Shot", objectName: "HumanStill", learn_use: learn_use, image: "Fund_Shot")
