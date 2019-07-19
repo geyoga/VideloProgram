@@ -10,6 +10,7 @@ import UIKit
 import ARKit
 import SceneKit
 import Lottie
+import  CoreData
 
 class ARViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var buttonStart: UIButton!
@@ -36,6 +37,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
 
     var listLessons: [LessonEnum] = []
     var lessonCounter = 0
+    var choosenLesson: Lessons!
     
     var firstObjectPosition: SCNVector3!
     
@@ -65,6 +67,33 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         
         buildLabel(data: 0)
+        
+        let technique: [Techniques] = Array(choosenLesson!.learn_use!) as! [Techniques]
+        //add techniques
+        for tech in technique {
+            switch tech.name {
+            case "Pan":
+                listLessons.append(.Pan)
+                break
+            case "Tilt":
+                listLessons.append(.Tilt)
+                break
+            case "Dolly":
+                listLessons.append(.Dolly)
+                break
+            case "Tracking":
+                listLessons.append(.Tracking)
+                break
+            case "Close Up Shot", "Medium Shot":
+                listLessons.append(.Shot)
+                break
+            case "Low Angle", "High Angle":
+                listLessons.append(.Angle)
+                break
+            default:
+                break
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,7 +113,23 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                     self.plane = Plane(planeAnchor)
                     node.addChildNode(self.plane)
                     self.planeShowed = true
-                    self.addHuman(position: SCNVector3.init(0, 0, 0))
+                    
+                    //add object
+                    var name: String = ""
+                    var scale: SCNVector3 = SCNVector3(0.003, 0.003, 0.003)
+                    print(self.listLessons[self.lessonCounter])
+                    
+                    name = "art.scnassets/\(self.choosenLesson.objectName).scn"
+                    
+                    if self.listLessons[self.lessonCounter] == .Shot {
+                        name = "art.scnassets/humanStill.scn"
+                    }
+                    else if self.listLessons[self.lessonCounter] == .Angle {
+                        name = "art.scnassets/buildingWithBarrel.dae"
+                        scale  = SCNVector3(0.05,0.05,0.05)
+                    }
+                    
+                    self.addObject(name: name, position: SCNVector3.init(0, 0, 0), scale: scale)
                 }
             }
         }
@@ -345,19 +390,19 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene.rootNode.addChildNode(ballNode)
     }
     
-    func addHuman(position: SCNVector3) {
-        let cube = SCNScene(named: "art.scnassets/Walking copy 2.scn")!
-        shape = cube.rootNode
+    func addObject(name: String, position: SCNVector3, scale:  SCNVector3) {
+        
+        let node = SCNScene(named: name)!
+        shape = node.rootNode
         print(plane.position)
         print(position)
         //shape.position = plane.worldPosition //position
-        shape.scale = SCNVector3(0.003, 0.003, 0.003)
+        shape.scale = scale
         plane.addChildNode(shape)
         //sceneView.scene.rootNode.addChildNode(shape)
     }
     
     func createCube () {
-        
         let cube = SCNScene(named: "art.scnassets/tong.scn")! //SCNBox(width: 0.3, height: 0.3, length: 0.3, chamferRadius: 0.1)
         shape = cube.rootNode//SCNNode(geometry: cube)
         shape.geometry?.firstMaterial?.diffuse.contents = UIColor.orange
@@ -371,7 +416,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         deleteLabel()
         //createCube()
         
-        guard let touch = touches.first else {return}
+        /*guard let touch = touches.first else {return}
         let result = sceneView.hitTest(touch.location(in: sceneView), types: [ARHitTestResult.ResultType.featurePoint ])
         
         guard let hitResult = result.last else {return}
@@ -381,7 +426,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         let hitVector = SCNVector3Make(hitTransform.m41, hitTransform.m42, hitTransform.m43)
         addHuman(position: hitVector)
         firstObjectPosition = hitVector
-        
+        */
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.buildLabel(data: 1)
         }

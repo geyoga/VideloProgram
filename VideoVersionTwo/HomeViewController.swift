@@ -47,7 +47,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         cell.image.image = UIImage(named: lesson[indexPath.row].image!)//arrImg[indexPath.row]
         
-        cell.lessonNum.text = String(lesson[indexPath.row].id)//arrNum[indexPath.row]
+        cell.lessonNum.text = "\(lesson[indexPath.row].type!)" //arrNum[indexPath.row]
         cell.lessonNum.textColor = UIColor.gray
         
         cell.lessonTitle.text = lesson[indexPath.row].name//arrTittle [indexPath.row]
