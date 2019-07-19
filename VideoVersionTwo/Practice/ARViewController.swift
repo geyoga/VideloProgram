@@ -26,6 +26,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     var panStatus: Int = 0
     var tiltStatus: Int = 0
     
+    var name: String = ""  //object name
+    
     enum LessonEnum: Int {
         case Pan = 1
         case Tilt
@@ -115,22 +117,24 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                     self.planeShowed = true
                     
                     //add object
-                    var name: String = ""
                     var scale: SCNVector3 = SCNVector3(0.003, 0.003, 0.003)
                     print(self.listLessons[self.lessonCounter])
                     
-                    name = "art.scnassets/\(self.choosenLesson.objectName!)"
+                    self.name = "art.scnassets/\(self.choosenLesson.objectName!)"
                     
                     if self.choosenLesson.name == "Introduction to Angle" {
                         scale  = SCNVector3(0.05,0.05,0.05)
                     }
                     
-                    if self.listLessons[self.lessonCounter] == .Tilt {
-                        name = "art.scnassets/climbFixed.scn"
+                    if self.choosenLesson.name == "Introduction to Movement" {
+                        if self.listLessons[self.lessonCounter] == .Tilt {
+                            self.name = "art.scnassets/climbFixed.scn"
+                        }
                     }
-                    print(name)
                     
-                    self.addObject(name: name, position: SCNVector3.init(0, 0, 0), scale: scale)
+                    print(self.name)
+                    
+                    self.addObject(name: self.name, position: SCNVector3.init(0, 0, 0), scale: scale)
                 }
             }
         }
@@ -163,6 +167,30 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         }
         else {
             lessonCounter += 1
+            
+            if choosenLesson.name != "Introduction to Movement" {
+                return
+            }
+            
+            var tempName = ""
+            //if movement
+            if self.listLessons[self.lessonCounter] == .Tilt {
+                tempName = "art.scnassets/floatFix.scn"
+            }
+            else {
+                tempName = "art.scnassets/Walking copy 2.scn"
+            }
+            
+            print(name)
+            print(tempName)
+            
+            if name != tempName {
+                name = tempName
+                if shape != nil {
+                    shape.removeFromParentNode()
+                }
+                self.addObject(name: name, position: SCNVector3.init(0, 0, 0), scale: SCNVector3(0.003, 0.003, 0.003))
+            }
         }
     }
     
