@@ -527,8 +527,11 @@
                                                 </connections>
                                             </collectionView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOK-CD-Qvn">
-                                                <rect key="frame" x="265" y="910" width="343" height="50"/>
+                                                <rect key="frame" x="264" y="910" width="344" height="50"/>
                                                 <state key="normal" image="Button Begin Down"/>
+                                                <connections>
+                                                    <segue destination="jAV-z9-ZFb" kind="show" id="OFF-Ow-3Ab"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -539,10 +542,10 @@
                                             <constraint firstItem="2vW-0r-o70" firstAttribute="top" secondItem="Ybh-uW-fnf" secondAttribute="bottom" constant="8" id="8nL-Fn-SEI"/>
                                             <constraint firstAttribute="trailing" secondItem="SWd-92-nQT" secondAttribute="trailing" constant="-26" id="ADc-SX-oV3"/>
                                             <constraint firstAttribute="height" constant="960" id="Dwd-n1-u9Z"/>
-                                            <constraint firstItem="vOK-CD-Qvn" firstAttribute="top" secondItem="NQ8-Qm-MQv" secondAttribute="bottom" constant="31.5" id="Hhe-ia-sk1"/>
                                             <constraint firstItem="2vW-0r-o70" firstAttribute="leading" secondItem="lUc-0U-8gO" secondAttribute="leading" constant="68" id="Keq-6B-ycI"/>
-                                            <constraint firstItem="vOK-CD-Qvn" firstAttribute="leading" secondItem="lUc-0U-8gO" secondAttribute="leading" constant="265" id="Kiw-EM-vCb"/>
+                                            <constraint firstItem="vOK-CD-Qvn" firstAttribute="leading" secondItem="lUc-0U-8gO" secondAttribute="leading" constant="264" id="Kiw-EM-vCb"/>
                                             <constraint firstAttribute="trailing" secondItem="Wr4-2Q-egj" secondAttribute="trailing" constant="61" id="LIc-Up-zbq"/>
+                                            <constraint firstAttribute="bottom" secondItem="vOK-CD-Qvn" secondAttribute="bottom" id="LiN-PZ-A3H"/>
                                             <constraint firstAttribute="trailing" secondItem="NQ8-Qm-MQv" secondAttribute="trailing" constant="61" id="Rvh-ZS-1OU"/>
                                             <constraint firstItem="SWd-92-nQT" firstAttribute="top" secondItem="lUc-0U-8gO" secondAttribute="top" constant="-75" id="TdQ-JU-d6R"/>
                                             <constraint firstItem="Knj-vp-7I3" firstAttribute="top" secondItem="g7I-TA-DXB" secondAttribute="bottom" constant="30" id="UFa-je-h8r"/>
@@ -589,6 +592,7 @@
                     <connections>
                         <outlet property="LessonProgress" destination="h4e-ie-MCB" id="aaz-z9-2eu"/>
                         <outlet property="buttonBegin" destination="MIM-yc-yor" id="fZ1-nF-xfm"/>
+                        <outlet property="buttonBegin2" destination="vOK-CD-Qvn" id="39L-eL-4Pc"/>
                         <outlet property="learnCollectionView" destination="NQ8-Qm-MQv" id="71o-RL-w6M"/>
                         <outlet property="lessonBodyP" destination="Wr4-2Q-egj" id="B5X-Ce-CiW"/>
                         <outlet property="lessonCourseTitleP" destination="Knj-vp-7I3" id="XHU-d3-UNV"/>
@@ -1736,6 +1740,7 @@ AQCHAAEAmQABAJwAAQChAAAAAAAABAEAAAAAAAAAbQAAAAAAAAAAAAAAAAABAKM
         </image>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LCD-t9-srI"/>
+        <segue reference="LJ4-Jq-K8T"/>
+        <segue reference="OFF-Ow-3Ab"/>
     </inferredMetricsTieBreakers>
 </document>
