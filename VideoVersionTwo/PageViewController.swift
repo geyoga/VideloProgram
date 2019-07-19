@@ -59,7 +59,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         var learn_use = NSSet.init(array: [pan, tilt, dolly, tracking])
         dataController.addLesson(name: "Introduction to Movement", type: "Lesson", shortDesc: "Movement", longDesc: """
             Camera movement has powerful impact in videography, such as to direct the viewer's attention, provide narrative information, or create expressive effects. You will practice your skills in Movement Techniques, such as Dolly in technique, Tilt technique, Pan Technique, and Tracking Technique. You must do all the Instruction in order to complete Movement Technique.
-        """, objectName: "Car", learn_use: learn_use, image: "Fund_Movement")
+        """, objectName: "Walking copy 2", learn_use: learn_use, image: "Fund_Movement")
         
         //ANGLE
         let high = dataController.addTechnique(name: "High Angle", icon: "High Angle Symbol")
@@ -82,7 +82,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         
         //exercise 1
         learn_use = NSSet.init(array: [pan, tracking, dolly, closeUp])
-        dataController.addLesson(name: "Circle the Object", type: "Course", shortDesc: "You will learn a lot", longDesc: "You will learn a lot", objectName: "Flower", learn_use: learn_use, image: "Exe_StillObject")
+        dataController.addLesson(name: "Circle the Object", type: "Course", shortDesc: "You will learn a lot", longDesc: "You will learn a lot", objectName: "Plant", learn_use: learn_use, image: "Exe_StillObject")
         
         //FETCH
         let data = CoreDataHelper.fetch(entity: "Lessons") as [Lessons]

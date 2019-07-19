@@ -119,7 +119,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                     var scale: SCNVector3 = SCNVector3(0.003, 0.003, 0.003)
                     print(self.listLessons[self.lessonCounter])
                     
-                    name = "art.scnassets/\(self.choosenLesson.objectName)"
+                    name = "art.scnassets/\(self.choosenLesson.objectName).scn"
                     
                     if self.listLessons[self.lessonCounter] == .Shot {
                         name = "art.scnassets/humanStill.scn"
@@ -127,9 +127,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                     else if self.listLessons[self.lessonCounter] == .Angle {
                         name = "art.scnassets/buildingWithBarrel.dae"
                         scale  = SCNVector3(0.05,0.05,0.05)
-                    }
-                    else {
-                        name =  "art.scnassets/Walking copy 2.scn"
                     }
                     
                     self.addObject(name: name, position: SCNVector3.init(0, 0, 0), scale: scale)
