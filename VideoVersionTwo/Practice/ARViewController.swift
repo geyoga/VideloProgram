@@ -119,15 +119,16 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                     var scale: SCNVector3 = SCNVector3(0.003, 0.003, 0.003)
                     print(self.listLessons[self.lessonCounter])
                     
-                    name = "art.scnassets/\(self.choosenLesson.objectName).scn"
+                    name = "art.scnassets/\(self.choosenLesson.objectName!)"
                     
-                    if self.listLessons[self.lessonCounter] == .Shot {
-                        name = "art.scnassets/humanStill.scn"
-                    }
-                    else if self.listLessons[self.lessonCounter] == .Angle {
-                        name = "art.scnassets/buildingWithBarrel.dae"
+                    if self.choosenLesson.name == "Introduction to Angle" {
                         scale  = SCNVector3(0.05,0.05,0.05)
                     }
+                    
+                    if self.listLessons[self.lessonCounter] == .Tilt {
+                        name = "art.scnassets/climbFixed.scn"
+                    }
+                    print(name)
                     
                     self.addObject(name: name, position: SCNVector3.init(0, 0, 0), scale: scale)
                 }
@@ -319,11 +320,11 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         case .Tilt:
             if tiltStatus == 1 {
                 self.shape.position.y += speed
-                self.shape.eulerAngles.x += rotationValue
+                //self.shape.eulerAngles.x += rotationValue
             }
             else if tiltStatus == 2 {
                 self.shape.position.y -= speed
-                self.shape.eulerAngles.x -= rotationValue
+                //self.shape.eulerAngles.x -= rotationValue
             }
             break
         case .Dolly:
