@@ -10,6 +10,7 @@ import UIKit
 import ARKit
 import SceneKit
 import Lottie
+import  CoreData
 
 class ARViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var buttonStart: UIButton!
@@ -36,6 +37,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
 
     var listLessons: [LessonEnum] = []
     var lessonCounter = 0
+    var choosenLesson: Lessons!
     
     var firstObjectPosition: SCNVector3!
     
@@ -65,6 +67,33 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         
         buildLabel(data: 0)
+        
+        let technique: [Techniques] = Array(choosenLesson!.learn_use!) as! [Techniques]
+        //add techniques
+        for tech in technique {
+            switch tech.name {
+            case "Pan":
+                listLessons.append(.Pan)
+                break
+            case "Tilt":
+                listLessons.append(.Tilt)
+                break
+            case "Dolly":
+                listLessons.append(.Dolly)
+                break
+            case "Tracking":
+                listLessons.append(.Tracking)
+                break
+            case "Close Up Shot", "Medium Shot":
+                listLessons.append(.Shot)
+                break
+            case "Low Angle", "High Angle":
+                listLessons.append(.Angle)
+                break
+            default:
+                break
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,6 +118,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                     var name: String = ""
                     var scale: SCNVector3 = SCNVector3(0.003, 0.003, 0.003)
                     print(self.listLessons[self.lessonCounter])
+                    
+                    name = "art.scnassets/\(self.choosenLesson.objectName)"
+                    
                     if self.listLessons[self.lessonCounter] == .Shot {
                         name = "art.scnassets/humanStill.scn"
                     }
