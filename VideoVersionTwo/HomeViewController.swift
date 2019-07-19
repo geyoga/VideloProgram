@@ -62,6 +62,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        doHaptic()
         let lessonDetail:DetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
 
         lessonDetail.lessonDetail  = lesson[indexPath.row]

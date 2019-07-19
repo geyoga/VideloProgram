@@ -126,6 +126,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func LearnPathButton(_ sender: UIButton) {
+        doHaptic()
         let alert = UIAlertController(title: "Want to go Learning Path ?", message: "Your activity will be not saved", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
@@ -137,6 +138,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     @IBAction func StartActionButton(_ sender: UIButton) {
         
+        doHaptic()
         print("STOP BUTTON")
         
         if shape == nil {
