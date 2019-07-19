@@ -102,6 +102,16 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
             buttonBegin.isSelected = true
         }
     }
+    @IBAction func startLesson2(_ sender: Any) {
+        doHaptic()
+        if buttonBegin2.isSelected {
+            // set deselected
+            buttonBegin2.isSelected = false
+        } else {
+            // set selected
+            buttonBegin2.isSelected = true
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier ==  "GoToARScreen") {
