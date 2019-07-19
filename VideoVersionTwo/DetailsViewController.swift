@@ -27,7 +27,6 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
     
     @IBOutlet weak var progressView: UIView!
     var technique: [Techniques] = []
-
     
     private  var count = 0
     
@@ -94,7 +93,7 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
     }
     
     @IBAction func startLesson(_ sender: UIButton) {
-        
+        doHaptic()
         if buttonBegin.isSelected {
             // set deselected
             buttonBegin.isSelected = false
@@ -125,3 +124,5 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
      */
     
 }
+
+
