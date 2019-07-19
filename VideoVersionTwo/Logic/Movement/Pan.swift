@@ -28,9 +28,7 @@ class Pan {
     var checkPanDownHit = false
     
     init() {
-        DispatchQueue.main.async {
-            self.motion  = CMMotionManager()
-        }
+        self.motion  = CMMotionManager()
     }
     
     func startGyros() {

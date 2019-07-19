@@ -88,18 +88,46 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
     }
     
     @IBAction func startLesson(_ sender: UIButton) {
-        print("asd")
         
-            if buttonBegin.isSelected {
-                // set deselected
-                buttonBegin.isSelected = false
-            } else {
-                // set selected
-                buttonBegin.isSelected = true
+        if buttonBegin.isSelected {
+            // set deselected
+            buttonBegin.isSelected = false
+        } else {
+            // set selected
+            buttonBegin.isSelected = true
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier ==  "GoToARScreen") {
+            let vc = segue.destination as! ARViewController
+            
+            for tech in technique {
+                switch tech.name {
+                case "Pan":
+                    vc.listLessons.append(.Pan)
+                    break
+                case "Tilt":
+                    vc.listLessons.append(.Tilt)
+                    break
+                case "Dolly":
+                    vc.listLessons.append(.Dolly)
+                    break
+                case "Tracking":
+                    vc.listLessons.append(.Tracking)
+                    break
+                case "Close Up Shot", "Medium Shot":
+                    vc.listLessons.append(.Shot)
+                    break
+                case "Low Angle", "High Angle":
+                    vc.listLessons.append(.Angle)
+                    break
+                default:
+                    break
+                }
             }
         }
-    
-    
+    }
     
  
     

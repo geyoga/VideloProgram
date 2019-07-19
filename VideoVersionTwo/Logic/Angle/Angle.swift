@@ -24,9 +24,7 @@ class Angle {
     let tiltLower: Double = -110
     
     init() {
-        DispatchQueue.main.async {
-            self.motion  = CMMotionManager()
-        }
+        self.motion  = CMMotionManager()
     }
     
     func startGyros() {
