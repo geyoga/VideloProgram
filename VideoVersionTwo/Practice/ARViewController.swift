@@ -56,6 +56,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     var shot: Shot!
     
     var planeShowed = false
+    var animationViewPlane: AnimationView!
     
     // membuat data label instruktur tutorial
     var labelAR = UILabel()
@@ -109,15 +110,15 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         }
         
         //lottie to notice user to get plane flat surface
-        let animationView = AnimationView( name: "PlaneAnimation")
-        if animationView != nil {
-            animationView.frame = CGRect(x: 100, y: 100, width: 400, height: 400)
-            animationView.center = CGPoint.init(x: 450.0, y: 200)
-            animationView.contentMode = .scaleAspectFill
-            animationView.loopMode = .playOnce
-            view.addSubview(animationView)
+        animationViewPlane = AnimationView( name: "PlaneAnimation")
+        if animationViewPlane != nil {
+            animationViewPlane.frame = CGRect(x: 100, y: 100, width: 400, height: 400)
+            animationViewPlane.center = CGPoint.init(x: 450.0, y: 200)
+            animationViewPlane.contentMode = .scaleAspectFill
+            animationViewPlane.loopMode = .loop
+            view.addSubview(animationViewPlane)
             
-            animationView.play()
+            animationViewPlane.play()
         }
     }
     
@@ -133,6 +134,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if planeShowed == false {
+            animationViewPlane.stop()
+            animationViewPlane.removeFromSuperview()
             DispatchQueue.main.async {
                 if let planeAnchor = anchor as? ARPlaneAnchor {
                     self.plane = Plane(planeAnchor)
