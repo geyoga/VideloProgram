@@ -26,14 +26,8 @@ extension ARViewController: PanDelegate {
         panStatus = 0
         moveToNextLesson()
         panStatus = 4
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Success", message: "You did PAN", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                self.deleteLabel()
-            }))
-            self.present(alert, animated: true)
-        }
-        buildLabel(data: 2)
+        self.buildLabel(data: "You did Pan")
+        buildLabel(data: labelsContent[2])
     }
 }
 
@@ -43,11 +37,7 @@ extension ARViewController: DollyDelegate {
         addToHistoryTechnique(techniqueName: "Dolly")
         moveToNextLesson()
         dollyCheck =  false
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Success", message: "You did DOLY", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true)
-        }
+        self.buildLabel(data: "You did Dolly")
     }
 }
 
@@ -57,11 +47,7 @@ extension ARViewController: TrackingDelegate {
         addToHistoryTechnique(techniqueName: "Tracking")
         trackingCheck = false
         moveToNextLesson()
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Success", message: "You did TRACKING", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true)
-        }
+        self.buildLabel(data: "You did Tracking")
     }
     
     func distanceTooClose(_ status: Bool) {
@@ -90,11 +76,7 @@ extension ARViewController: TiltDelegate {
         moveToNextLesson()
         
         tiltStatus = 4
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Success", message: "You did TILT", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true)
-        }
+        self.buildLabel(data: "You did Tilt")
     }
 }
 
@@ -102,22 +84,14 @@ extension ARViewController: ShotDelegate {
     func closeUpShot(_ status: Bool) {
         addToHistoryTechnique(techniqueName: "Shot")
         moveToNextLesson()
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Success", message: "You did CLOSE UP SHOT", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true)
-        }
+        self.buildLabel(data: "You did Close Up Shot")
         shotCheck = false
     }
     
     func mediumShot(_ status: Bool) {
         addToHistoryTechnique(techniqueName: "Shot")
         moveToNextLesson()
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Success", message: "You did MEDIUM SHOT", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true)
-        }
+        self.buildLabel(data: "You did Medium Shot")
         shotCheck = false
     }
 }
@@ -127,22 +101,17 @@ extension ARViewController: AngleDelegate {
         addToHistoryTechnique(techniqueName: "Angle")
         angle.stopGyros()
         moveToNextLesson()
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Success", message: "You did LOW ANGLE", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true)
-        }
+        self.buildLabel(data: "You did Low Angle")
     }
     
     func highAngleHit(_ status: Bool) {
         addToHistoryTechnique(techniqueName: "Angle")
         angle.stopGyros()
         moveToNextLesson()
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Success", message: "You did HIGH ANGLE", preferredStyle: .alert)
+            /*let alert = UIAlertController(title: "Success", message: "You did HIGH ANGLE", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true)
-        }
+            self.present(alert, animated: true)*/
+        self.buildLabel(data: "You did High Angle")
     }
 }
 
