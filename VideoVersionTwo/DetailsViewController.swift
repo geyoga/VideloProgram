@@ -56,9 +56,9 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
             technique = Array(lessonDetail.learn_use!) as! [Techniques]
         }
         
-        progressView.backgroundColor = UIColor(white: 1, alpha: 0.3)
+        progressView.backgroundColor = UIColor.white.withAlphaComponent(0.1)
         
-        progressView.layer.cornerRadius = 5.0
+        progressView.layer.cornerRadius = 10.0
         progressView.clipsToBounds = true
         
         self.tabBarController?.tabBar.isHidden = true
