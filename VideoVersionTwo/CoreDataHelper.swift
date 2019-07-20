@@ -78,6 +78,35 @@ class CoreDataHelper {
         return result
     }
     
+    static func fetchStatus() -> Array<NSDictionary> {
+        var result: Array<NSDictionary>!
+        
+        let keypathExp = NSExpression(forKeyPath: "timestamp") // can be any column
+        let expression = NSExpression(forFunction: "count:", arguments: [keypathExp])
+        
+        let countDesc = NSExpressionDescription()
+        countDesc.expression = expression
+        countDesc.name = "count"
+        countDesc.expressionResultType = .integer64AttributeType
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "History_technique")
+        request.returnsObjectsAsFaults = false
+        request.propertiesToGroupBy = ["techniqueName"]
+        request.propertiesToFetch = ["techniqueName", countDesc]
+        request.resultType = .dictionaryResultType
+        
+        do {
+            result = try CoreDataHelper.managedContext.fetch(request) as! Array<NSDictionary>
+            print("success")
+            
+            return result
+        }
+        catch {
+            print("error")
+            return [[:]]
+        }
+    }
+    
     static func delete<T>(data: T) {
         CoreDataHelper.managedContext.delete(data as! NSManagedObject)
         save()

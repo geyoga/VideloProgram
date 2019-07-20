@@ -7,13 +7,52 @@
 //
 
 import UIKit
+import Charts
 
 class StatusViewController: UIViewController {
-
+    
+    @IBOutlet weak var barChart: BarChartView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        //setup chart
+        var chartEntry = [BarChartDataEntry]()
+        
+        let history = CoreDataHelper.fetch(entity: "History_technique") as [History_technique]
+        
+        for  item in history {
+            print("\(item.techniqueName) \(item.timestamp)")
+        }
+        
+        let data = CoreDataHelper.fetchStatus()
+        var counter = 0
+        var chartData =  BarChartData()
+        for item in data {
+            counter += 1
+            print(item["techniqueName"]!)
+            
+            let count: Double = item["count"]! as! Double
+            print(count)
+            let value = BarChartDataEntry(x: Double(counter), y: count)
+            chartEntry.append(value)
+            
+            let bar = BarChartDataSet(entries: chartEntry, label: item["techniqueName"]! as? String)
+            chartData.addDataSet(bar)
+        }
+        barChart.data = chartData
+        barChart.tintColor = UIColor.white
+        barChart.gridBackgroundColor = NSUIColor.white
+        barChart.chartDescription?.textColor = .white
+        barChart.backgroundColor = .gray
+        barChart.dragEnabled = false
+        barChart.pinchZoomEnabled = false
+        barChart.scaleXEnabled = false
+        barChart.scaleYEnabled = false
+    }
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

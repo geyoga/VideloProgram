@@ -39,7 +39,6 @@ class Tracking {
         
         let distanceFromStartPoint = abs(GLKVector3Distance(SCNVector3ToGLKVector3(startPoint), SCNVector3ToGLKVector3(updatePoint)))
         print("DISTANCE \(distanceFromObject) - \(distanceFromStartPoint)")
-        ARViewController.label.text = "\(distanceFromStartPoint)"
         //too close
         if (distanceFromObject <  distanceRange - 0.2) {
             delegate.distanceTooClose(true)

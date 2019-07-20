@@ -10,7 +10,7 @@ import UIKit
 import ARKit
 import SceneKit
 import Lottie
-import  CoreData
+import CoreData
 
 class ARViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var buttonStart: UIButton!
@@ -62,20 +62,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     var labelAR = UILabel()
     let labelsContent = ["Welcome to Videlo, find the screen to spawn Object","Press Start and Panning your Phone","Tilt your Phone by follow the Object",""]
     
-    static var label: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(listLessons)
-        
-        //add label
-        ARViewController.label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-        ARViewController.label.center = CGPoint(x: 200, y: 200)
-        ARViewController.label.textAlignment = .center
-        ARViewController.label.text = "I'm a test label"
-        self.view.addSubview(ARViewController.label)
-        //end
-        
     
         sceneView.debugOptions = [.showFeaturePoints]
         sceneView.delegate = self
