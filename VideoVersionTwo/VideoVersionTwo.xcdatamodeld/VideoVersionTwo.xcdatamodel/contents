@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="History_technique" representedClassName="History_technique" syncable="YES" codeGenerationType="class">
+        <attribute name="techniqueName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
     <entity name="Lessons" representedClassName="Lessons" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
@@ -17,6 +21,7 @@
         <relationship name="learnedby_usedby" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Lessons" inverseName="learn_use" inverseEntity="Lessons" syncable="YES"/>
     </entity>
     <elements>
+        <element name="History_technique" positionX="-153" positionY="-27" width="128" height="75"/>
         <element name="Lessons" positionX="-245.70703125" positionY="-158.01171875" width="128" height="165"/>
         <element name="Techniques" positionX="-54" positionY="36" width="128" height="105"/>
     </elements>

@@ -21,6 +21,7 @@ extension ARViewController: PanDelegate {
     }
     
     func panSuccess(_ status: Bool) {
+        addToHistoryTechnique(techniqueName: "Pan")
         pan.stopGyros()
         panStatus = 0
         moveToNextLesson()
@@ -39,6 +40,7 @@ extension ARViewController: PanDelegate {
 extension ARViewController: DollyDelegate {
     
     func dollyHit(_ status: Bool) {
+        addToHistoryTechnique(techniqueName: "Dolly")
         moveToNextLesson()
         dollyCheck =  false
         DispatchQueue.main.async {
@@ -52,6 +54,7 @@ extension ARViewController: DollyDelegate {
 extension ARViewController: TrackingDelegate {
     
     func trackingHit(_ status: Bool) {
+        addToHistoryTechnique(techniqueName: "Tracking")
         trackingCheck = false
         moveToNextLesson()
         DispatchQueue.main.async {
@@ -81,6 +84,7 @@ extension ARViewController: TiltDelegate {
     }
     
     func tiltuccess(_ status: Bool) {
+        addToHistoryTechnique(techniqueName: "Tilt")
         tiltStatus = 0
         tilt.stopGyros()
         moveToNextLesson()
@@ -96,6 +100,7 @@ extension ARViewController: TiltDelegate {
 
 extension ARViewController: ShotDelegate {
     func closeUpShot(_ status: Bool) {
+        addToHistoryTechnique(techniqueName: "Shot")
         moveToNextLesson()
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Success", message: "You did CLOSE UP SHOT", preferredStyle: .alert)
@@ -106,6 +111,7 @@ extension ARViewController: ShotDelegate {
     }
     
     func mediumShot(_ status: Bool) {
+        addToHistoryTechnique(techniqueName: "Shot")
         moveToNextLesson()
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Success", message: "You did MEDIUM SHOT", preferredStyle: .alert)
@@ -118,6 +124,7 @@ extension ARViewController: ShotDelegate {
 
 extension ARViewController: AngleDelegate {
     func lowAngleHit(_ status: Bool) {
+        addToHistoryTechnique(techniqueName: "Angle")
         angle.stopGyros()
         moveToNextLesson()
         DispatchQueue.main.async {
@@ -128,6 +135,7 @@ extension ARViewController: AngleDelegate {
     }
     
     func highAngleHit(_ status: Bool) {
+        addToHistoryTechnique(techniqueName: "Angle")
         angle.stopGyros()
         moveToNextLesson()
         DispatchQueue.main.async {
@@ -135,5 +143,11 @@ extension ARViewController: AngleDelegate {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
         }
+    }
+}
+
+extension ARViewController {
+    func addToHistoryTechnique(techniqueName: String) {
+        DataController.addHistory(techniqueName: techniqueName)
     }
 }

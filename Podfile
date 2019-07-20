@@ -9,4 +9,7 @@ target 'VideoVersionTwo' do
 
   # Pods for LottieDemo
   pod 'lottie-ios'
+
+  # Pods for  plot  chart
+  pod 'Charts'
 end
