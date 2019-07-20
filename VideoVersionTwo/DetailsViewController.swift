@@ -47,14 +47,14 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
         lessonTitleP.text = String(lessonDetail.name!)
         lessonBodyP.text = String(lessonDetail.longDesc!)
     
+        //for i in 0..<lessonDetail.learn_use!.count {
+        technique = Array(lessonDetail.learn_use!) as! [Techniques]
+        //}
         
-      lessonNumP.text = lessonDetail.type
-        
-        
-        for case let techn as Techniques in lessonDetail.learn_use! {
+        //for case let techn as Techniques in lessonDetail.learn_use! {
             //print("\(technique.id) - \(technique.name)")
-            technique = Array(lessonDetail.learn_use!) as! [Techniques]
-        }
+            //technique = Array(lessonDetail.learn_use!) as! [Techniques]
+        //}
         
         progressView.backgroundColor = UIColor.white.withAlphaComponent(0.1)
         

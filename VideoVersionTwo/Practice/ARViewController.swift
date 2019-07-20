@@ -26,6 +26,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     var panStatus: Int = 0
     var tiltStatus: Int = 0
     
+    var name: String = ""  //object name
+    
     enum LessonEnum: Int {
         case Pan = 1
         case Tilt
@@ -54,14 +56,26 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     var shot: Shot!
     
     var planeShowed = false
+    var animationViewPlane: AnimationView!
     
     // membuat data label instruktur tutorial
     var labelAR = UILabel()
     let labelsContent = ["Welcome to Videlo, find space to spawn Object","Press Start and Panning your Phone","Tilt your Phone by follow the Object",""]
     
+    static var label: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(listLessons)
+        
+        //add label
+        ARViewController.label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+        ARViewController.label.center = CGPoint(x: 200, y: 200)
+        ARViewController.label.textAlignment = .center
+        ARViewController.label.text = "I'm a test label"
+        self.view.addSubview(ARViewController.label)
+        //end
+        
     
         sceneView.debugOptions = [.showFeaturePoints]
         sceneView.delegate = self
@@ -94,6 +108,18 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                 break
             }
         }
+        
+        //lottie to notice user to get plane flat surface
+        animationViewPlane = AnimationView( name: "PlaneAnimation")
+        if animationViewPlane != nil {
+            animationViewPlane.frame = CGRect(x: 100, y: 100, width: 400, height: 400)
+            animationViewPlane.center = CGPoint.init(x: 450.0, y: 200)
+            animationViewPlane.contentMode = .scaleAspectFill
+            animationViewPlane.loopMode = .loop
+            view.addSubview(animationViewPlane)
+            
+            animationViewPlane.play()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,6 +134,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if planeShowed == false {
+            animationViewPlane.stop()
+            animationViewPlane.removeFromSuperview()
             DispatchQueue.main.async {
                 if let planeAnchor = anchor as? ARPlaneAnchor {
                     self.plane = Plane(planeAnchor)
@@ -115,22 +143,24 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                     self.planeShowed = true
                     
                     //add object
-                    var name: String = ""
                     var scale: SCNVector3 = SCNVector3(0.003, 0.003, 0.003)
                     print(self.listLessons[self.lessonCounter])
                     
-                    name = "art.scnassets/\(self.choosenLesson.objectName!)"
+                    self.name = "art.scnassets/\(self.choosenLesson.objectName!)"
                     
                     if self.choosenLesson.name == "Introduction to Angle" {
                         scale  = SCNVector3(0.05,0.05,0.05)
                     }
                     
-                    if self.listLessons[self.lessonCounter] == .Tilt {
-                        name = "art.scnassets/climbFixed.scn"
+                    if self.choosenLesson.name == "Introduction to Movement" {
+                        if self.listLessons[self.lessonCounter] == .Tilt {
+                            self.name = "art.scnassets/climbFixed.scn"
+                        }
                     }
-                    print(name)
                     
-                    self.addObject(name: name, position: SCNVector3.init(0, 0, 0), scale: scale)
+                    print(self.name)
+                    
+                    self.addObject(name: self.name, position: SCNVector3.init(0, 0, 0), scale: scale)
                 }
             }
         }
@@ -163,6 +193,30 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         }
         else {
             lessonCounter += 1
+            
+            if choosenLesson.name != "Introduction to Movement" {
+                return
+            }
+            
+            var tempName = ""
+            //if movement
+            if self.listLessons[self.lessonCounter] == .Tilt {
+                tempName = "art.scnassets/floatFix.scn"
+            }
+            else {
+                tempName = "art.scnassets/Walking copy 2.scn"
+            }
+            
+            print(name)
+            print(tempName)
+            
+            if name != tempName {
+                name = tempName
+                if shape != nil {
+                    shape.removeFromParentNode()
+                }
+                self.addObject(name: name, position: SCNVector3.init(0, 0, 0), scale: SCNVector3(0.003, 0.003, 0.003))
+            }
         }
     }
     
@@ -223,7 +277,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                 break
             case .Tracking:
                 animationName = "PAN"
-                tracking = Tracking(startPoint: sceneView.pointOfView!.position, objectPoint: shape.position)
+                tracking = Tracking(startPoint: sceneView.pointOfView!.position, objectPoint: shape.position, totalDistance: 1.5)
                 tracking.delegate = self as! TrackingDelegate
                 trackingCheck = true
                 break

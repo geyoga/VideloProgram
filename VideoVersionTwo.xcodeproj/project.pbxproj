@@ -29,6 +29,7 @@
 		8E7BAB6B22E0012E00E51EC7 /* ZoomInMovement.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB6022E0012E00E51EC7 /* ZoomInMovement.json */; };
 		8E7BAB7122E05E6E00E51EC7 /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BAB7022E05E6E00E51EC7 /* Shot.swift */; };
 		8E7BAB7322E07B9A00E51EC7 /* Angle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BAB7222E07B9A00E51EC7 /* Angle.swift */; };
+		8E7BAB7522E1F06300E51EC7 /* PlaneAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB7422E1F06300E51EC7 /* PlaneAnimation.json */; };
 		8EAE1BD122DF1F3900AC3B51 /* Dolly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAE1BD022DF1F3900AC3B51 /* Dolly.swift */; };
 		8EAE1BD522DF49D500AC3B51 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAE1BD422DF49D400AC3B51 /* Tracking.swift */; };
 		A40556A56492FB822EFE9FF9 /* Pods_VideoVersionTwo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FADCC03ADA2750222ABC6EA8 /* Pods_VideoVersionTwo.framework */; };
@@ -71,6 +72,7 @@
 		8E7BAB6022E0012E00E51EC7 /* ZoomInMovement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ZoomInMovement.json; sourceTree = "<group>"; };
 		8E7BAB7022E05E6E00E51EC7 /* Shot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shot.swift; sourceTree = "<group>"; };
 		8E7BAB7222E07B9A00E51EC7 /* Angle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Angle.swift; sourceTree = "<group>"; };
+		8E7BAB7422E1F06300E51EC7 /* PlaneAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PlaneAnimation.json; sourceTree = "<group>"; };
 		8EAE1BD022DF1F3900AC3B51 /* Dolly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dolly.swift; sourceTree = "<group>"; };
 		8EAE1BD422DF49D400AC3B51 /* Tracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracking.swift; sourceTree = "<group>"; };
 		D374259322D7920A00F36000 /* VideoVersionTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoVersionTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,6 +217,7 @@
 				8E7BAB5622E0012E00E51EC7 /* DOLLY IN.json */,
 				8E7BAB5722E0012E00E51EC7 /* images */,
 				8E7BAB5522E0012E00E51EC7 /* PAN.json */,
+				8E7BAB7422E1F06300E51EC7 /* PlaneAnimation.json */,
 				8E7BAB5F22E0012E00E51EC7 /* Tilt.json */,
 				8E7BAB6022E0012E00E51EC7 /* ZoomInMovement.json */,
 				8E25416B22DEB6F60017C8BB /* Logic */,
@@ -305,6 +308,7 @@
 				8E7BAB6B22E0012E00E51EC7 /* ZoomInMovement.json in Resources */,
 				8E7BAB6722E0012E00E51EC7 /* img_6.png in Resources */,
 				D3D9411F22DC138800B2DCC0 /* art.scnassets in Resources */,
+				8E7BAB7522E1F06300E51EC7 /* PlaneAnimation.json in Resources */,
 				8E25417222DECEEF0017C8BB /* Status.storyboard in Resources */,
 				8E7BAB6222E0012E00E51EC7 /* DOLLY IN.json in Resources */,
 				8E7BAB6122E0012E00E51EC7 /* PAN.json in Resources */,
@@ -541,7 +545,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F63VRNN393;
+				DEVELOPMENT_TEAM = 26R5URXZ3V;
 				INFOPLIST_FILE = VideoVersionTwo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -560,7 +564,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F63VRNN393;
+				DEVELOPMENT_TEAM = 26R5URXZ3V;
 				INFOPLIST_FILE = VideoVersionTwo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

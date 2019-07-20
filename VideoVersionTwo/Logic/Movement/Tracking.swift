@@ -21,10 +21,12 @@ class Tracking {
     let startPoint: SCNVector3
     let objectPoint: SCNVector3
     let distanceRange: Float
+    let totalDistance: Float
 
-    init(startPoint: SCNVector3, objectPoint: SCNVector3) {
+    init(startPoint: SCNVector3, objectPoint: SCNVector3, totalDistance: Float) {
         self.startPoint = startPoint
         self.objectPoint = objectPoint
+        self.totalDistance = totalDistance
         
         //need to keep this distance
         distanceRange = abs(GLKVector3Distance(SCNVector3ToGLKVector3(startPoint), SCNVector3ToGLKVector3(objectPoint)))
@@ -37,7 +39,7 @@ class Tracking {
         
         let distanceFromStartPoint = abs(GLKVector3Distance(SCNVector3ToGLKVector3(startPoint), SCNVector3ToGLKVector3(updatePoint)))
         print("DISTANCE \(distanceFromObject) - \(distanceFromStartPoint)")
-        
+        ARViewController.label.text = "\(distanceFromStartPoint)"
         //too close
         if (distanceFromObject <  distanceRange - 0.2) {
             delegate.distanceTooClose(true)
@@ -46,7 +48,7 @@ class Tracking {
             delegate.distanceTooFar(true)
         }
         
-        if distanceFromStartPoint > 1 {
+        if distanceFromStartPoint > totalDistance {
             delegate.trackingHit(true)
         }
     }
