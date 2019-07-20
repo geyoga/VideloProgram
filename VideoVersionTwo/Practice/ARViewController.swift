@@ -60,7 +60,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     // membuat data label instruktur tutorial
     var labelAR = UILabel()
-    let labelsContent = ["Welcome to Videlo, find space to spawn Object","Press Start and Panning your Phone","Tilt your Phone by follow the Object",""]
+    let labelsContent = ["Welcome to Videlo !  This Tutorial will help you to know how to use it","Move your Phone to find flat surface","Great ! now there will be a Cube in front of you","Stay there and direct your phone corresponding to the Cube","Nice ! this is one of interaction during this lesson","Move your phone close to The Cube","Great ! you can also move forward and backward","You have finished this Tutorial, Click on the Left-Top Button to start you Journey"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
