@@ -15,6 +15,7 @@ import CoreData
 class ARViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var buttonStart: UIButton!
     @IBOutlet weak var sceneView: ARSCNView!
+    @IBOutlet weak var indicatorDataOverlay: UIImageView!
     
     //var
     var shape: SCNNode!
@@ -42,6 +43,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     var choosenLesson: Lessons!
     
     var firstObjectPosition: SCNVector3!
+    var firstStartPosition: GLKVector3!
     
     var dollyCheck: Bool = true
     var trackingCheck: Bool = true
@@ -58,9 +60,17 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     var planeShowed = false
     var animationViewPlane: AnimationView!
     
+    //related to  speed indicator
+    var firstTime : TimeInterval!
+    var nextTime : TimeInterval!
+    var checkTime: Bool = false
+    let batchTime = 100 //in ms
+    let maxHeight: CGFloat = 225
+    //end
+    
     // membuat data label instruktur tutorial
     var labelAR = UILabel()
-    let labelsContent = ["Welcome to Videlo !  This Tutorial will help you to know how to use it","Move your Phone to find flat surface","Great ! now there will be a Cube in front of you","Stay there and direct your phone corresponding to the Cube","Nice ! this is one of interaction during this lesson","Move your phone close to The Cube","Great ! you can also move forward and backward","You have finished this Tutorial, Click on the Left-Top Button to start you Journey"]
+    let labelsContent = ["Welcome to Videlo !  This Tutorial will help you to know how to use it","Move your Phone to find flat surface","Great ! now there will be a Barrel in front of you","Stay there and direct your phone corresponding to the Barrel","Nice ! this is one of the interaction during this lesson","Move your phone close to The Barrel","Great ! you can also move forward and backward","You have finished this Tutorial, Click on the Left-Top button to start you Journey", "You have finish this lesson, Click on the Left-Top button to take another lesson"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +79,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         sceneView.debugOptions = [.showFeaturePoints]
         sceneView.delegate = self
         
-        buildLabel(data: 0)
+        buildLabel(data: self.labelsContent[0])
         
         let technique: [Techniques] = Array(choosenLesson!.learn_use!) as! [Techniques]
         //add techniques
@@ -117,14 +127,20 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         DispatchQueue.main.async {
             let configuration = ARWorldTrackingConfiguration()
             configuration.planeDetection = [.horizontal]
+            var environmentTexture: ARWorldTrackingConfiguration.EnvironmentTexturing  = .automatic
+            configuration.environmentTexturing = environmentTexture
             self.sceneView.session.run(configuration)
         }
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if planeShowed == false {
+            buildLabel(data: self.labelsContent[1])
             animationViewPlane.stop()
-            animationViewPlane.removeFromSuperview()
+            DispatchQueue.main.async {
+                self.animationViewPlane.removeFromSuperview()
+            }
+            
             DispatchQueue.main.async {
                 if let planeAnchor = anchor as? ARPlaneAnchor {
                     self.plane = Plane(planeAnchor)
@@ -146,12 +162,82 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                             self.name = "art.scnassets/climbFixed.scn"
                         }
                     }
+                    else if self.choosenLesson.name == "Circle the Object" {
+                        scale = SCNVector3(0.006, 0.006, 0.006)
+                    }
+                    else if self.choosenLesson.name == "Tutorial" {
+                        scale = SCNVector3(0.2, 0.2, 0.2)
+                    }
                     
                     print(self.name)
                     
                     self.addObject(name: self.name, position: SCNVector3.init(0, 0, 0), scale: scale)
                 }
             }
+        }
+    }
+    
+    func updateIndicator(time: TimeInterval) {
+        //check if its time to move next batch (batchTime)
+        if checkTime == false {
+            //store time when first batch
+            firstTime = time
+            //store first position when first batch
+            firstStartPosition = SCNVector3ToGLKVector3(sceneView!.pointOfView!.position)
+            //prevent to update "first variable" until batchTime
+            checkTime = true
+        }
+        
+        //keep update time when still before batchTime
+        nextTime = time
+        
+        //calculate difference in time
+        let diffMs = abs(nextTime.toMs() - firstTime.toMs())
+        
+        if diffMs > batchTime {
+            //update new position when reach batchTime
+            let positionTwo = SCNVector3ToGLKVector3(sceneView!.pointOfView!.position)
+            //when batchTime reach, calculate current distance between first point and last point
+            let distance = abs(GLKVector3Distance(firstStartPosition, positionTwo))
+            
+            //calculate speed in cm/s
+            let speed  = distance*100/(Float(self.batchTime)/1000)
+            
+            /*
+             range
+             <10 cm/s  = super slow
+             10-20 cm/s  = slow
+             20-30 cm/s = good
+             30-40 cm/s = fast
+             > 40cm/s = super fast
+             
+             180/3 = 60 degree per section
+             */
+            
+            var height: CGFloat = 0.0
+            if speed < 10  {
+                height = 0
+            }
+            else if speed <= 40 {
+                height = CGFloat(speed/40.0)*maxHeight
+            }
+            else if speed > 40 {
+                height = maxHeight //max
+            }
+            
+            DispatchQueue.main.async {
+                //self.speed.text  =  "\(speed) cm/s"
+                print("\(speed) cm/s")
+                UIView.animate(withDuration: TimeInterval(Float(self.batchTime)/1000.0), delay: 0, options: .curveEaseInOut, animations: {
+                    //self.inidicatorData.
+                    self.indicatorDataOverlay.frame.size.height = self.maxHeight - height
+                    //self.IndicatorSpeedConstraint.constant =  height
+                    //self.arrowUp.transform = CGAffineTransform(rotationAngle: (self.degree * .pi) / 180.0)
+                }, completion: nil)
+            }
+            
+            //move next batch\
+            checkTime = false
         }
     }
     
@@ -178,7 +264,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             self.buttonStart.sendActions(for: .touchUpInside)
         }
         if (lessonCounter+1 == listLessons.count) {
-            dismiss(animated: true, completion: nil)
+            //dismiss(animated: true, completion: nil)
+            buildLabel(data: self.labelsContent[8])
         }
         else {
             lessonCounter += 1
@@ -345,6 +432,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        updateIndicator(time: time)
         let speed: Float = 0.005
         let rotationValue: Float = 0.1
         
@@ -397,23 +485,30 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     func session(_ session: ARSession, didFailWithError error: Error) {}
     
     // setting label untuk instruksi AR
-    func buildLabel (data : Int) {
-        
-        labelAR.frame = CGRect(x: self.view.frame.width/4, y: 20, width: 400, height: 50)
-        labelAR.text = labelsContent[data]
-        labelAR.textAlignment = .center
-        labelAR.alpha = 0
-        labelAR.textColor = UIColor.white
-        labelAR.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        labelAR.layer.masksToBounds = true
-        labelAR.layer.cornerRadius = 10
-        labelAR.font = UIFont.systemFont(ofSize: 13)
-        self.view.addSubview(labelAR)
+    func buildLabel (data : String) {
+        DispatchQueue.main.async {
+            self.labelAR.frame = CGRect(x: self.view.frame.width/4, y: 20, width: 400, height: 100)
+            self.labelAR.text = data
+            self.labelAR.textAlignment = .center
+            self.labelAR.alpha = 0
+            self.labelAR.numberOfLines = 0
+            self.labelAR.textColor = UIColor.white
+            self.labelAR.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            self.labelAR.layer.masksToBounds = true
+            self.labelAR.layer.cornerRadius = 10
+            self.labelAR.font = UIFont.systemFont(ofSize: 13)
+            self.view.addSubview(self.labelAR)
+        }
         
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
-            self.labelAR.alpha = 1
+            DispatchQueue.main.async {
+                self.labelAR.alpha = 1
+            }
         }, completion: nil)
-        
+        DispatchQueue.global().async {
+            sleep(2)
+            self.deleteLabel()
+        }
     }
     
     func deleteLabel () {
@@ -457,7 +552,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        deleteLabel()
+        //deleteLabel()
         //createCube()
         
         /*guard let touch = touches.first else {return}
@@ -471,8 +566,28 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         addHuman(position: hitVector)
         firstObjectPosition = hitVector
         */
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.buildLabel(data: 1)
-        }
+        /*DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.buildLabel(data: self.labelsContent[1])
+        }*/
+    }
+}
+
+extension TimeInterval {
+    
+    func toMs() -> Int {
+        return Int((self.truncatingRemainder(dividingBy: 1)) * 1000)
+    }
+    
+    func stringFromTimeInterval() -> String {
+        
+        let time = NSInteger(self)
+        
+        let ms = Int((self.truncatingRemainder(dividingBy: 1)) * 1000)
+        let seconds = time % 60
+        let minutes = (time / 60) % 60
+        let hours = (time / 3600)
+        
+        return String(format: "%0.2d:%0.2d:%0.2d.%0.3d",hours,minutes,seconds,ms)
+        
     }
 }
