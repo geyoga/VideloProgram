@@ -12,4 +12,7 @@ target 'VideoVersionTwo' do
 
   # Pods for  plot  chart
   pod 'Charts'
+
+  pod 'Toast-Swift', '~> 5.0.0'
+
 end

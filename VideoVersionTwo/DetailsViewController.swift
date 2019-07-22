@@ -42,7 +42,7 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.hidesBarsOnSwipe = true
         
-        lessonNumP.text = String(lessonDetail.id) //mainLessonNum
+        lessonNumP.text = lessonDetail.type //mainLessonNum
         lessonImgP.image = UIImage(named: lessonDetail.image!) //mainLessonImg
         lessonTitleP.text = String(lessonDetail.name!)
         lessonBodyP.text = String(lessonDetail.longDesc!)
