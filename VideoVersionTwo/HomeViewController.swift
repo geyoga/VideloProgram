@@ -14,6 +14,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
     private var lesson: [Lessons] = []
     
+    static var firstTime = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -30,6 +32,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 //            for case let technique as Techniques in item.learn_use! {
 //                //print("\(technique.id) - \(technique.name)")
 //            }
+        }
+        
+        if HomeViewController.firstTime  == false {
+            HomeViewController.firstTime = true
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let AR = storyBoard.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
+            AR.choosenLesson = lesson[0]
+            self.present(AR, animated: true, completion: nil)
         }
     }
     

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E91A8DD4B6295535F1EFA5B761FE6988"
-               BuildableName = "Pods_VideoVersionTwo.framework"
-               BlueprintName = "Pods-VideoVersionTwo"
+               BlueprintIdentifier = "3DC6EB1A4262BBD9E3E2E0F29B189A2B"
+               BuildableName = "Toast_Swift.framework"
+               BlueprintName = "Toast-Swift"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E91A8DD4B6295535F1EFA5B761FE6988"
-            BuildableName = "Pods_VideoVersionTwo.framework"
-            BlueprintName = "Pods-VideoVersionTwo"
+            BlueprintIdentifier = "3DC6EB1A4262BBD9E3E2E0F29B189A2B"
+            BuildableName = "Toast_Swift.framework"
+            BlueprintName = "Toast-Swift"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

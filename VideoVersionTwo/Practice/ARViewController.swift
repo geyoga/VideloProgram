@@ -11,12 +11,15 @@ import ARKit
 import SceneKit
 import Lottie
 import CoreData
+import Toast_Swift
 
 class ARViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var buttonStart: UIButton!
     @IBOutlet weak var sceneView: ARSCNView!
     @IBOutlet weak var indicatorDataOverlay: UIImageView!
     
+    @IBOutlet weak var orangeIndicator: UIImageView!
+    @IBOutlet weak var indicatorBar: UIImageView!
     //var
     var shape: SCNNode!
     var plane: SCNNode!
@@ -57,29 +60,77 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     var  angle: Angle!
     var shot: Shot!
     
-    var planeShowed = false
+    var checkPlaneCreated = false
+  
     var animationViewPlane: AnimationView!
     
     //related to  speed indicator
     var firstTime : TimeInterval!
     var nextTime : TimeInterval!
     var checkTime: Bool = false
-    let batchTime = 100 //in ms
+    let batchTime = 300 //in ms
     let maxHeight: CGFloat = 225
     //end
     
     // membuat data label instruktur tutorial
     var labelAR = UILabel()
-    let labelsContent = ["Welcome to Videlo !  This Tutorial will help you to know how to use it","Move your Phone to find flat surface","Great ! now there will be a Barrel in front of you","Stay there and direct your phone corresponding to the Barrel","Nice ! this is one of the interaction during this lesson","Move your phone close to The Barrel","Great ! you can also move forward and backward","You have finished this Tutorial, Click on the Left-Top button to start you Journey", "You have finish this lesson, Click on the Left-Top button to take another lesson"]
+    let labelsTutorial = ["Great ! now there will be a Barrel in front of you",
+                          "Stay there and direct your phone corresponding to the Barrel",
+                          "Nice ! this is one of the interaction during this lesson",
+                          "Move your phone close to The Barrel",
+                          "Great ! you can also move forward and backward",
+                          "You have finished this Tutorial, Click on the Left-Top button to start you Journey"]
+    
+    let labelMovement = [
+        "First, you will learn Panning. Press Start button to Begin",
+        "Stay there, move left and right corresponding with the Object",
+        "Next, you will learn Tilting. Press Start button to Begin",
+        "Stay there, move up and down corresponding with the Object",
+        "Now, you will laern Dolly. Press Start button to Begin",
+        "Move close up to the Object",
+        "Finally, you will learn Tracking. Press Start button to Begin",
+        "Move around the Object, by keeeping your distance",
+        "Press Left-Top Button to back to your journey]"]
+    var counterLabelMovement = 2
+    
+    let labelCourse = [
+        "First, Move around the Plant by keeeping your distance",
+        "Second, Move your Phone to the Top and look down to the Plant",
+        "Third, Move close up to the Plant"
+    ]
+    var counterLabelCourse = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if choosenLesson.name == "Circle the Object" {
+            indicatorBar.isHidden = false
+            indicatorDataOverlay.isHidden = false
+            orangeIndicator.isHidden = false
+        }
+        
         print(listLessons)
     
         sceneView.debugOptions = [.showFeaturePoints]
         sceneView.delegate = self
         
-        buildLabel(data: self.labelsContent[0])
+        /*DispatchQueue.global().asyncAfter(deadline: .now()) {
+            self.buildLabel(data: self.labelsContent[0])
+        }
+        DispatchQueue.global().asyncAfter(deadline: .now() + 5) {
+            self.buildLabel(data: self.labelsContent[1], deleteLabel: false)
+        }*/
+        
+        /*self.view.makeToast(self.labelsContent[0], duration: 3.0, position: .top)
+        self.view.makeToast(self.labelsContent[1], duration: 3.0, position: .top)*/
+        
+        self.view.makeToast("Welcome to this Lesson", duration: 3.0, position: .top) { didTap in
+            if didTap {
+                print("completion from tap")
+            } else {
+                self.view.makeToast("Move your Phone to find flat surface", duration: 3.0, position: .top)
+            }
+        }
         
         let technique: [Techniques] = Array(choosenLesson!.learn_use!) as! [Techniques]
         //add techniques
@@ -134,18 +185,12 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        if planeShowed == false {
-            buildLabel(data: self.labelsContent[1])
-            animationViewPlane.stop()
-            DispatchQueue.main.async {
-                self.animationViewPlane.removeFromSuperview()
-            }
-            
+        
+        if (checkPlaneCreated == false) {
             DispatchQueue.main.async {
                 if let planeAnchor = anchor as? ARPlaneAnchor {
                     self.plane = Plane(planeAnchor)
                     node.addChildNode(self.plane)
-                    self.planeShowed = true
                     
                     //add object
                     var scale: SCNVector3 = SCNVector3(0.003, 0.003, 0.003)
@@ -172,6 +217,27 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                     print(self.name)
                     
                     self.addObject(name: self.name, position: SCNVector3.init(0, 0, 0), scale: scale)
+                    
+                    self.deleteLabel()
+                    self.animationViewPlane.stop()
+                    self.animationViewPlane.removeFromSuperview()
+                    self.checkPlaneCreated = true
+                    
+                    //show label 1
+                    if self.choosenLesson.name == "Tutorial" {
+                        self.view.makeToast(self.labelsTutorial[0], duration: 3.0, position: .top) { didTap in
+                            if didTap {}
+                            else {
+                                self.view.makeToast(self.labelsTutorial[1], duration: 3.0, position: .top)
+                            }
+                        }
+                    }
+                    else if self.choosenLesson.name == "Introduction to Movement" {
+                        self.view.makeToast(self.labelMovement[0], duration: 3.0, position: .top)
+                    }
+                    else if self.choosenLesson.name == "Circle the Object" {
+                        self.view.makeToast(self.labelCourse[0], duration: 3.0, position: .top)
+                    }
                 }
             }
         }
@@ -210,29 +276,24 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
              20-30 cm/s = good
              30-40 cm/s = fast
              > 40cm/s = super fast
-             
-             180/3 = 60 degree per section
              */
             
             var height: CGFloat = 0.0
-            if speed < 10  {
-                height = 0
+          
+            if speed < 50 {
+                height = maxHeight * CGFloat(speed/50.0)
             }
-            else if speed <= 40 {
-                height = CGFloat(speed/40.0)*maxHeight
+            else {
+                height = maxHeight
             }
-            else if speed > 40 {
-                height = maxHeight //max
-            }
+            //print(height)
             
             DispatchQueue.main.async {
                 //self.speed.text  =  "\(speed) cm/s"
-                print("\(speed) cm/s")
+                //print("\(speed) cm/s")
                 UIView.animate(withDuration: TimeInterval(Float(self.batchTime)/1000.0), delay: 0, options: .curveEaseInOut, animations: {
                     //self.inidicatorData.
                     self.indicatorDataOverlay.frame.size.height = self.maxHeight - height
-                    //self.IndicatorSpeedConstraint.constant =  height
-                    //self.arrowUp.transform = CGAffineTransform(rotationAngle: (self.degree * .pi) / 180.0)
                 }, completion: nil)
             }
             
@@ -240,24 +301,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             checkTime = false
         }
     }
-    
-    /*func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        guard let planeAnchor = anchor as? ARPlaneAnchor else {return}
-        node.enumerateChildNodes { (node, _) in
-            node.removeFromParentNode()
-        }
-        
-        self.plane = Plane(planeAnchor)
-        node.addChildNode(self.plane)
-        self.planeShowed = true
-    }
-    
-    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
-        guard let _ = anchor as? ARPlaneAnchor else {return}
-        node.enumerateChildNodes { (node, _) in
-            node.removeFromParentNode()
-        }
-    }*/
 
     func moveToNextLesson() {
         DispatchQueue.main.async {
@@ -265,7 +308,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         }
         if (lessonCounter+1 == listLessons.count) {
             //dismiss(animated: true, completion: nil)
-            buildLabel(data: self.labelsContent[8])
+            if (choosenLesson.name != "Tutorial") {
+                self.view.makeToast("You have finish this lesson, Click on the Left-Top button to take another lesson", duration: 3.0, position: .top)
+            }
         }
         else {
             lessonCounter += 1
@@ -321,6 +366,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             print("Shape not detected")
             return
         }
+        var labelName = ""
         // mengubah image pada tombol start menjadi stop
         if buttonStart.currentBackgroundImage == UIImage(named: "StartButton") {
             
@@ -330,7 +376,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             var animationName: String = ""
             switch listLessons[lessonCounter] {
             case .Pan:
-                animationName = "PAN"
+                labelName = self.labelMovement[1]
+                animationName = "PanningMove4"
                 pan = Pan.init()
                 pan.delegate = self as! PanDelegate
                 
@@ -338,6 +385,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                 panStatus = 1
                 break
             case .Tilt:
+                labelName = self.labelMovement[3]
                 animationName = "Tilt"
                 tilt = Tilt.init()
                 tilt.delegate = self as! TiltDelegate
@@ -346,12 +394,14 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                 tilt.startGyros()
                 break
             case .Dolly:
+                labelName = self.labelMovement[5]
                 animationName = "DOLLY IN"
                 dolly = Dolly(startPoint: self.sceneView!.pointOfView!.position)
                 dolly.delegate = self as! DollyDelegate
                 dollyCheck = true
                 break
             case .Tracking:
+                labelName = self.labelMovement[7]
                 animationName = "PAN"
                 tracking = Tracking(startPoint: sceneView.pointOfView!.position, objectPoint: shape.position, totalDistance: 1.5)
                 tracking.delegate = self as! TrackingDelegate
@@ -371,6 +421,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                 angle.startGyros()
                 break
             }
+        
+            //show label 2
+            self.view.makeToast(labelName, duration: 3.0, position: .top)
             
             let animationView = AnimationView(name: animationName)
             if animationView != nil {
@@ -485,40 +538,48 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     func session(_ session: ARSession, didFailWithError error: Error) {}
     
     // setting label untuk instruksi AR
-    func buildLabel (data : String) {
-        DispatchQueue.main.async {
-            self.labelAR.frame = CGRect(x: self.view.frame.width/4, y: 20, width: 400, height: 100)
-            self.labelAR.text = data
-            self.labelAR.textAlignment = .center
-            self.labelAR.alpha = 0
-            self.labelAR.numberOfLines = 0
-            self.labelAR.textColor = UIColor.white
-            self.labelAR.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            self.labelAR.layer.masksToBounds = true
-            self.labelAR.layer.cornerRadius = 10
-            self.labelAR.font = UIFont.systemFont(ofSize: 13)
-            self.view.addSubview(self.labelAR)
-        }
-        
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
-            DispatchQueue.main.async {
-                self.labelAR.alpha = 1
-            }
-        }, completion: nil)
+    func buildLabel (data : String, deleteLabel: Bool = true) {
         DispatchQueue.global().async {
-            sleep(2)
-            self.deleteLabel()
+            DispatchQueue.main.async {
+                self.labelAR.frame = CGRect(x: self.view.frame.width/4, y: 20, width: 400, height: 100)
+                self.labelAR.text = data
+                self.labelAR.textAlignment = .center
+                self.labelAR.alpha = 0
+                self.labelAR.numberOfLines = 0
+                self.labelAR.textColor = UIColor.white
+                self.labelAR.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+                self.labelAR.layer.masksToBounds = true
+                self.labelAR.layer.cornerRadius = 10
+                self.labelAR.font = UIFont.systemFont(ofSize: 13)
+                self.view.addSubview(self.labelAR)
+                UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
+                    DispatchQueue.main.async {
+                        self.labelAR.alpha = 1
+                    }
+                }, completion: nil)
+                
+                if deleteLabel {
+                    DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(3), execute: {
+                        self.deleteLabel()
+                    })
+                }
+            }
         }
     }
     
-    func deleteLabel () {
+    func deleteLabel ()  {
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
-            self.labelAR.alpha = 0
+            DispatchQueue.main.async {
+                if self.labelAR != nil {
+                    self.labelAR.alpha = 0
+                }
+            }
         }, completion: nil)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.labelAR.removeFromSuperview()
+            if self.labelAR != nil {
+                self.labelAR.removeFromSuperview()
+            }
         }
-        
     }
     
     func createBall (position : SCNVector3) {

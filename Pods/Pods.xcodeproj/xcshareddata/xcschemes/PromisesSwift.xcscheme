@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E91A8DD4B6295535F1EFA5B761FE6988"
-               BuildableName = "Pods_VideoVersionTwo.framework"
-               BlueprintName = "Pods-VideoVersionTwo"
+               BlueprintIdentifier = "7D928FD946EFCC15AF8F3DA629E2630F"
+               BuildableName = "Promises.framework"
+               BlueprintName = "PromisesSwift"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E91A8DD4B6295535F1EFA5B761FE6988"
-            BuildableName = "Pods_VideoVersionTwo.framework"
-            BlueprintName = "Pods-VideoVersionTwo"
+            BlueprintIdentifier = "7D928FD946EFCC15AF8F3DA629E2630F"
+            BuildableName = "Promises.framework"
+            BlueprintName = "PromisesSwift"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -60,6 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "7D928FD946EFCC15AF8F3DA629E2630F"
+            BuildableName = "Promises.framework"
+            BlueprintName = "PromisesSwift"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

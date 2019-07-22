@@ -26,8 +26,21 @@ extension ARViewController: PanDelegate {
         panStatus = 0
         moveToNextLesson()
         panStatus = 4
-        self.buildLabel(data: "You did Pan")
-        buildLabel(data: labelsContent[2])
+        
+        if choosenLesson.name == "Tutorial" {
+            self.view.makeToast(labelsTutorial[2], duration: 3.0, position: .top) { didTap in
+                if didTap {}
+                else {
+                    self.view.makeToast(self.labelsTutorial[3], duration: 3.0, position: .top)
+                }
+            }
+        }
+        else if choosenLesson.name == "Circle the Object" {
+            
+        }
+        else {
+            labelMovementDetection(labelName: "You did Pan")
+        }
     }
 }
 
@@ -37,7 +50,21 @@ extension ARViewController: DollyDelegate {
         addToHistoryTechnique(techniqueName: "Dolly")
         moveToNextLesson()
         dollyCheck =  false
-        self.buildLabel(data: "You did Dolly")
+        if choosenLesson.name == "Tutorial" {
+            self.view.makeToast(labelsTutorial[4], duration: 3.0, position: .top) {
+                didTap in
+                if didTap {}
+                else {
+                    self.view.makeToast(self.labelsTutorial[5], duration: 3.0, position: .top)
+                }
+            }
+        }
+        else if choosenLesson.name == "Circle the Object" {
+            
+        }
+        else {
+            labelMovementDetection(labelName: "You did Dolly")
+        }
     }
 }
 
@@ -47,7 +74,13 @@ extension ARViewController: TrackingDelegate {
         addToHistoryTechnique(techniqueName: "Tracking")
         trackingCheck = false
         moveToNextLesson()
-        self.buildLabel(data: "You did Tracking")
+        
+        if choosenLesson.name == "Circle the Object" {
+            self.view.makeToast(labelCourse[1], duration: 3.0, position: .top)
+        }
+        else {
+            labelMovementDetection(labelName: "You did Tracking")
+        }
     }
     
     func distanceTooClose(_ status: Bool) {
@@ -76,7 +109,7 @@ extension ARViewController: TiltDelegate {
         moveToNextLesson()
         
         tiltStatus = 4
-        self.buildLabel(data: "You did Tilt")
+        labelMovementDetection(labelName: "You did Tilt")
     }
 }
 
@@ -84,14 +117,14 @@ extension ARViewController: ShotDelegate {
     func closeUpShot(_ status: Bool) {
         addToHistoryTechnique(techniqueName: "Shot")
         moveToNextLesson()
-        self.buildLabel(data: "You did Close Up Shot")
+        labelMovementDetection(labelName: "You did Close Up Shot")
         shotCheck = false
     }
     
     func mediumShot(_ status: Bool) {
         addToHistoryTechnique(techniqueName: "Shot")
         moveToNextLesson()
-        self.buildLabel(data: "You did Medium Shot")
+        labelMovementDetection(labelName: "You did Medium Shot")
         shotCheck = false
     }
 }
@@ -101,7 +134,7 @@ extension ARViewController: AngleDelegate {
         addToHistoryTechnique(techniqueName: "Angle")
         angle.stopGyros()
         moveToNextLesson()
-        self.buildLabel(data: "You did Low Angle")
+        labelMovementDetection(labelName: "You did Low Angle")
     }
     
     func highAngleHit(_ status: Bool) {
@@ -111,12 +144,27 @@ extension ARViewController: AngleDelegate {
             /*let alert = UIAlertController(title: "Success", message: "You did HIGH ANGLE", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)*/
-        self.buildLabel(data: "You did High Angle")
+        if choosenLesson.name == "Circle the Object" {
+            self.view.makeToast(labelCourse[2], duration: 3.0, position: .top)
+        }
+        else {
+            labelMovementDetection(labelName: "You did High Angle")
+        }
     }
 }
 
 extension ARViewController {
     func addToHistoryTechnique(techniqueName: String) {
         DataController.addHistory(techniqueName: techniqueName)
+    }
+    
+    func labelMovementDetection(labelName: String) {
+        self.view.makeToast(labelName, duration: 3.0, position: .top) { didTap in
+            if didTap {}
+            else {
+                self.view.makeToast(self.labelMovement[self.counterLabelMovement], duration: 3.0, position: .top)
+                self.counterLabelMovement += 2
+            }
+        }
     }
 }
