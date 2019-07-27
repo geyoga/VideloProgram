@@ -38,17 +38,7 @@ class DataController {
         lesson1.image = image
         CoreDataHelper.save()
     }
-    
-    /*
-     always return nil after close the  app
-     static func addHistory(technique: Techniques, lesson: Lessons)  {
-        let history = History_technique(context: CoreDataHelper.managedContext)
-        history.lesson = lesson.self
-        history.technique = technique.self
-        history.timestamp = Date()
-        CoreDataHelper.save()
-    }*/
-    
+
     static func addHistory(techniqueName: String)  {
         let history = History_technique(context: CoreDataHelper.managedContext)
         history.techniqueName = techniqueName
