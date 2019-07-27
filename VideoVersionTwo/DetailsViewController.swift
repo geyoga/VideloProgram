@@ -87,7 +87,6 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
       
         learnCell.learnName.text = technique[indexPath.row].name
         learnCell.learnImg.image = UIImage(named: technique[indexPath.row].icon!)
-        print(technique[indexPath.row].name)
         
         return learnCell
     }

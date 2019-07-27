@@ -96,7 +96,7 @@ class CoreDataHelper {
         request.resultType = .dictionaryResultType
         
         do {
-            result = try CoreDataHelper.managedContext.fetch(request) as! Array<NSDictionary>
+            result = try CoreDataHelper.managedContext.fetch(request) as? Array<NSDictionary>
             print("success")
             
             return result

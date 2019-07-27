@@ -92,9 +92,9 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         //FETCH
         let data = CoreDataHelper.fetch(entity: "Lessons") as [Lessons]
         for item in data {
-            print("\(item.id) - \(item.name) - \(item.type) - \(item.shortDesc) - \(item.longDesc) - \(item.objectName)")
+            print("\(item.id) - \(String(describing: item.name)) - \(String(describing: item.type)) - \(String(describing: item.shortDesc)) - \(String(describing: item.longDesc)) - \(String(describing: item.objectName))")
             for case let technique as Techniques in item.learn_use! {
-                print("\(technique.id) - \(technique.name)")
+                print("\(technique.id) - \(String(describing: technique.name))")
             }
         }
         

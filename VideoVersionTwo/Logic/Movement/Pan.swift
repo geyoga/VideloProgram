@@ -73,6 +73,6 @@ class Pan {
 
 extension Double {
     func radiansToDegree() -> Double {
-        return (180/M_PI) * self
+        return (180/Double.pi) * self
     }
 }

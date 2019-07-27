@@ -21,16 +21,10 @@ class StatusViewController: UIViewController {
         
         //setup chart
         var chartEntry = [BarChartDataEntry]()
-        
-        let history = CoreDataHelper.fetch(entity: "History_technique") as [History_technique]
-        
-        for  item in history {
-            print("\(item.techniqueName) \(item.timestamp)")
-        }
-        
+
         let data = CoreDataHelper.fetchStatus()
         var counter = 0
-        var chartData =  BarChartData()
+        let chartData =  BarChartData()
         for item in data {
             counter += 1
             print(item["techniqueName"]!)

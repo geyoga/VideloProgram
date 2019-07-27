@@ -52,8 +52,8 @@ extension ARViewController {
              "Stay there, move left and right corresponding with the Object",
              "Next, you will learn Tilting. Press Start button to Begin",
              "Stay there, move up and down corresponding with the Object",
-             "Now, you will laern Dolly. Press Start button to Begin",
-             "Move close up to the Object",
+             "Now, you will learn Dolly. Press Start button to Begin",
+             "Move closer to the Object",
              "Finally, you will learn Tracking. Press Start button to Begin",
              "Move around the Object, by keeeping your distance",
              "Press Left-Top Button to back to your journey]"]
@@ -63,6 +63,20 @@ extension ARViewController {
              "First, Move around the Plant by keeeping your distance",
              "Second, Move your Phone to the Top and look down to the Plant",
              "Third, Move close up to the Plant"]
+    }
+    
+    
+    
+    func showLabel()  {
+        if labels["\(self.choosenLesson.name!)"]!.count > counterLabel {
+            //DispatchQueue.main.async {
+                self.view.makeToast(self.labels["\(self.choosenLesson.name!)"]![self.counterLabel], duration: 2.0, position: .top)
+            //}
+        }
+    }
+    
+    func moveToNextLabel() {
+        counterLabel += 1
     }
     
     func updateIndicator(time: TimeInterval) {
