@@ -18,13 +18,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Caa-yk-LDP" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="64" y="53" width="768" height="275"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Caa-yk-LDP" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="64" y="20" width="768" height="353"/>
                                 <color key="backgroundColor" white="0.8709332191780822" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZBD-59-ajK" firstAttribute="trailing" secondItem="Caa-yk-LDP" secondAttribute="trailing" constant="20" id="E9Y-yU-rnL"/>
+                            <constraint firstItem="Caa-yk-LDP" firstAttribute="top" secondItem="ZBD-59-ajK" secondAttribute="top" constant="20" id="F2X-Vd-2O1"/>
+                            <constraint firstItem="ZBD-59-ajK" firstAttribute="bottom" secondItem="Caa-yk-LDP" secondAttribute="bottom" constant="20" id="Itn-Jj-stS"/>
+                            <constraint firstItem="Caa-yk-LDP" firstAttribute="leading" secondItem="ZBD-59-ajK" secondAttribute="leading" constant="20" id="yxA-tI-TG6"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ZBD-59-ajK"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Status" image="Status Icon" id="wFT-49-YgJ"/>

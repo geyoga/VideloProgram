@@ -34,7 +34,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         super.viewDidLoad()
         
          //CLEAR ALL
-        let datas = CoreDataHelper.fetch(entity: "Lessons") as [Lessons]
+        /*let datas = CoreDataHelper.fetch(entity: "Lessons") as [Lessons]
         for item in datas {
             for technique in item.learn_use!.array {
                 CoreDataHelper.delete(data: technique)
@@ -42,10 +42,10 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
             CoreDataHelper.delete(data: item)
         }
         
-        let history = CoreDataHelper.fetch(entity: "History_technique") as [History_technique]
+        /*let history = CoreDataHelper.fetch(entity: "History_technique") as [History_technique]
         for item in history {
             CoreDataHelper.delete(data: item)
-        }
+        }*/
         
         //MOVEMENT
         let pan = DataController.addTechnique(name: "Pan", icon: "Pan Symbol")
@@ -88,7 +88,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         //exercise 1
         learn_use = NSOrderedSet.init(array: [tracking, high, dolly])//[pan, tracking, dolly, closeUp])
         DataController.addLesson(name: "Circle the Object", type: "Course", shortDesc: "You will learn a lot", longDesc: "You will learn a lot", objectName: "plant.scn", learn_use: learn_use, image: "Exe_StillObject")
-        
+        */
         //FETCH
         let data = CoreDataHelper.fetch(entity: "Lessons") as [Lessons]
         for item in data {

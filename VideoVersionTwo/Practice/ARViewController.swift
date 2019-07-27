@@ -343,7 +343,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         let alert = UIAlertController(title: "Want to go Learning Path ?", message: "Your course session will be ended", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{_ in                                                  
-            self.performSegue(withIdentifier: "goToLearningPath", sender: nil)
+            self.dismiss(animated: true, completion: {
+                self.performSegue(withIdentifier: "goToLearningPath", sender: nil)
+            })
         }))
         self.present(alert, animated: true)
     }

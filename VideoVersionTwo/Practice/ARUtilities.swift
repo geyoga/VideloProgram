@@ -28,12 +28,14 @@ extension ARViewController {
             let imageProvider = BundleImageProvider(bundle: .main, searchPath: "images")
             animationView.imageProvider = imageProvider
             animationView.frame = CGRect(x: 100, y: 100, width: 400, height: 400)
-            animationView.center = CGPoint.init(x: 450.0, y: 100.0)
+            animationView.center = .init(x: self.view.center.x, y: 100) 
             animationView.contentMode = .scaleAspectFill
             animationView.loopMode = loopMode
             view.addSubview(animationView)
             
-            animationView.play()
+            animationView.play { (done) in
+                animationView.removeFromSuperview()
+            }
         }
         return animationView
     }
@@ -58,6 +60,9 @@ extension ARViewController {
              "Move around the Object, by keeeping your distance",
              "Press Left-Top Button to back to your journey]"]
         
+        labels["Introduction to Angle"] = []
+        labels["Introduction to Shot"] = []
+            
         labels["Circle the Object"] =
             ["You will combine techniques that you have learn. Press Start button to Begin",
              "First, Move around the Plant by keeeping your distance",
