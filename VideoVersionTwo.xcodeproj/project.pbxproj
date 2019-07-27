@@ -17,6 +17,7 @@
 		8E25417522DECF360017C8BB /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25417422DECF360017C8BB /* StatusViewController.swift */; };
 		8E25417822DED1E30017C8BB /* MovementDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25417722DED1E30017C8BB /* MovementDetection.swift */; };
 		8E2576AB22E3171900B30374 /* CreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2576AA22E3171900B30374 /* CreditViewController.swift */; };
+		8E44CD9B22E90108003970D6 /* ARUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E44CD9A22E90108003970D6 /* ARUtilities.swift */; };
 		8E7BAB5422DF7ACD00E51EC7 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5322DF7ACD00E51EC7 /* Plane.swift */; };
 		8E7BAB6122E0012E00E51EC7 /* PAN.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5522E0012E00E51EC7 /* PAN.json */; };
 		8E7BAB6222E0012E00E51EC7 /* DOLLY IN.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BAB5622E0012E00E51EC7 /* DOLLY IN.json */; };
@@ -62,6 +63,7 @@
 		8E25417422DECF360017C8BB /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		8E25417722DED1E30017C8BB /* MovementDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementDetection.swift; sourceTree = "<group>"; };
 		8E2576AA22E3171900B30374 /* CreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditViewController.swift; sourceTree = "<group>"; };
+		8E44CD9A22E90108003970D6 /* ARUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARUtilities.swift; sourceTree = "<group>"; };
 		8E7BAB5322DF7ACD00E51EC7 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		8E7BAB5522E0012E00E51EC7 /* PAN.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PAN.json; sourceTree = "<group>"; };
 		8E7BAB5622E0012E00E51EC7 /* DOLLY IN.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DOLLY IN.json"; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			children = (
 				D383269A22D87F5900C53AA7 /* ARViewController.swift */,
 				8E25417722DED1E30017C8BB /* MovementDetection.swift */,
+				8E44CD9A22E90108003970D6 /* ARUtilities.swift */,
 			);
 			path = Practice;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 			files = (
 				8E25416822DC440C0017C8BB /* Tilt.swift in Sources */,
 				8EAE1BD522DF49D500AC3B51 /* Tracking.swift in Sources */,
+				8E44CD9B22E90108003970D6 /* ARUtilities.swift in Sources */,
 				8E25416D22DEC9770017C8BB /* DataController.swift in Sources */,
 				D374259F22D7920A00F36000 /* VideoVersionTwo.xcdatamodeld in Sources */,
 				8E7BAB5422DF7ACD00E51EC7 /* Plane.swift in Sources */,
