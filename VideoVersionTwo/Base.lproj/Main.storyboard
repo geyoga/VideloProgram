@@ -579,7 +579,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="meA-jZ-rbw" kind="relationship" relationship="viewControllers" id="7v3-YG-Rsm"/>
-                        <segue destination="UnH-Tm-0BH" kind="relationship" relationship="viewControllers" id="yQ7-bg-RON"/>
+                        <segue destination="UnH-Tm-0BH" kind="relationship" relationship="viewControllers" id="zPC-bm-ZrI"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WGO-jR-fLp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -809,11 +809,11 @@
         <scene sceneID="TXl-aj-y9H">
             <objects>
                 <viewControllerPlaceholder storyboardName="Status" id="UnH-Tm-0BH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="g5F-PO-SZx"/>
+                    <tabBarItem key="tabBarItem" title="Status" image="Status" selectedImage="Status" id="g5F-PO-SZx"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Od6-yw-6pR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1156" y="1336"/>
+            <point key="canvasLocation" x="1169" y="493"/>
         </scene>
     </scenes>
     <resources>
@@ -832,6 +832,7 @@
         <image name="Mixamo Logo" width="187" height="58"/>
         <image name="On Boarding" width="375" height="111"/>
         <image name="StartButton" width="74" height="74"/>
+        <image name="Status" width="30" height="30"/>
         <image name="Welcome Page 1" width="812" height="375"/>
         <image name="Welcome Page 2" width="812" height="375"/>
         <image name="Welcome Page 3" width="812" height="375"/>

@@ -32,7 +32,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZBD-59-ajK"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Status" image="Status Icon" id="wFT-49-YgJ"/>
+                    <tabBarItem key="tabBarItem" title="Status" image="Status" id="wFT-49-YgJ"/>
                     <connections>
                         <outlet property="barChart" destination="Caa-yk-LDP" id="LJp-hH-jsE"/>
                     </connections>
@@ -43,6 +43,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Status Icon" width="30" height="30"/>
+        <image name="Status" width="30" height="30"/>
     </resources>
 </document>
