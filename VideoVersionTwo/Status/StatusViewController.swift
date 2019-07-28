@@ -23,6 +23,7 @@ class StatusViewController: UIViewController {
         let data = CoreDataHelper.fetchStatus()
         var counter = 0
         let chartData =  BarChartData()
+        
         for item in data {
             counter += 1
             print(item["techniqueName"]!)
@@ -33,22 +34,23 @@ class StatusViewController: UIViewController {
             var chartEntry: [BarChartDataEntry] = [BarChartDataEntry]()
             chartEntry.append(value)
             let bar = BarChartDataSet(entries: chartEntry, label: item["techniqueName"]! as? String)
-            //bar.addColor(.init(red: CGFloat(Double(arc4random_uniform(256))/255), green: CGFloat(Double(arc4random_uniform(256))/255), blue: CGFloat(Double(arc4random_uniform(256))/255), alpha: 1.0))
             
             bar.setColors(.init(red: CGFloat(Double(arc4random_uniform(256))/255), green: CGFloat(Double(arc4random_uniform(256))/255), blue: CGFloat(Double(arc4random_uniform(256))/255), alpha: 1.0))
-            
+        
             chartData.addDataSet(bar)
         }
         
+        chartData.setValueTextColor(.white)
         barChart.data = chartData
         barChart.animate(yAxisDuration: 1.0)
         barChart.tintColor = UIColor.white
-        barChart.gridBackgroundColor = NSUIColor.white
         barChart.chartDescription?.textColor = .white
-        barChart.backgroundColor = .gray
+        barChart.noDataText = "Please take any lesson"
         barChart.dragEnabled = false
         barChart.pinchZoomEnabled = false
         barChart.scaleXEnabled = false
         barChart.scaleYEnabled = false
+        
+        barChart.legend.textColor = .white
     }
 }

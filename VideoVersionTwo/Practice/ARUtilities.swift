@@ -60,14 +60,49 @@ extension ARViewController {
              "Move around the Object, by keeeping your distance",
              "Press Left-Top Button to back to your journey]"]
         
-        labels["Introduction to Angle"] = []
-        labels["Introduction to Shot"] = []
+        labels["Introduction to Angle"] = [
+            "First, you will learn Low Angle. Press Start button to Begin",
+            "Move your Phone to the Bottom and look up to the Building",
+            "Next, you will learn High Angle. Press Start button to Begin",
+            "Move your Phone to the Top and look down to the Barrel",
+            "Press Left-Top Button to back to your journey"]
+        labels["Introduction to Shot"] = [
+            "Move your Phone to find flat surface",
+            "First, you will learn Close Up Shot. Press Start button to Begin",
+            "Move close Up until the camera fill entire Man’s face",
+            "Next, you will learn Medium Shot. Press Start button to Begin",
+            "Move away until the camera fill entire Man’s Body",
+            "Press Left-Top Button to back to your journey"]
             
         labels["Circle the Object"] =
             ["You will combine techniques that you have learn. Press Start button to Begin",
              "First, Move around the Plant by keeeping your distance",
              "Second, Move your Phone to the Top and look down to the Plant",
              "Third, Move close up to the Plant"]
+        
+        //end label setup
+        endLabel["Tutorial"] = ""
+        endLabel["Introduction to Movement"] =
+        """
+        Panning is the best technique for following the moving object and visualise the panorama.
+        
+        Tilt is suitable for visualise the height of the object.
+        
+        Dolly used when you want to create intimacy between audience and object.
+        
+        Tracking can be used when you want to rotate and following the object.
+        """
+        endLabel["Introduction to Angle"] = """
+        Low Angle will be suitable when you want to make object seems big and dominant.
+        
+        High Angle will be appropriate if you want to make the object weak and helpless.
+        """
+        endLabel["Introduction to Shot"] = """
+        Close Up Shot is best technique if you want to show the character detail of the Object, so audience can see the expression of the Object clearly.
+        
+        Medium Shot will be fit on you when you want to show the audience the state or activity of the Object.
+        """
+        endLabel["Circle the Object"] = ""
     }
     
     

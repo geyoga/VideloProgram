@@ -20,6 +20,23 @@ class CreditViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func barrelCredit(_ sender: Any) {
+        if let url = URL(string: "https://free3d.com/3d-model/wooden-barrel-11607.html") {
+            UIApplication.shared.open(url)
+        }
+    }
+    @IBAction func plantCredit(_ sender: Any) {
+        if let url = URL(string: "https://free3d.com/3d-model/alokaziya-377519.html") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    @IBAction func aboutUs(_ sender: Any) {
+        if let url = URL(string: "https://indratechid.com/videlo/") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

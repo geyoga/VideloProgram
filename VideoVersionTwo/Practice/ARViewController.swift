@@ -75,6 +75,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     // membuat data label instruktur tutorial
     var labels = [String : [String]]()
     var counterLabel = 0
+    var endLabel = [String : String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -153,7 +154,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                     
                     self.plane = Plane(planeAnchor)
                     node.addChildNode(self.plane)
-                    
                     //NEED REFACTOR!!!
                     //CREATE CORE DATA CLASS TO HOLD RELATION OBJECT, TECHNIQUE AND LESSON, ALSO ADD SCALE
                     //add object
@@ -300,11 +300,17 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             self.buttonStart.sendActions(for: .touchUpInside)
         }
         if (lessonCounter+1 == listLessons.count) {
-            let alert = UIAlertController(title: "Congratulation", message: "You have done this lesson", preferredStyle: .alert)
+            var message = "You have done this lesson"
+            if endLabel["\(self.choosenLesson.name!)"]! != "" {
+                message += "\n\n\(endLabel["\(self.choosenLesson.name!)"]!)"
+            }
+            let alert = UIAlertController(title: "Congratulation", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Back to home", style: .default, handler: { action in
                 self.dismiss(animated: true, completion: nil)
             }))
-            self.present(alert, animated: true)
+            DispatchQueue.main.async {
+                self.present(alert, animated: true)
+            }
         }
         else {
             lessonCounter += 1
