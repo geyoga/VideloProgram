@@ -396,7 +396,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWL-Fb-QTg">
-                                <rect key="frame" x="30" y="26" width="55" height="41"/>
+                                <rect key="frame" x="30" y="26" width="16" height="22"/>
                                 <state key="normal" image="Learning Path"/>
                                 <connections>
                                     <action selector="learningPath:" destination="vP4-zF-aD5" eventType="touchUpInside" id="YzK-y5-4PE"/>
@@ -409,9 +409,9 @@
                                 <rect key="frame" x="74" y="165" width="746" height="201"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" image="free3d" translatesAutoresizingMaskIntoConstraints="NO" id="c1C-Yc-jAW">
-                                        <rect key="frame" x="201" y="81" width="287" height="34"/>
+                                        <rect key="frame" x="201" y="81" width="287" height="16"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Human Animation" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36q-ES-QAb">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" ambiguous="YES" text="Human Animation" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36q-ES-QAb">
                                         <rect key="frame" x="34" y="25" width="145" height="20.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -423,8 +423,8 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" image="Mixamo Logo" translatesAutoresizingMaskIntoConstraints="NO" id="8KU-5O-1A2">
-                                        <rect key="frame" x="5" y="81" width="187.00000000000003" height="58"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" image="Mixamo Logo" translatesAutoresizingMaskIntoConstraints="NO" id="8KU-5O-1A2">
+                                        <rect key="frame" x="5" y="81" width="16" height="58"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Videography Content" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jza-2A-nCy">
                                         <rect key="frame" x="542" y="25" width="171" height="20.5"/>
@@ -436,10 +436,10 @@
                                         <rect key="frame" x="496" y="70" width="93" height="111"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="ALC Logo" translatesAutoresizingMaskIntoConstraints="NO" id="MSu-6t-erA">
-                                        <rect key="frame" x="597" y="79" width="141" height="93"/>
+                                        <rect key="frame" x="722" y="79" width="16" height="93"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftM-2A-Jiu">
-                                        <rect key="frame" x="349.5" y="123" width="50" height="30"/>
+                                        <rect key="frame" x="349.5" y="105" width="50" height="30"/>
                                         <color key="backgroundColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="Iy7-Vv-aJN"/>
@@ -457,7 +457,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScZ-60-VUR">
-                                        <rect key="frame" x="289.5" y="123" width="50" height="30"/>
+                                        <rect key="frame" x="289.5" y="105" width="50" height="30"/>
                                         <color key="backgroundColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="ZWr-Vu-DJo"/>
@@ -840,7 +840,7 @@
         <image name="orange Indicator" width="20" height="208"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LJ4-Jq-K8T"/>
+        <segue reference="LCD-t9-srI"/>
         <segue reference="FDV-KP-bg3"/>
     </inferredMetricsTieBreakers>
 </document>

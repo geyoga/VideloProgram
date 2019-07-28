@@ -34,7 +34,6 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
         super.viewDidLoad()
         
         buttonBegin.setBackgroundImage(UIImage(named: "Button Start"), for: .normal)
-        buttonBegin.setBackgroundImage(UIImage(named: "Start Lesson Press"), for: .selected)
         
         // Do any additional setup after loading the view.
         
@@ -93,23 +92,9 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
     
     @IBAction func startLesson(_ sender: UIButton) {
         doHaptic()
-        if buttonBegin.isSelected {
-            // set deselected
-            buttonBegin.isSelected = false
-        } else {
-            // set selected
-            buttonBegin.isSelected = true
-        }
     }
     @IBAction func startLesson2(_ sender: Any) {
         doHaptic()
-        if buttonBegin2.isSelected {
-            // set deselected
-            buttonBegin2.isSelected = false
-        } else {
-            // set selected
-            buttonBegin2.isSelected = true
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
