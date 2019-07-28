@@ -392,7 +392,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="credits" translatesAutoresizingMaskIntoConstraints="NO" id="6UK-0b-vSV">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Credits" translatesAutoresizingMaskIntoConstraints="NO" id="6UK-0b-vSV">
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWL-Fb-QTg">
@@ -822,6 +822,7 @@
         <image name="Button Begin Down" width="343" height="50"/>
         <image name="Button Ready" width="345" height="52"/>
         <image name="Button Start" width="86" height="35"/>
+        <image name="Credits" width="812" height="375"/>
         <image name="Grid" width="812" height="375"/>
         <image name="Indicator Bar" width="85" height="207"/>
         <image name="LAF Logo" width="93" height="93"/>
@@ -834,7 +835,6 @@
         <image name="Welcome Page 1" width="812" height="375"/>
         <image name="Welcome Page 2" width="812" height="375"/>
         <image name="Welcome Page 3" width="812" height="375"/>
-        <image name="credits" width="812" height="375"/>
         <image name="free3d" width="146" height="34"/>
         <image name="indicator Gray" width="20" height="208"/>
         <image name="orange Indicator" width="20" height="208"/>

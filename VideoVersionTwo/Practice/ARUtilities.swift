@@ -67,18 +67,19 @@ extension ARViewController {
             "Move your Phone to the Top and look down to the Barrel",
             "Press Left-Top Button to back to your journey"]
         labels["Introduction to Shot"] = [
-            "Move your Phone to find flat surface",
             "First, you will learn Close Up Shot. Press Start button to Begin",
-            "Move close Up until the camera fill entire Man’s face",
+            "Move closer until the camera fill entire Man’s face",
             "Next, you will learn Medium Shot. Press Start button to Begin",
             "Move away until the camera fill entire Man’s Body",
             "Press Left-Top Button to back to your journey"]
             
         labels["Circle the Object"] =
-            ["You will combine techniques that you have learn. Press Start button to Begin",
+            ["Combine techniques that you have learn. On your left, there is a speed bar to check whether you do it on the right speed. Press Start button to Begin",
              "First, Move around the Plant by keeeping your distance",
-             "Second, Move your Phone to the Top and look down to the Plant",
-             "Third, Move close up to the Plant"]
+             "Second, you will use high angle",
+             "Move your Phone to the Top and look down to the Plant",
+             "Third, you will use close up technique",
+             "Move close up to the Plant"]
         
         //end label setup
         endLabel["Tutorial"] = ""
@@ -102,7 +103,7 @@ extension ARViewController {
         
         Medium Shot will be fit on you when you want to show the audience the state or activity of the Object.
         """
-        endLabel["Circle the Object"] = ""
+        endLabel["Circle the Object"] = "Keep practicing!"
     }
     
     
