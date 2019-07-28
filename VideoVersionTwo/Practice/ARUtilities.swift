@@ -28,12 +28,14 @@ extension ARViewController {
             let imageProvider = BundleImageProvider(bundle: .main, searchPath: "images")
             animationView.imageProvider = imageProvider
             animationView.frame = CGRect(x: 100, y: 100, width: 400, height: 400)
-            animationView.center = CGPoint.init(x: 450.0, y: 100.0)
+            animationView.center = .init(x: self.view.center.x, y: 100) 
             animationView.contentMode = .scaleAspectFill
             animationView.loopMode = loopMode
             view.addSubview(animationView)
             
-            animationView.play()
+            animationView.play { (done) in
+                animationView.removeFromSuperview()
+            }
         }
         return animationView
     }
@@ -52,17 +54,69 @@ extension ARViewController {
              "Stay there, move left and right corresponding with the Object",
              "Next, you will learn Tilting. Press Start button to Begin",
              "Stay there, move up and down corresponding with the Object",
-             "Now, you will laern Dolly. Press Start button to Begin",
-             "Move close up to the Object",
+             "Now, you will learn Dolly. Press Start button to Begin",
+             "Move closer to the Object",
              "Finally, you will learn Tracking. Press Start button to Begin",
              "Move around the Object, by keeeping your distance",
              "Press Left-Top Button to back to your journey]"]
         
+        labels["Introduction to Angle"] = [
+            "First, you will learn Low Angle. Press Start button to Begin",
+            "Move your Phone to the Bottom and look up to the Building",
+            "Next, you will learn High Angle. Press Start button to Begin",
+            "Move your Phone to the Top and look down to the Barrel",
+            "Press Left-Top Button to back to your journey"]
+        labels["Introduction to Shot"] = [
+            "Move your Phone to find flat surface",
+            "First, you will learn Close Up Shot. Press Start button to Begin",
+            "Move close Up until the camera fill entire Man’s face",
+            "Next, you will learn Medium Shot. Press Start button to Begin",
+            "Move away until the camera fill entire Man’s Body",
+            "Press Left-Top Button to back to your journey"]
+            
         labels["Circle the Object"] =
             ["You will combine techniques that you have learn. Press Start button to Begin",
              "First, Move around the Plant by keeeping your distance",
              "Second, Move your Phone to the Top and look down to the Plant",
              "Third, Move close up to the Plant"]
+        
+        //end label setup
+        endLabel["Tutorial"] = ""
+        endLabel["Introduction to Movement"] =
+        """
+        Panning is the best technique for following the moving object and visualise the panorama.
+        
+        Tilt is suitable for visualise the height of the object.
+        
+        Dolly used when you want to create intimacy between audience and object.
+        
+        Tracking can be used when you want to rotate and following the object.
+        """
+        endLabel["Introduction to Angle"] = """
+        Low Angle will be suitable when you want to make object seems big and dominant.
+        
+        High Angle will be appropriate if you want to make the object weak and helpless.
+        """
+        endLabel["Introduction to Shot"] = """
+        Close Up Shot is best technique if you want to show the character detail of the Object, so audience can see the expression of the Object clearly.
+        
+        Medium Shot will be fit on you when you want to show the audience the state or activity of the Object.
+        """
+        endLabel["Circle the Object"] = ""
+    }
+    
+    
+    
+    func showLabel()  {
+        if labels["\(self.choosenLesson.name!)"]!.count > counterLabel {
+            //DispatchQueue.main.async {
+                self.view.makeToast(self.labels["\(self.choosenLesson.name!)"]![self.counterLabel], duration: 2.0, position: .top)
+            //}
+        }
+    }
+    
+    func moveToNextLabel() {
+        counterLabel += 1
     }
     
     func updateIndicator(time: TimeInterval) {

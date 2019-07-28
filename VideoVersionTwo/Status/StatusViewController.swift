@@ -20,17 +20,10 @@ class StatusViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         //setup chart
-        var chartEntry = [BarChartDataEntry]()
-        
-        let history = CoreDataHelper.fetch(entity: "History_technique") as [History_technique]
-        
-        for  item in history {
-            print("\(item.techniqueName) \(item.timestamp)")
-        }
-        
         let data = CoreDataHelper.fetchStatus()
         var counter = 0
-        var chartData =  BarChartData()
+        let chartData =  BarChartData()
+        
         for item in data {
             counter += 1
             print(item["techniqueName"]!)
@@ -38,27 +31,26 @@ class StatusViewController: UIViewController {
             let count: Double = item["count"]! as! Double
             print(count)
             let value = BarChartDataEntry(x: Double(counter), y: count)
+            var chartEntry: [BarChartDataEntry] = [BarChartDataEntry]()
             chartEntry.append(value)
-            
             let bar = BarChartDataSet(entries: chartEntry, label: item["techniqueName"]! as? String)
+            
+            bar.setColors(.init(red: CGFloat(Double(arc4random_uniform(256))/255), green: CGFloat(Double(arc4random_uniform(256))/255), blue: CGFloat(Double(arc4random_uniform(256))/255), alpha: 1.0))
+        
             chartData.addDataSet(bar)
         }
+        
+        chartData.setValueTextColor(.white)
         barChart.data = chartData
+        barChart.animate(yAxisDuration: 1.0)
         barChart.tintColor = UIColor.white
-        barChart.gridBackgroundColor = NSUIColor.white
         barChart.chartDescription?.textColor = .white
-        barChart.backgroundColor = .gray
+        barChart.noDataText = "Please take any lesson"
         barChart.dragEnabled = false
         barChart.pinchZoomEnabled = false
         barChart.scaleXEnabled = false
         barChart.scaleYEnabled = false
+        
+        barChart.legend.textColor = .white
     }
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

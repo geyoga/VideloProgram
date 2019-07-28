@@ -24,9 +24,9 @@ extension ARViewController: PanDelegate {
         addToHistoryTechnique(techniqueName: "Pan")
         pan.stopGyros()
         panStatus = 0
-        moveToNextLesson()
         panStatus = 4
         labelMovementDetection(labelName: "You did Pan")
+        moveToNextLesson()
     }
 }
 
@@ -34,9 +34,9 @@ extension ARViewController: DollyDelegate {
     
     func dollyHit(_ status: Bool) {
         addToHistoryTechnique(techniqueName: "Dolly")
-        moveToNextLesson()
         dollyCheck =  false
         labelMovementDetection(labelName: "You did Dolly")
+        moveToNextLesson()
     }
 }
 
@@ -45,9 +45,8 @@ extension ARViewController: TrackingDelegate {
     func trackingHit(_ status: Bool) {
         addToHistoryTechnique(techniqueName: "Tracking")
         trackingCheck = false
-        moveToNextLesson()
-        
         labelMovementDetection(labelName: "You did Tracking")
+        moveToNextLesson()
     }
     
     func distanceTooClose(_ status: Bool) {
@@ -73,25 +72,24 @@ extension ARViewController: TiltDelegate {
         addToHistoryTechnique(techniqueName: "Tilt")
         tiltStatus = 0
         tilt.stopGyros()
-        moveToNextLesson()
-        
         tiltStatus = 4
         labelMovementDetection(labelName: "You did Tilt")
+        moveToNextLesson()
     }
 }
 
 extension ARViewController: ShotDelegate {
     func closeUpShot(_ status: Bool) {
         addToHistoryTechnique(techniqueName: "Shot")
-        moveToNextLesson()
         labelMovementDetection(labelName: "You did Close Up Shot")
+        moveToNextLesson()
         shotCheck = false
     }
     
     func mediumShot(_ status: Bool) {
         addToHistoryTechnique(techniqueName: "Shot")
-        moveToNextLesson()
         labelMovementDetection(labelName: "You did Medium Shot")
+        moveToNextLesson()
         shotCheck = false
     }
 }
@@ -100,15 +98,15 @@ extension ARViewController: AngleDelegate {
     func lowAngleHit(_ status: Bool) {
         addToHistoryTechnique(techniqueName: "Angle")
         angle.stopGyros()
-        moveToNextLesson()
         labelMovementDetection(labelName: "You did Low Angle")
+        moveToNextLesson()
     }
     
     func highAngleHit(_ status: Bool) {
         addToHistoryTechnique(techniqueName: "Angle")
         angle.stopGyros()
-        moveToNextLesson()
         labelMovementDetection(labelName: "You did High Angle")
+        moveToNextLesson()
     }
 }
 
@@ -118,7 +116,9 @@ extension ARViewController {
     }
     
     func labelMovementDetection(labelName: String) {
-        self.view.makeToast(labelName, duration: 3.0, position: .top)
+        DispatchQueue.main.async {
+            self.view.makeToast(labelName, duration: 1.5, position: .top)
+        }
     }
 }
 

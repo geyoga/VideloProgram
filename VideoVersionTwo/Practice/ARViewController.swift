@@ -22,12 +22,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     //var
     var shape: SCNNode!
     var plane: SCNNode!
-    //1 start
-    //2 left hit
-    //3 right hit
-    //4 success
-    var panStatus: Int = 0
-    var tiltStatus: Int = 0
     
     var name: String = ""  //object name
     
@@ -47,6 +41,14 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     var firstObjectPosition: SCNVector3!
     var firstStartPosition: GLKVector3!
     
+    
+    //1 start
+    //2 left hit
+    //3 right hit
+    //4 success
+    var panStatus: Int = 0
+    var tiltStatus: Int = 0
+    
     var dollyCheck: Bool = true
     var trackingCheck: Bool = true
     var shotCheck: Bool = true
@@ -56,7 +58,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     var tilt: Tilt!
     var dolly: Dolly!
     var tracking: Tracking!
-    var  angle: Angle!
+    var angle: Angle!
     var shot: Shot!
     
     var checkPlaneCreated = false
@@ -70,10 +72,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     let maxHeight: CGFloat = 225
     //end
     
-    var labels = [String : [String]]()
-    
     // membuat data label instruktur tutorial
+    var labels = [String : [String]]()
     var counterLabel = 0
+    var endLabel = [String : String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,19 +87,16 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             indicatorDataOverlay.isHidden = false
             orangeIndicator.isHidden = false
         }
-        
-        print(listLessons)
     
         sceneView.debugOptions = [.showFeaturePoints]
         sceneView.delegate = self
         
         ToastManager.shared.isQueueEnabled = true
         
-        self.view.makeToast("Welcome to this Lesson", duration: 3.0, position: .top) { didTap in
+        self.view.makeToast("Welcome to this Lesson", duration: 2.0, position: .top) { didTap in
             if didTap {
-                print("completion from tap")
             } else {
-                self.view.makeToast("Move your Phone to find flat surface", duration: 3.0, position: .top)
+                self.view.makeToast("Move your Phone to find flat surface", duration: 2.0, position: .top)
             }
         }
         
@@ -136,20 +135,11 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         DispatchQueue.main.async {
             let configuration = ARWorldTrackingConfiguration()
             configuration.planeDetection = [.horizontal]
-            var environmentTexture: ARWorldTrackingConfiguration.EnvironmentTexturing  = .automatic
+            //to make reflection effect on 3d model
+            let environmentTexture: ARWorldTrackingConfiguration.EnvironmentTexturing  = .automatic
             configuration.environmentTexturing = environmentTexture
             self.sceneView.session.run(configuration)
         }
-    }
-    
-    func showLabel()  {
-        if labels["\(self.choosenLesson.name!)"]!.count > counterLabel {
-            self.view.makeToast(labels["\(self.choosenLesson.name!)"]![counterLabel], duration: 2.0, position: .top)
-        }
-    }
-    
-    func moveToNextLabel() {
-        counterLabel += 1
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
@@ -157,12 +147,17 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         if (checkPlaneCreated == false) {
             DispatchQueue.main.async {
                 if let planeAnchor = anchor as? ARPlaneAnchor {
+                    //remove lottie plane detector
+                    self.animationViewPlane.stop()
+                    self.animationViewPlane.removeFromSuperview()
+                    self.checkPlaneCreated = true
+                    
                     self.plane = Plane(planeAnchor)
                     node.addChildNode(self.plane)
-                    
+                    //NEED REFACTOR!!!
+                    //CREATE CORE DATA CLASS TO HOLD RELATION OBJECT, TECHNIQUE AND LESSON, ALSO ADD SCALE
                     //add object
                     var scale: SCNVector3 = SCNVector3(0.003, 0.003, 0.003)
-                    print(self.listLessons[self.lessonCounter])
                     
                     self.name = "art.scnassets/\(self.choosenLesson.objectName!)"
                     
@@ -182,13 +177,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                         scale = SCNVector3(0.2, 0.2, 0.2)
                     }
                     
-                    print(self.name)
-                    
                     self.addObject(name: self.name, position: SCNVector3.init(0, 0, 0), scale: scale)
-                
-                    self.animationViewPlane.stop()
-                    self.animationViewPlane.removeFromSuperview()
-                    self.checkPlaneCreated = true
                     
                     //show label 1
                     self.showLabel()
@@ -197,80 +186,15 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             }
         }
     }
-
-    func moveToNextLesson() {
-        moveToNextLabel()
-        showLabel()
-        moveToNextLabel()
-        DispatchQueue.main.async {
-            self.buttonStart.sendActions(for: .touchUpInside)
-        }
-        if (lessonCounter+1 == listLessons.count) {
-            //dismiss(animated: true, completion: nil)
-            /*if (choosenLesson.name != "Tutorial") {
-                self.view.makeToast("You have finish this lesson, Click on the Left-Top button to take another lesson", duration: 3.0, position: .top)
-            }*/
-            
-            let alert = UIAlertController(title: "Congratulation", message: "You have done this lesson", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Back to home", style: .default, handler: { action in
-                self.dismiss(animated: true, completion: nil)
-            }))
-            self.present(alert, animated: true)
-        }
-        else {
-            lessonCounter += 1
-            
-            if choosenLesson.name != "Introduction to Movement" {
-                return
-            }
-            
-            var tempName = ""
-            //if movement
-            if self.listLessons[self.lessonCounter] == .Tilt {
-                tempName = "art.scnassets/floatFix.scn"
-            }
-            else {
-                tempName = "art.scnassets/Walking copy 2.scn"
-            }
-            
-            print(name)
-            print(tempName)
-            
-            if name != tempName {
-                name = tempName
-                if shape != nil {
-                    shape.removeFromParentNode()
-                }
-                self.addObject(name: name, position: SCNVector3.init(0, 0, 0), scale: SCNVector3(0.003, 0.003, 0.003))
-            }
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        sceneView.session.pause()
-    }
-    
-    @IBAction func LearnPathButton(_ sender: UIButton) {
-        doHaptic()
-        let alert = UIAlertController(title: "Want to go Learning Path ?", message: "Your activity will be not saved", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{_ in                                                  
-            self.performSegue(withIdentifier: "goToLearningPath", sender: nil)
-        }))
-        self.present(alert, animated: true)
-    }
     
     @IBAction func StartActionButton(_ sender: UIButton) {
         doHaptic()
-        print("STOP BUTTON")
         
         if shape == nil {
             print("Shape not detected")
             return
         }
-        var labelName = ""
+        
         // mengubah image pada tombol start menjadi stop
         if buttonStart.currentBackgroundImage == UIImage(named: "StartButton") {
             showLabel()
@@ -279,52 +203,48 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
             var animationName: String = ""
             switch listLessons[lessonCounter] {
             case .Pan:
-                //labelName = self.labelMovement[1]
                 animationName = "PanningMove4"
                 pan = Pan.init()
-                pan.delegate = self as! PanDelegate
+                pan.delegate = self as PanDelegate
                 
                 pan.startGyros()
                 panStatus = 1
                 break
             case .Tilt:
-                //labelName = self.labelMovement[3]
                 animationName = "Tilt"
                 tilt = Tilt.init()
-                tilt.delegate = self as! TiltDelegate
+                tilt.delegate = self as TiltDelegate
                 
                 tiltStatus = 1
                 tilt.startGyros()
                 break
             case .Dolly:
-                //labelName = self.labelMovement[5]
                 animationName = "DOLLY IN"
                 dolly = Dolly(startPoint: self.sceneView!.pointOfView!.position)
-                dolly.delegate = self as! DollyDelegate
+                dolly.delegate = self as DollyDelegate
                 dollyCheck = true
                 break
             case .Tracking:
-                //labelName = self.labelMovement[7]
                 animationName = "PAN"
                 tracking = Tracking(startPoint: sceneView.pointOfView!.position, objectPoint: shape.position, totalDistance: 1.5)
-                tracking.delegate = self as! TrackingDelegate
+                tracking.delegate = self as TrackingDelegate
                 trackingCheck = true
                 break
             case .Shot:
                 animationName = "DOLLY IN"
                 //cannot use position because it will use parent (which is plane detector 0,0,0). If we use world position, it will be  relative to the real scene
                 shot = Shot(objectPoint: shape.worldPosition)
-                shot.delegate = self as! ShotDelegate
+                shot.delegate = self as ShotDelegate
                 shotCheck = true
                 break
             case .Angle:
                 animationName = "Tilt"
                 angle = Angle.init()
-                angle.delegate = self as! AngleDelegate
+                angle.delegate = self as AngleDelegate
                 angle.startGyros()
                 break
             }
-
+            
             showLottie(name: animationName, loopMode: .playOnce)
         }
         else {
@@ -368,9 +288,72 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                 shotCheck = false
                 break
             }
-            print("CURRENT: \(listLessons[lessonCounter])")
         }
         
+    }
+
+    func moveToNextLesson() {
+        moveToNextLabel()
+        showLabel()
+        moveToNextLabel()
+        DispatchQueue.main.async {
+            self.buttonStart.sendActions(for: .touchUpInside)
+        }
+        if (lessonCounter+1 == listLessons.count) {
+            var message = "You have done this lesson"
+            if endLabel["\(self.choosenLesson.name!)"]! != "" {
+                message += "\n\n\(endLabel["\(self.choosenLesson.name!)"]!)"
+            }
+            let alert = UIAlertController(title: "Congratulation", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Back to home", style: .default, handler: { action in
+                self.dismiss(animated: true, completion: nil)
+            }))
+            DispatchQueue.main.async {
+                self.present(alert, animated: true)
+            }
+        }
+        else {
+            lessonCounter += 1
+            
+            if choosenLesson.name != "Introduction to Movement" {
+                return
+            }
+            
+            //NEED REFACTOR AS MENTIONED ABOVE
+            var tempName = ""
+            //if movement
+            if self.listLessons[self.lessonCounter] == .Tilt {
+                tempName = "art.scnassets/floatFix.scn"
+            }
+            else {
+                tempName = "art.scnassets/Walking copy 2.scn"
+            }
+            
+            if name != tempName {
+                name = tempName
+                if shape != nil {
+                    shape.removeFromParentNode()
+                }
+                self.addObject(name: name, position: SCNVector3.init(0, 0, 0), scale: SCNVector3(0.003, 0.003, 0.003))
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        sceneView.session.pause()
+    }
+    
+    @IBAction func LearnPathButton(_ sender: UIButton) {
+        doHaptic()
+        let alert = UIAlertController(title: "Want to go Learning Path ?", message: "Your course session will be ended", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{_ in                                                  
+            self.dismiss(animated: true, completion: {
+                self.performSegue(withIdentifier: "goToLearningPath", sender: nil)
+            })
+        }))
+        self.present(alert, animated: true)
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {

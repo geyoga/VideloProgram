@@ -34,8 +34,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 //            }
         }
         
-        if HomeViewController.firstTime  == false {
-            HomeViewController.firstTime = true
+        if UserDefaults.standard.object(forKey: "isFirstTime") == nil {
+            //if its done tutorial, next time go directly to lesson path
+            UserDefaults.standard.set(true, forKey: "isFirstTime")
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let AR = storyBoard.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
             AR.choosenLesson = lesson[0]

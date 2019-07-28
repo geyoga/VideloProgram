@@ -25,7 +25,7 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
 
     @IBOutlet weak var LessonProgress: UIProgressView!
     
-    @IBOutlet weak var progressView: UIView!
+    //@IBOutlet weak var progressView: UIView!
     var technique: [Techniques] = []
     
     private  var count = 0
@@ -39,8 +39,8 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
         // Do any additional setup after loading the view.
         
         
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.hidesBarsOnSwipe = true
+        /*self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.hidesBarsOnSwipe = true*/
         
         lessonNumP.text = lessonDetail.type //mainLessonNum
         lessonImgP.image = UIImage(named: lessonDetail.image!) //mainLessonImg
@@ -56,10 +56,10 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
             //technique = Array(lessonDetail.learn_use!) as! [Techniques]
         //}
         
-        progressView.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+        /*progressView.backgroundColor = UIColor.white.withAlphaComponent(0.1)
         
         progressView.layer.cornerRadius = 10.0
-        progressView.clipsToBounds = true
+        progressView.clipsToBounds = true*/
         
         self.tabBarController?.tabBar.isHidden = true
         
@@ -87,7 +87,6 @@ class DetailsViewController: UIViewController,UICollectionViewDelegate, UICollec
       
         learnCell.learnName.text = technique[indexPath.row].name
         learnCell.learnImg.image = UIImage(named: technique[indexPath.row].icon!)
-        print(technique[indexPath.row].name)
         
         return learnCell
     }
