@@ -74,7 +74,7 @@ extension ARViewController {
             "Press Left-Top Button to back to your journey"]
             
         labels["Circle the Object"] =
-            ["Combine techniques that you have learn. On your left, there is a speed bar to check whether you do it on the right speed. Press Start button to Begin",
+            ["Speed bar on the left check whether you do it on the right speed. Press Start button to Begin",
              "First, Move around the Plant by keeeping your distance",
              "Second, you will use high angle",
              "Move your Phone to the Top and look down to the Plant",

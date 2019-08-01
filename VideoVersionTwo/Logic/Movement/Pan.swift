@@ -46,7 +46,7 @@ class Pan {
                         print("YEY")
                     }
                     
-                    if self.checkPanUpHit && self.checkPanDownHit == false && yaw <= self.panLower {
+                    if self.checkPanDownHit == false && yaw <= self.panLower {
                         self.checkPanDownHit = true
                         self.delegate?.panRightHit(true)
                         print("YEY2")

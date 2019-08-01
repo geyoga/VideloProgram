@@ -368,7 +368,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
                 self.shape.position.x -= speed
                 self.shape.eulerAngles.y += rotationValue
             }
-            else if panStatus == 2 {
+            else if panStatus == 2 || panStatus == 3 {
                 self.shape.position.x += speed
                 self.shape.eulerAngles.y -= rotationValue
             }
